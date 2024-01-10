@@ -1,0 +1,1 @@
+from authentication_app.models.custom_user import CustomUser
