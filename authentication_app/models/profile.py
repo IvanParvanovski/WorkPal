@@ -1,13 +1,10 @@
-import os
 import shutil
-
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
 
 from WorkPal import settings
 from pathlib import Path
 from django.db import models
 from authentication_app.models import CustomUser
+from authentication_app.models.company import Company
 
 
 class Profile(models.Model):
@@ -62,23 +59,5 @@ class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=50)
     description = models.TextField(max_length=5000)
-    image = models.ImageField(upload_to=user_directory_path, default='images/default/default_img.jpg')
-
-
-@receiver(pre_save, sender=Profile)
-def delete_old_profile_pic_when_save(sender, *args, **kwargs):
-    """
-    Deletes the existing profile picture to avoid name conflicts with new uploads.
-    """
-
-    instance = kwargs['instance']
-    path = Profile.get_absolute_path_to_user_profile_storage(instance.user_id)
-
-    if os.path.exists(path):
-        files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
-        print(files)
-
-        for f in files:
-            if 'profile_picture' in f:
-                os.remove(path + '/' + f)
-                break
+    image = models.ImageField(upload_to=user_directory_path, default='images/default/default_profile_img.jpg')
+    companies = models.ManyToManyField(Company, through='Employment')
