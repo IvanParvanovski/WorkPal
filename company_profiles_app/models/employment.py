@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
-from authentication_app.models.company import Company
+from company_profiles_app.models.company import Company
 from authentication_app.models.profile import Profile
 
 

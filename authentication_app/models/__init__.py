@@ -1,2 +1,1 @@
 from authentication_app.models.custom_user import CustomUser
-from authentication_app.models.employment import Employment
