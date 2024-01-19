@@ -4,7 +4,7 @@ from WorkPal import settings
 from pathlib import Path
 from django.db import models
 from authentication_app.models import CustomUser
-from authentication_app.models.company import Company
+from company_profiles_app.models import Company
 
 
 class Profile(models.Model):
