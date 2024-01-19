@@ -60,4 +60,4 @@ class Profile(models.Model):
     job_title = models.CharField(max_length=50)
     description = models.TextField(max_length=5000)
     image = models.ImageField(upload_to=user_directory_path, default='images/default/default_profile_img.jpg')
-    companies = models.ManyToManyField(Company, through='Employment')
+    companies = models.ManyToManyField(Company, through='company_profiles_app.Employment')
