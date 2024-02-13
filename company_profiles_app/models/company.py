@@ -11,6 +11,15 @@ from accounts_app.models import CustomUser
 from django.utils.translation import gettext_lazy as _
 
 
+class CompanyIdentifiers(models.Model):
+    """
+    The types can be the string 'email' or 'phone', and the value is the actual email or phone
+    """
+
+    type = models.CharField(max_length=40)
+    value = models.CharField(max_length=96)
+
+
 class Company(models.Model):
     class Meta:
         permissions = [
@@ -49,6 +58,7 @@ class Company(models.Model):
     registered_at = models.DateTimeField(auto_now_add=True)
     is_verified = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
+    identifiers = models.ForeignKey(CompanyIdentifiers, on_delete=models.CASCADE)
 
     @property
     def days_since_creation(self):
@@ -77,13 +87,3 @@ def delete_old_profile_pic_when_save(sender, *args, **kwargs):
             if 'company_logo' in f:
                 os.remove(path + '/' + f)
                 break
-
-
-class CompanyEmails(models.Model):
-    email = models.EmailField(max_length=96)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='emails')
-
-
-class CompanyPhones(models.Model):
-    phone = models.CharField(max_length=96)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='phones')
