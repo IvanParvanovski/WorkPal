@@ -6,7 +6,7 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
 from company_profiles_app.models.company import Company
-from authentication_app.models.profile import Profile
+from accounts_app.models.profile import Profile
 
 
 class Employment(models.Model):

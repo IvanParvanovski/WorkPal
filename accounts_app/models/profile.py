@@ -3,7 +3,7 @@ import shutil
 from WorkPal import settings
 from pathlib import Path
 from django.db import models
-from authentication_app.models import CustomUser
+from accounts_app.models import CustomUser
 from company_profiles_app.models import Company
 
 

@@ -7,7 +7,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 
 from WorkPal import settings
-from authentication_app.models import CustomUser
+from accounts_app.models import CustomUser
 from django.utils.translation import gettext_lazy as _
 
 
