@@ -1,7 +1,14 @@
 asgiref==3.7.2
 Django==5.0.1
+django-filter==23.5
+django-markitup==4.1.0
+django-tree-queries==0.16.1
+djangoajax==3.3
+djangorestframework==3.14.0
+Markdown==3.5.2
 pillow==10.2.0
 psycopg==3.1.17
 psycopg-binary==3.1.17
+pytz==2024.1
 sqlparse==0.4.4
 typing_extensions==4.9.0
