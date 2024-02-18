@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import CASCADE
 from django.utils.translation import gettext_lazy as _
 
-from listing_app.models.user_suggestion import UserSuggestion
+from listing_app.models.listing import Listing
 
 
 class JobOffer(models.Model):
@@ -19,6 +19,7 @@ class JobOffer(models.Model):
         FLEXTIME = 'flextime', _('Flextime')
         OTHER = 'other', _('Other')
 
+    listing = models.OneToOneField(Listing, on_delete=CASCADE, related_name='job_offer')
     benefits = models.TextField(max_length=1500, blank=True)
     salary_range_min = models.PositiveIntegerField(blank=False, default=1000)
     salary_range_max = models.PositiveIntegerField(blank=False, default=5000)
@@ -28,4 +29,3 @@ class JobOffer(models.Model):
     required_qualifications = models.TextField(max_length=1500, blank=True)
     preferred_qualifications = models.TextField(max_length=1500, blank=True)
     remote_option = models.BooleanField(default=False)
-    user_suggestions = models.ForeignKey(UserSuggestion, on_delete=CASCADE, blank=True)
