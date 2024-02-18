@@ -7,17 +7,6 @@ from django.dispatch import receiver
 from django.utils import timezone
 
 from WorkPal import settings
-from accounts_app.models import CustomUser
-from django.utils.translation import gettext_lazy as _
-
-
-class CompanyIdentifiers(models.Model):
-    """
-    The types can be the string 'email' or 'phone', and the value is the actual email or phone
-    """
-
-    type = models.CharField(max_length=40)
-    value = models.CharField(max_length=96)
 
 
 class Company(models.Model):
@@ -58,7 +47,6 @@ class Company(models.Model):
     registered_at = models.DateTimeField(auto_now_add=True)
     is_verified = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
-    identifiers = models.ForeignKey(CompanyIdentifiers, on_delete=models.CASCADE)
 
     @property
     def days_since_creation(self):
