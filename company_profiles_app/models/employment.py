@@ -1,5 +1,6 @@
 import os
 
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.db.models.signals import pre_save
@@ -7,6 +8,7 @@ from django.dispatch import receiver
 
 from company_profiles_app.models.company import Company
 from accounts_app.models.profile import Profile
+from shared_app.models import UserSuggestion
 
 
 class Employment(models.Model):
@@ -28,6 +30,7 @@ class Employment(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=15, choices=CompanyRoles, blank=False, null=False)
     is_associate = models.BooleanField(default=False)
+    suggestions = GenericRelation(UserSuggestion)
 
 
 @receiver(pre_save, sender=Profile)

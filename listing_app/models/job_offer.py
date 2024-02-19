@@ -1,8 +1,10 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.db.models import CASCADE
 from django.utils.translation import gettext_lazy as _
 
 from listing_app.models.listing import Listing
+from shared_app.models import UserSuggestion
 
 
 class JobOffer(models.Model):
@@ -29,3 +31,4 @@ class JobOffer(models.Model):
     required_qualifications = models.TextField(max_length=1500, blank=True)
     preferred_qualifications = models.TextField(max_length=1500, blank=True)
     remote_option = models.BooleanField(default=False)
+    suggestions = GenericRelation(UserSuggestion)
