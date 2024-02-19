@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Range Bar</title>
+{#    {{ slider_form.media.css }}#}
+{#    {{ slider_form.media.js }}#}
+</head>
+
+<body>
+    {{ title }}
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">New entity</button>
+    </form>
+
+    {% for p in projects %}
+        <h2>{{ p }}</h2>
+        <p>{{ p.listing.title }}</p>
+    {% endfor %}
+
+    <br />
+
+    {% for j in job_offers %}
+        <h2>{{ j }}</h2>
+        <p>{{ j.listing.title }}</p>
+    {% endfor %}
+
+
+{#    {{ slider_form }}#}
+{#    {{ slider_form.custom_field.name }}#}
+{#    {{ slider_form.custom_field.is_hidden }}#}
+{#    {{ slider_form.custom_field.required }}#}
+{#    {{ slider_form.custom_field.value }}#}
+{#    {{ slider_form.custom_field.attrs }}#}
+{#    {{ slider_form.custom_field.template_name }}#}
+</body>
+
+</html>

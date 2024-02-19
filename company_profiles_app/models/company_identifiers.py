@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import CASCADE
 
 from company_profiles_app.models import Company
-from shared.models import IdentifiersAbstract
+from shared_app.models import IdentifiersAbstract
 
 
 class CompanyIdentifiers(IdentifiersAbstract):

@@ -1,9 +1,11 @@
 from django.db import models
-from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 
 from listing_app.models.listing import Listing
 from django.utils.translation import gettext_lazy as _
+
+from shared_app.models import UserSuggestion
 
 
 class Project(models.Model):
@@ -17,4 +19,4 @@ class Project(models.Model):
     preferred_payment = models.CharField(max_length=50)
     status = models.CharField(max_length=20, choices=Status)
     estimated_duration = models.CharField(max_length=50)
-
+    suggestions = GenericRelation(UserSuggestion)
