@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'accounts_app',
     'company_profiles_app',
     'listing_app',
-    'application_app'
+    'application_app',
+    'shared_app',
 ]
 
 MIDDLEWARE = [
