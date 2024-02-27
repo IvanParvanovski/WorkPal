@@ -10,7 +10,7 @@ from django.utils.safestring import mark_safe
 
 from listing_app.models.listing_identifiers import ListingIdentifiers
 from listing_app.widgets import CustomGridSliderWidget, widgets
-from listing_app.models.user_suggestion import UserSuggestion
+# from listing_app.models.user_suggestion import UserSuggestion
 
 from listing_app.models.project import *
 
