@@ -5,6 +5,7 @@ from pathlib import Path
 from django.db import models
 from accounts_app.models import CustomUser
 from company_profiles_app.models import Company
+from listing_app.models.listing import Listing
 
 
 class Profile(models.Model):
@@ -61,3 +62,4 @@ class Profile(models.Model):
     description = models.TextField(max_length=5000)
     image = models.ImageField(upload_to=user_directory_path, default='images/default/default_profile_img.jpg')
     companies = models.ManyToManyField(Company, through='company_profiles_app.Employment')
+    applications = models.ManyToManyField(Listing, through='application_app.Application')
