@@ -5,11 +5,10 @@ from services.interfaces.accounts_app.profile_interface import ProfileInterface
 
 class ProfileService(ProfileInterface):
     @staticmethod
-    def create_profile(job_title: str,
+    def create_profile(user: CustomUser,
+                       job_title: str,
                        description: str,
                        image_path: str):
-
-        user = CustomUser.objects.create()
 
         profile = Profile.objects.create(
             user=user,
