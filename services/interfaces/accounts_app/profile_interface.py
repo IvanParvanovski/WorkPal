@@ -1,12 +1,14 @@
 from abc import ABC, abstractmethod
 
+from accounts_app.models import CustomUser
 from accounts_app.models.profile import Profile
 
 
 class ProfileInterface(ABC):
     @staticmethod
     @abstractmethod
-    def create_profile(job_title: str,
+    def create_profile(user: CustomUser,
+                       job_title: str,
                        description: str,
                        image_path: str):
         pass
