@@ -6,7 +6,11 @@ from accounts_app.models import CustomUser
 class CustomUserInterface(ABC):
     @staticmethod
     @abstractmethod
-    def create_custom_user(username: str, email: str, password: str) -> CustomUser:
+    def create_custom_user(first_name: str,
+                           last_name: str,
+                           username: str,
+                           email: str,
+                           password: str) -> CustomUser:
         pass
 
     @staticmethod
@@ -26,5 +30,10 @@ class CustomUserInterface(ABC):
 
     @staticmethod
     @abstractmethod
-    def edit_user_by_id(_id: int, username: str, email: str, password: str) -> CustomUser:
+    def edit_user_by_id(_id: int,
+                        first_name: str,
+                        last_name: str,
+                        username: str,
+                        email: str,
+                        password: str) -> CustomUser:
         pass

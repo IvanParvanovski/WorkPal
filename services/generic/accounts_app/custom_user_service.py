@@ -4,8 +4,17 @@ from services.interfaces.accounts_app.custom_user_interface import CustomUserInt
 
 class CustomUserService(CustomUserInterface):
     @staticmethod
-    def create_custom_user(username: str, email: str, password: str) -> CustomUser:
-        user = CustomUser.objects.create_user(username=username, email=email, password=password)
+    def create_custom_user(first_name: str,
+                           last_name: str,
+                           username: str,
+                           email: str,
+                           password: str) -> CustomUser:
+
+        user = CustomUser.objects.create_user(first_name=first_name,
+                                              last_name=last_name,
+                                              username=username,
+                                              email=email,
+                                              password=password)
         user.save()
         return user
 
@@ -23,7 +32,13 @@ class CustomUserService(CustomUserInterface):
         user.delete()
 
     @staticmethod
-    def edit_user_by_id(_id: int, username: str, email: str, password: str) -> CustomUser:
+    def edit_user_by_id(_id: int,
+                        first_name: str,
+                        last_name: str,
+                        username: str,
+                        email: str,
+                        password: str) -> CustomUser:
+        
         user = CustomUserService.get_user_by_id(_id=_id)
 
         user.username = username
