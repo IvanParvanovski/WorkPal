@@ -7,6 +7,16 @@
 </head>
 <body>
     <h1>Index.HTML</h1>
-    <a href="{% url 'sign_up' %}">Sign Up</a>
+
+    {% if user.is_authenticated %}
+        <p>USER -> {{ user.username }}</p>
+        <a href="{% url 'sign_out' %}">Sign Out</a>
+    {% else %}
+        <a href="{% url 'sign_in' %}">Sign In</a>
+        <a href="{% url 'sign_up' %}">Sign Up</a>
+    {% endif %}
+
+
+
 </body>
 </html>
