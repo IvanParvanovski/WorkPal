@@ -17,6 +17,7 @@ class ProfileService(ProfileInterface):
             image=image_path
         )
 
+        profile.save()
         return profile
 
     @staticmethod
