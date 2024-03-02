@@ -34,7 +34,8 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractUser):
     """
-    Custom user model which extends the original when needed
+    Custom user model which extends the original when needed.
+    Use the email field as the unique identifier for authentication and customize the manager with `CustomUserManager`.
     """
     email = models.EmailField(_('email address'), unique=True)
 
