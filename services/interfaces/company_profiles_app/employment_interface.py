@@ -7,7 +7,7 @@ from company_profiles_app.models import Employment, Company
 class EmploymentInterface(ABC):
     @staticmethod
     @abstractmethod
-    def create_employment(profile: Profile, company: Company, job_title: str) \
+    def create_employment(profile: Profile, company: Company, job_title: str, commit=True) \
             -> Employment:
         pass
 
@@ -42,5 +42,6 @@ class EmploymentInterface(ABC):
             _id: int,
             profile: Profile,
             company: Company,
-            job_title: str) -> Employment:
+            job_title: str,
+            commit=True) -> Employment:
         pass

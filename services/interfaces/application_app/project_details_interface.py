@@ -6,7 +6,7 @@ from application_app.models.project_details import ProjectDetails
 class ProjectDetailsInterface(ABC):
     @staticmethod
     @abstractmethod
-    def create_project_details(motivation_letter: str) -> ProjectDetails:
+    def create_project_details(motivation_letter: str, commit=True) -> ProjectDetails:
         pass
 
     @staticmethod
@@ -32,5 +32,6 @@ class ProjectDetailsInterface(ABC):
     @staticmethod
     @abstractmethod
     def edit_project_details_by_id(_id: int,
-                                   motivation_letter: int) -> ProjectDetails:
+                                   motivation_letter: int,
+                                   commit=True) -> ProjectDetails:
         pass

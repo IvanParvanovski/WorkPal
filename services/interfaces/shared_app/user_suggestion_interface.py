@@ -11,7 +11,8 @@ class UserSuggestionInterface(ABC):
     def create_user_suggestion(field_name: str,
                                suggestion: str,
                                content_type: ContentType,
-                               object_id: int) -> UserSuggestion:
+                               object_id: int,
+                               commit=True) -> UserSuggestion:
         pass
 
     @staticmethod
@@ -35,5 +36,6 @@ class UserSuggestionInterface(ABC):
                                    field_name: str,
                                    suggestion: str,
                                    content_type: ContentType,
-                                   object_id: int) -> UserSuggestion:
+                                   object_id: int,
+                                   commit=True) -> UserSuggestion:
         pass

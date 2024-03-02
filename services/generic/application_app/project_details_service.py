@@ -4,9 +4,12 @@ from services.interfaces.application_app.project_details_interface import Projec
 
 class ProjectDetailsService(ProjectDetailsInterface):
     @staticmethod
-    def create_project_details(motivation_letter: str) -> ProjectDetails:
+    def create_project_details(motivation_letter: str, commit=True) -> ProjectDetails:
         project_details = ProjectDetails.objects.create(motivation_letter=motivation_letter)
-        project_details.save()
+
+        if commit:
+            project_details.save()
+
         return project_details
 
     @staticmethod
@@ -28,11 +31,13 @@ class ProjectDetailsService(ProjectDetailsInterface):
 
     @staticmethod
     def edit_project_details_by_id(_id: int,
-                                   motivation_letter: int) -> ProjectDetails:
+                                   motivation_letter: int,
+                                   commit=True) -> ProjectDetails:
         project_details = ProjectDetailsService.get_project_details_by_id(_id=_id)
-
         project_details.motivation_letter = motivation_letter
-        project_details.save()
+
+        if commit:
+            project_details.save()
 
         return project_details
 

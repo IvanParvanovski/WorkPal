@@ -6,7 +6,7 @@ from application_app.models.job_offer_details import JobOfferDetails
 class JobOfferDetailsInterface(ABC):
     @staticmethod
     @abstractmethod
-    def create_job_offer_details(cv, motivation_letter: str) -> JobOfferDetails:
+    def create_job_offer_details(cv, motivation_letter: str, commit=True) -> JobOfferDetails:
         pass
 
     @staticmethod
@@ -31,5 +31,5 @@ class JobOfferDetailsInterface(ABC):
 
     @staticmethod
     @abstractmethod
-    def edit_job_offer_by_id(_id: int, motivation_letter) -> JobOfferDetails:
+    def edit_job_offer_by_id(_id: int, motivation_letter, commit=True) -> JobOfferDetails:
         pass

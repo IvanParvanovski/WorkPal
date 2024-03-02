@@ -9,7 +9,8 @@ class ListingIdentifiersInterface(ABC):
     @abstractmethod
     def create_listing_identifier(_type: str,
                                   value,
-                                  listing: Listing) -> ListingIdentifiers:
+                                  listing: Listing,
+                                  commit=True) -> ListingIdentifiers:
         pass
 
     @staticmethod
@@ -32,5 +33,6 @@ class ListingIdentifiersInterface(ABC):
     def edit_identifier_by_id(_id: int,
                               _type: str,
                               value,
-                              listing: Listing) -> ListingIdentifiers:
+                              listing: Listing,
+                              commit=True) -> ListingIdentifiers:
         pass

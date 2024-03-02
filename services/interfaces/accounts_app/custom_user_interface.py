@@ -10,7 +10,8 @@ class CustomUserInterface(ABC):
                            last_name: str,
                            username: str,
                            email: str,
-                           password: str) -> CustomUser:
+                           password: str,
+                           commit=True) -> CustomUser:
         pass
 
     @staticmethod
@@ -35,5 +36,6 @@ class CustomUserInterface(ABC):
                         last_name: str,
                         username: str,
                         email: str,
-                        password: str) -> CustomUser:
+                        password: str,
+                        commit=True) -> CustomUser:
         pass

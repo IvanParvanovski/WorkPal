@@ -9,7 +9,8 @@ class CompanyInterface(ABC):
     def create_company(address: str,
                        secondary_address: str,
                        name: str,
-                       website: str):
+                       website: str,
+                       commit=True):
         pass
 
     @staticmethod
@@ -33,5 +34,6 @@ class CompanyInterface(ABC):
                      address: str,
                      secondary_address: str,
                      name: str,
-                     website: str):
+                     website: str,
+                     commit=True):
         pass

@@ -10,7 +10,8 @@ class ProfileInterface(ABC):
     def create_profile(user: CustomUser,
                        job_title: str,
                        description: str,
-                       image_path: str):
+                       image_path: str,
+                       commit=True):
         pass
 
     @staticmethod
@@ -38,5 +39,6 @@ class ProfileInterface(ABC):
     def edit_profile_by_id(_id: int,
                            job_title: str,
                            description: str,
-                           image_path: str):
+                           image_path: str,
+                           commit=True):
         pass

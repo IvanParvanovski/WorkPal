@@ -8,14 +8,18 @@ class ProjectService(ProjectInterface):
                        wage: int,
                        preferred_payment: str,
                        status: Project.Status,
-                       estimated_duration: str) -> Project:
+                       estimated_duration: str,
+                       commit=True) -> Project:
 
         project = Project.objects.create(listing=listing,
                                          wage=wage,
                                          preferred_payment=preferred_payment,
                                          status=status,
                                          estimated_duration=estimated_duration)
-        project.save()
+
+        if commit:
+            project.save()
+
         return project
 
     @staticmethod
@@ -40,7 +44,8 @@ class ProjectService(ProjectInterface):
                            wage: int,
                            preferred_payment: str,
                            status: Project.Status,
-                           estimated_duration: str) -> Project:
+                           estimated_duration: str,
+                           commit=True) -> Project:
 
         project = ProjectService.get_project_by_id(_id=_id)
 
@@ -49,7 +54,8 @@ class ProjectService(ProjectInterface):
         project.status = status
         project.estimated_duration = estimated_duration
 
-        project.save()
+        if commit:
+            project.save()
 
         return project
 

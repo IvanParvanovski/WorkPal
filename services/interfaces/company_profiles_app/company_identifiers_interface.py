@@ -7,7 +7,7 @@ from company_profiles_app.models.company_identifiers import CompanyIdentifiers
 class CompanyIdentifiersInterface(ABC):
     @staticmethod
     @abstractmethod
-    def create_company_identifier(_type: str, value, company: Company) \
+    def create_company_identifier(_type: str, value, company: Company, commit=True) \
             -> CompanyIdentifiers:
         pass
 
@@ -28,6 +28,6 @@ class CompanyIdentifiersInterface(ABC):
 
     @staticmethod
     @abstractmethod
-    def edit_identifier_by_id(_id: int, _type: str, value, company: Company) \
+    def edit_identifier_by_id(_id: int, _type: str, value, company: Company, commit=True) \
             -> CompanyIdentifiers:
         pass

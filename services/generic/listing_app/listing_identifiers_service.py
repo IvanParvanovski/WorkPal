@@ -7,10 +7,14 @@ class ListingIdentifiersService(ListingIdentifiersInterface):
     @staticmethod
     def create_listing_identifier(_type: str,
                                   value,
-                                  listing: Listing) -> ListingIdentifiers:
+                                  listing: Listing,
+                                  commit=True) -> ListingIdentifiers:
 
         identifier = ListingIdentifiers(type=_type, value=value, listing=listing)
-        identifier.save()
+
+        if commit:
+            identifier.save()
+
         return identifier
 
     @staticmethod
@@ -30,7 +34,8 @@ class ListingIdentifiersService(ListingIdentifiersInterface):
     def edit_identifier_by_id(_id: int,
                               _type: str,
                               value,
-                              listing: Listing) -> ListingIdentifiers:
+                              listing: Listing,
+                              commit=True) -> ListingIdentifiers:
 
         identifier = ListingIdentifiersService.get_identifier_by_id(_id=_id)
 
@@ -38,5 +43,7 @@ class ListingIdentifiersService(ListingIdentifiersInterface):
         identifier.value = value
         identifier.listing = listing
 
-        identifier.save()
+        if commit:
+            identifier.save()
+
         return identifier

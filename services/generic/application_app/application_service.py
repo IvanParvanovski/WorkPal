@@ -11,7 +11,8 @@ class ApplicationService(ApplicationInterface):
     def create_application(profile: Profile,
                            listing: Listing,
                            content_type: ContentType,
-                           object_id: int) -> Application:
+                           object_id: int,
+                           commit=True) -> Application:
 
         application = Application.objects.create(
             is_approved=False,
@@ -21,7 +22,9 @@ class ApplicationService(ApplicationInterface):
             object_id=object_id
         )
 
-        application.save()
+        if commit:
+            application.save()
+
         return application
 
     @staticmethod
@@ -45,7 +48,8 @@ class ApplicationService(ApplicationInterface):
     def edit_application_by_id(_id: int,
                                profile: Profile,
                                listing: Listing,
-                               content_type: ContentType):
+                               content_type: ContentType,
+                               commit=True):
 
         application = ApplicationService.get_application_by_id(_id=_id)
 
@@ -53,6 +57,8 @@ class ApplicationService(ApplicationInterface):
         application.listing = listing
         application.content_type = content_type
 
-        application.save()
+        if commit:
+            application.save()
+
         return application
 

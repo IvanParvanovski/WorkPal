@@ -9,7 +9,8 @@ class ListingInterface(ABC):
     def create_listing(title: str,
                        location: str,
                        images: str,
-                       description: str) -> Listing:
+                       description: str,
+                       commit=True) -> Listing:
         pass
 
     @staticmethod
@@ -38,6 +39,7 @@ class ListingInterface(ABC):
                            title: str,
                            location: str,
                            images: str,
-                           description: str) -> Listing:
+                           description: str,
+                           commit=True) -> Listing:
         pass
 

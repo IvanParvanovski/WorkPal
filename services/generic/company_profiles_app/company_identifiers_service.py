@@ -5,7 +5,7 @@ from services.interfaces.company_profiles_app.company_identifiers_interface impo
 
 class CompanyIdentifiersService(CompanyIdentifiersInterface):
     @staticmethod
-    def create_company_identifier(_type: str, value, company: Company) \
+    def create_company_identifier(_type: str, value, company: Company, commit=True) \
             -> CompanyIdentifiers:
 
         identifier = CompanyIdentifiers.objects.create(
@@ -13,7 +13,10 @@ class CompanyIdentifiersService(CompanyIdentifiersInterface):
             value=value,
             company=company
         )
-        identifier.save()
+
+        if commit:
+            identifier.save()
+
         return identifier
 
     @staticmethod
@@ -30,7 +33,7 @@ class CompanyIdentifiersService(CompanyIdentifiersInterface):
         identifier.delete()
 
     @staticmethod
-    def edit_identifier_by_id(_id: int, _type: str, value, company: Company) \
+    def edit_identifier_by_id(_id: int, _type: str, value, company: Company, commit=True) \
             -> CompanyIdentifiers:
 
         identifier = CompanyIdentifiersService.get_identifier_by_id(_id=_id)
@@ -38,6 +41,8 @@ class CompanyIdentifiersService(CompanyIdentifiersInterface):
         identifier.type = _type
         identifier.value = value
         identifier.company = company
-        identifier.save()
+
+        if commit:
+            identifier.save()
 
         return identifier

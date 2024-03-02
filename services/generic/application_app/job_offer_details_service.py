@@ -4,9 +4,11 @@ from services.interfaces.application_app.job_offer_details_interface import JobO
 
 class JobOfferDetailsService(JobOfferDetailsInterface):
     @staticmethod
-    def create_job_offer_details(cv, motivation_letter: str) -> JobOfferDetails:
+    def create_job_offer_details(cv, motivation_letter: str, commit=True) -> JobOfferDetails:
         job_offer_details = JobOfferDetails.objects.create(cv=cv, motivation_letter=motivation_letter)
-        job_offer_details.save()
+
+        if commit:
+            job_offer_details.save()
 
         return job_offer_details
 
@@ -28,9 +30,11 @@ class JobOfferDetailsService(JobOfferDetailsInterface):
         job_offer_details.delete()
 
     @staticmethod
-    def edit_job_offer_by_id(_id: int, motivation_letter) -> JobOfferDetails:
+    def edit_job_offer_by_id(_id: int, motivation_letter, commit=True) -> JobOfferDetails:
         job_offer_details = JobOfferDetailsService.get_job_offer_details_by_id(_id=_id)
         job_offer_details.motivation_letter = motivation_letter
-        job_offer_details.save()
+
+        if commit:
+            job_offer_details.save()
 
         return job_offer_details

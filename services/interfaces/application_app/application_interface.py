@@ -13,7 +13,8 @@ class ApplicationInterface(ABC):
     def create_application(profile: Profile,
                            listing: Listing,
                            content_type: ContentType,
-                           object_id: int) -> Application:
+                           object_id: int,
+                           commit=True) -> Application:
         pass
 
     @staticmethod
@@ -36,5 +37,6 @@ class ApplicationInterface(ABC):
     def edit_application_by_id(_id: int,
                                profile: Profile,
                                listing: Listing,
-                               content_type: ContentType):
+                               content_type: ContentType,
+                               commit=True):
         pass
