@@ -16,7 +16,8 @@ class JobOfferInterface(ABC):
                          key_responsibilities: str,
                          required_qualifications: str,
                          preferred_qualifications: str,
-                         remote_option: bool) -> JobOffer:
+                         remote_option: bool,
+                         commit=True) -> JobOffer:
         pass
 
     @staticmethod
@@ -51,6 +52,6 @@ class JobOfferInterface(ABC):
                              key_responsibilities: str,
                              required_qualifications: str,
                              preferred_qualifications: str,
-                             remote_option: bool
-                             ) -> JobOffer:
+                             remote_option: bool,
+                             commit=True) -> JobOffer:
         pass

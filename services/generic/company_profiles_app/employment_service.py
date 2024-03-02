@@ -5,7 +5,7 @@ from services.interfaces.company_profiles_app.employment_interface import Employ
 
 class EmploymentService(EmploymentInterface):
     @staticmethod
-    def create_employment(profile: Profile, company: Company, job_title: str)\
+    def create_employment(profile: Profile, company: Company, job_title: str, commit=True)\
             -> Employment:
 
         employment = Employment(
@@ -15,7 +15,9 @@ class EmploymentService(EmploymentInterface):
             is_associate=False
         )
 
-        employment.save()
+        if commit:
+            employment.save()
+
         return employment
 
     @staticmethod
@@ -45,13 +47,17 @@ class EmploymentService(EmploymentInterface):
             _id: int,
             profile: Profile,
             company: Company,
-            job_title: str) -> Employment:
+            job_title: str,
+            commit=True) -> Employment:
 
         employment = EmploymentService.get_employment_by_id(_id=_id)
 
         employment.profile = profile
         employment.company = company
         employment.job_title = job_title
+
+        if commit:
+            employment.save()
 
         return employment
 

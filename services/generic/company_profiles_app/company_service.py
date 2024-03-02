@@ -7,7 +7,8 @@ class CompanyService(CompanyInterface):
     def create_company(address: str,
                        secondary_address: str,
                        name: str,
-                       website: str):
+                       website: str,
+                       commit=True):
 
         company = Company(
             address=address,
@@ -16,7 +17,9 @@ class CompanyService(CompanyInterface):
             website=website
         )
 
-        company.save()
+        if commit:
+            company.save()
+
         return company
 
     @staticmethod
@@ -37,7 +40,8 @@ class CompanyService(CompanyInterface):
                      address: str,
                      secondary_address: str,
                      name: str,
-                     website: str):
+                     website: str,
+                     commit=True):
 
         company = CompanyService.get_company_by_id(_id)
 
@@ -46,5 +50,7 @@ class CompanyService(CompanyInterface):
         company.name = name
         company.website = website
 
-        company.save()
+        if commit:
+            company.save()
+
         return company

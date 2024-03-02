@@ -14,7 +14,8 @@ class JobOfferService(JobOfferInterface):
                          key_responsibilities: str,
                          required_qualifications: str,
                          preferred_qualifications: str,
-                         remote_option: bool) -> JobOffer:
+                         remote_option: bool,
+                         commit=True) -> JobOffer:
 
         job_offer = JobOffer.objects.create(
             listing=listing,
@@ -29,7 +30,9 @@ class JobOfferService(JobOfferInterface):
             remote_option=remote_option
         )
 
-        job_offer.save()
+        if commit:
+            job_offer.save()
+
         return job_offer
 
     @staticmethod
@@ -60,8 +63,8 @@ class JobOfferService(JobOfferInterface):
                              key_responsibilities: str,
                              required_qualifications: str,
                              preferred_qualifications: str,
-                             remote_option: bool
-                             ) -> JobOffer:
+                             remote_option: bool,
+                             commit=True) -> JobOffer:
         job_offer = JobOfferService.get_job_offer_by_id(_id=_id)
 
         job_offer.listing = listing
@@ -75,6 +78,7 @@ class JobOfferService(JobOfferInterface):
         job_offer.preferred_qualifications = preferred_qualifications
         job_offer.remote_option = remote_option
 
-        job_offer.save()
+        if commit:
+            job_offer.save()
 
         return job_offer

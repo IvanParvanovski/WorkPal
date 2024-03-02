@@ -7,7 +7,8 @@ class ListingService(ListingInterface):
     def create_listing(title: str,
                        location: str,
                        images: str,
-                       description: str) -> Listing:
+                       description: str,
+                       commit=True) -> Listing:
 
         listing = Listing.objects.create(
             title=title,
@@ -16,7 +17,9 @@ class ListingService(ListingInterface):
             description=description,
         )
 
-        listing.save()
+        if commit:
+            listing.save()
+
         return listing
 
     @staticmethod
@@ -41,7 +44,8 @@ class ListingService(ListingInterface):
                            title: str,
                            location: str,
                            images: str,
-                           description: str) -> Listing:
+                           description: str,
+                           commit=True) -> Listing:
 
         listing = ListingService.get_listing_by_id(_id)
 
@@ -50,5 +54,7 @@ class ListingService(ListingInterface):
         listing.images = images
         listing.description = description
 
-        listing.save()
+        if commit:
+            listing.save()
+
         return listing

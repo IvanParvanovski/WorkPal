@@ -10,7 +10,8 @@ class ProjectInterface(ABC):
                        wage: int,
                        preferred_payment: str,
                        status: Project.Status,
-                       estimated_duration: str) -> Project:
+                       estimated_duration: str,
+                       commit=True) -> Project:
         pass
 
     @staticmethod
@@ -39,5 +40,6 @@ class ProjectInterface(ABC):
                            wage: int,
                            preferred_payment: str,
                            status: Project.Status,
-                           estimated_duration: str) -> Project:
+                           estimated_duration: str,
+                           commit=True) -> Project:
         pass

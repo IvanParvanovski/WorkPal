@@ -8,14 +8,18 @@ class CustomUserService(CustomUserInterface):
                            last_name: str,
                            username: str,
                            email: str,
-                           password: str) -> CustomUser:
+                           password: str,
+                           commit=True) -> CustomUser:
 
         user = CustomUser.objects.create_user(first_name=first_name,
                                               last_name=last_name,
                                               username=username,
                                               email=email,
                                               password=password)
-        user.save()
+
+        if commit:
+            user.save()
+
         return user
 
     @staticmethod
@@ -37,7 +41,8 @@ class CustomUserService(CustomUserInterface):
                         last_name: str,
                         username: str,
                         email: str,
-                        password: str) -> CustomUser:
+                        password: str,
+                        commit=True) -> CustomUser:
         
         user = CustomUserService.get_user_by_id(_id=_id)
 
@@ -45,6 +50,7 @@ class CustomUserService(CustomUserInterface):
         user.email = email
         user.password = password
 
-        user.save()
+        if commit:
+            user.save()
 
         return user

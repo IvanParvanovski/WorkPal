@@ -8,7 +8,8 @@ class ProfileService(ProfileInterface):
     def create_profile(user: CustomUser,
                        job_title: str,
                        description: str,
-                       image_path: str):
+                       image_path: str,
+                       commit=True):
 
         profile = Profile.objects.create(
             user=user,
@@ -17,7 +18,9 @@ class ProfileService(ProfileInterface):
             image=image_path
         )
 
-        profile.save()
+        if commit:
+            profile.save()
+
         return profile
 
     @staticmethod
@@ -42,7 +45,8 @@ class ProfileService(ProfileInterface):
     def edit_profile_by_id(_id: int,
                            job_title: str,
                            description: str,
-                           image_path: str):
+                           image_path: str,
+                           commit=True):
 
         profile = ProfileService.get_profile_by_id(_id=_id)
 
@@ -50,5 +54,7 @@ class ProfileService(ProfileInterface):
         profile.description = description
         profile.image_path = image_path
 
-        profile.save()
+        if commit:
+            profile.save()
+
         return profile
