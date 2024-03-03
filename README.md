@@ -18,6 +18,9 @@
 
 <h2 id="section-id">Technologies</h2>
 
+<br />
+<br />
+
 <p align="center">
     <a href="https://www.python.org"><img src="https://skillicons.dev/icons?i=python" alt="Python"></a>&nbsp;&nbsp;&nbsp;
     <a href="https://git-scm.com"><img src="https://skillicons.dev/icons?i=git" alt="Git"></a>&nbsp;&nbsp;&nbsp;
@@ -29,6 +32,8 @@
     <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://skillicons.dev/icons?i=js" alt="JavaScript"></a>
 </p>
 
+<br />
+<br />
 
 ![Python](https://skillicons.dev/icons?i=python)
 
@@ -36,11 +41,15 @@
 
 Python is a high-level, interpreted programming language known for its simplicity and readability, making it ideal for beginners and experienced developers alike. It supports multiple programming paradigms and has a vast ecosystem of libraries and frameworks for various applications, including web development, data analysis, machine learning, and automation.
 
+<br />
+
 ![Git](https://skillicons.dev/icons?i=git)
 
 ### Git
 
 Git is a distributed version control system designed for tracking changes in source code during software development. It allows multiple developers to collaborate on projects efficiently by providing tools for branching, merging, and versioning code.
+
+<br />
 
 ![Git](https://skillicons.dev/icons?i=django)
 
@@ -48,29 +57,39 @@ Git is a distributed version control system designed for tracking changes in sou
 
 Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It provides built-in features for authentication, URL routing, template engine, and database management, making it ideal for building web applications quickly and efficiently.
 
+<br />
+
 ![Docker](https://skillicons.dev/icons?i=docker)
 
 ### Docker
 
 Docker is a platform for developing, shipping, and running applications using containerization technology. It allows developers to package their applications and dependencies into standardized units called containers, providing consistency across different environments and simplifying deployment processes.
 
-![Postgres](https://skillicons.dev/icons?i=docker)
+<br />
+
+![Postgres](https://skillicons.dev/icons?i=postgres)
 
 ### Postgres
 
 PostgreSQL, often referred to simply as "Postgres," is a free and open-source relational database management system known for its reliability, extensibility, and powerful features. It supports a wide range of advanced functionalities, including ACID compliance, data integrity, and concurrency control, making it a popular choice for both small-scale projects and large-scale enterprise applications.
 
-![HTML](https://skillicons.dev/icons?i=HTML)
+<br />
+
+![HTML](https://skillicons.dev/icons?i=html)
 
 ### HTML
 
 HTML is the foundation of web development, allowing developers to structure content and create interactive web pages using tags and attributes. It provides a standardized way to format text, images, links, and other elements on the internet.
+
+<br />
 
 ![CSS](https://skillicons.dev/icons?i=css)
 
 ### CSS
 
 CSS, or Cascading Style Sheets, is a styling language used to control the presentation and layout of HTML documents. It enables developers to customize the appearance of web pages, including aspects such as fonts, colors, spacing, and positioning, enhancing the visual appeal and user experience of websites.
+
+<br />
 
 ![JS](https://skillicons.dev/icons?i=js)
 
