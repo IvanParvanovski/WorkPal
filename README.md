@@ -29,107 +29,55 @@
     <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://skillicons.dev/icons?i=js" alt="JavaScript"></a>
 </p>
 
-<div style="display: flex; padding: 10px">
-	<div style="display: flex; justify-content: center; align-items: center; width: 15%; height: fit-content; margin: auto auto">
-	<a href="https://www.python.org"><img src="https://skillicons.dev/icons?i=python"/></a>
-	</div>
-	<div style="width:85%; border-left: 1px solid gray; padding-left: 5%;">
-		 <h4>Python</h4>
-		 <p>
-			 Python is a high-level, interpreted programming language known for itssimplicity and readability, making it ideal for beginners and experienced developers alike. It supports multiple programming paradigms and has a vast ecosystem of libraries and frameworks for various applications, including web development, data analysis, machine learning, and automation.
-		 </p>
-	</div>
-</div>
 
-<div style="display: flex; padding: 10px">
-	<div style="display: flex; justify-content: center; align-items: center; width: 15%; height: fit-content; margin: auto auto">
-	<a href="https://git-scm.com"><img src="https://skillicons.dev/icons?i=git"/></a> 
-	</div>
-	 <div style="width:85%; border-left: 1px solid gray; padding-left: 5%;">
-		 <h4>Git</h4>
-		 <p>
-			 Git is a distributed version control system designed for tracking changes in source code during software development. It allows multiple developers to collaborate on projects efficiently by providing tools for branching, merging, and versioning code.
-		 </p>
-	 </div>
-</div>
+![Python](https://skillicons.dev/icons?i=python)
 
-<div style="display: flex; padding: 10px">
-	<div style="display: flex; justify-content: center; align-items: center; width: 15%; height: fit-content; margin: auto auto">
-	 <a href="https://www.djangoproject.com"><img src="https://skillicons.dev/icons?i=django"/></a>
-	</div>
-	 <div style="width:85%; border-left: 1px solid gray; padding-left: 5%;">
-		 <h4>Django</h4>
-		 <p>
-			 Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It provides built-in features for authentication, URL routing, template engine, and database management, making it ideal for building web applications quickly and efficiently.
-		 </p>
-	 </div>
-</div>
+### Python
 
-<div style="display: flex; padding: 10px">
-	<div style="display: flex; justify-content: center; align-items: center; width: 15%; height: fit-content; margin: auto auto">
-	 <a href="https://www.docker.com"><img src="https://skillicons.dev/icons?i=docker"/></a>
-	</div>
-	 <div style="width:85%; border-left: 1px solid gray; padding-left: 5%;">
-		 <h4>Docker</h4>
-		 <p>
-			 Docker is a platform for developing, shipping, and running applications using containerization technology. It allows developers to package their applications and dependencies into standardized units called containers, providing consistency across different environments and simplifying deployment processes.
-		 </p>
-	 </div>
-</div>
-<div style="display: flex; padding: 10px">
-	<div style="display: flex; justify-content: center; align-items: center; width: 15%; height: fit-content; margin: auto auto">
-		 <a href="https://www.postgresql.org">
-			<img src="https://skillicons.dev/icons?i=postgres"/>
-		</a> 
-	</div>
-	 <div style="width:85%; border-left: 1px solid gray; padding-left: 5%;">
-		 <h4>Postgres</h4>
-		 <p>
-			 PostgreSQL, often referred to simply as "Postgres," is a free and open-source relational database management system known for its reliability, extensibility, and powerful features. It supports a wide range of advanced functionalities, including ACID compliance, data integrity, and concurrency control, making it a popular choice for both small-scale projects and large-scale enterprise applications.
-		 </p>
-	 </div>
-</div>
+Python is a high-level, interpreted programming language known for its simplicity and readability, making it ideal for beginners and experienced developers alike. It supports multiple programming paradigms and has a vast ecosystem of libraries and frameworks for various applications, including web development, data analysis, machine learning, and automation.
 
-<div style="display: flex; padding: 10px">
-	<div style="display: flex; justify-content: center; align-items: center; width: 15%; height: fit-content; margin: auto auto">
-		 <a href="https://en.wikipedia.org/wiki/HTML">
-			<img src="https://skillicons.dev/icons?i=html"/>
-		</a> 
-	</div>
-	 <div style="width:85%; border-left: 1px solid gray; padding-left: 5%;">
-		 <h4>HTML</h4>
-		 <p>
-			 HTML is the foundation of web development, allowing developers to structure content and create interactive web pages using tags and attributes. It provides a standardized way to format text, images, links, and other elements on the internet.
-		 </p>
-	 </div>
-</div>
-<div style="display: flex; padding: 10px">
-	<div style="display: flex; justify-content: center; align-items: center; width: 15%; height: fit-content; margin: auto auto">
-		 <a href="https://bg.wikipedia.org/wiki/CSSj">
-			<img src="https://skillicons.dev/icons?i=css"/>
-		</a> 
-	</div>
-	 <div style="width:85%; border-left: 1px solid gray; padding-left: 5%;">
-		 <h4>CSS</h4>
-		 <p>
-			 CSS, or Cascading Style Sheets, is a styling language used to control the presentation and layout of HTML documents. It enables developers to customize the appearance of web pages, including aspects such as fonts, colors, spacing, and positioning, enhancing the visual appeal and user experience of websites.
-		 </p>
-	 </div>
-</div>
-<div style="display: flex; padding: 10px">
-	<div style="display: flex; justify-content: center; align-items: center; width: 15%; height: fit-content; margin: auto auto">
-		 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
-			<img src="https://skillicons.dev/icons?i=js"/>
-		</a> 
-	</div>
-	 <div style="width:85%; border-left: 1px solid gray; padding-left: 5%;">
-		 <h4>JavaScript (JS)</h4>
-		 <p>
-			 JavaScript (JS) is a versatile programming language primarily used for adding interactivity and dynamic behavior to web pages. It enables developers to manipulate HTML and CSS, handle events, create animations, and interact with the browser's Document Object Model (DOM), making it a fundamental tool for modern web development.
-		 </p>
-	 </div>
-</div>
+![Git](https://skillicons.dev/icons?i=git)
 
+### Git
+
+Git is a distributed version control system designed for tracking changes in source code during software development. It allows multiple developers to collaborate on projects efficiently by providing tools for branching, merging, and versioning code.
+
+![Git](https://skillicons.dev/icons?i=django)
+
+### Django
+
+Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It provides built-in features for authentication, URL routing, template engine, and database management, making it ideal for building web applications quickly and efficiently.
+
+![Docker](https://skillicons.dev/icons?i=docker)
+
+### Docker
+
+Docker is a platform for developing, shipping, and running applications using containerization technology. It allows developers to package their applications and dependencies into standardized units called containers, providing consistency across different environments and simplifying deployment processes.
+
+![Postgres](https://skillicons.dev/icons?i=docker)
+
+### Postgres
+
+PostgreSQL, often referred to simply as "Postgres," is a free and open-source relational database management system known for its reliability, extensibility, and powerful features. It supports a wide range of advanced functionalities, including ACID compliance, data integrity, and concurrency control, making it a popular choice for both small-scale projects and large-scale enterprise applications.
+
+![HTML](https://skillicons.dev/icons?i=HTML)
+
+### HTML
+
+HTML is the foundation of web development, allowing developers to structure content and create interactive web pages using tags and attributes. It provides a standardized way to format text, images, links, and other elements on the internet.
+
+![CSS](https://skillicons.dev/icons?i=css)
+
+### CSS
+
+CSS, or Cascading Style Sheets, is a styling language used to control the presentation and layout of HTML documents. It enables developers to customize the appearance of web pages, including aspects such as fonts, colors, spacing, and positioning, enhancing the visual appeal and user experience of websites.
+
+![JS](https://skillicons.dev/icons?i=js)
+
+### JavaScript (JS)
+
+JavaScript (JS) is a versatile programming language primarily used for adding interactivity and dynamic behavior to web pages. It enables developers to manipulate HTML and CSS, handle events, create animations, and interact with the browser's Document Object Model (DOM), making it a fundamental tool for modern web development.
+ 
 ---
 
 <h2 id="installation">Installation</h2>
