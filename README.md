@@ -131,7 +131,7 @@
 </div>
 
 ---
-## Installation {#installation}
+<h2 id="installation">Installation</h2>
 
 To utilise this Django project, follow the steps below to set it up on your system.
 
