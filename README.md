@@ -131,6 +131,7 @@
 </div>
 
 ---
+
 <h2 id="installation">Installation</h2>
 
 To utilise this Django project, follow the steps below to set it up on your system.
@@ -143,6 +144,8 @@ To utilise this Django project, follow the steps below to set it up on your syst
 6. [Install required packages to run the project](#installation-required-packages)
 7. [Run the application](#installation-run-application)
 8. [Open the application](#installation-open-app)
+
+Guide
 
 1. <b id="installation-install-python">Install Python: </b> To run the project, ensure Python is installed on your machine. Although Python comes pre-installed on many Linux distributions, the version may vary depending on the distribution and operating system version. If Python is not installed, you can download it from [here](https://www.python.org/downloads/).
 
