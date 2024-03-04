@@ -7,6 +7,7 @@ class CompanyService(CompanyInterface):
     def create_company(address: str,
                        secondary_address: str,
                        name: str,
+                       company_logo,
                        website: str,
                        commit=True):
 
@@ -40,6 +41,7 @@ class CompanyService(CompanyInterface):
                      address: str,
                      secondary_address: str,
                      name: str,
+                     company_logo,
                      website: str,
                      commit=True):
 
