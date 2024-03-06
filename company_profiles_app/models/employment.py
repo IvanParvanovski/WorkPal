@@ -26,7 +26,7 @@ class Employment(models.Model):
         INTERN = 'intern', _('Intern')
         OTHER = 'other', _('Other')
 
-    person = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=15, choices=CompanyRoles, blank=False, null=False)
     is_associate = models.BooleanField(default=False)
