@@ -8,15 +8,23 @@
 <body>
     <h1>Index.HTML</h1>
 
-    {% if user.is_authenticated %}
-        <p>USER -> {{ user.username }}</p>
-        <a href="{% url 'sign_out' %}">Sign Out</a>
-    {% else %}
-        <a href="{% url 'sign_in' %}">Sign In</a>
-        <a href="{% url 'sign_up' %}">Sign Up</a>
+    <div>
+        {% if user.is_authenticated %}
+            <p>USER -> {{ user.username }}</p>
+            <a href="{% url 'sign_out' %}">Sign Out</a>
+        {% else %}
+            <a href="{% url 'sign_in' %}">Sign In</a>
+            <a href="{% url 'sign_up' %}">Sign Up</a>
+        {% endif %}
+    </div>
+
+    <div>
+        <a href="{% url 'create_company' %}">Create Company</a>
+    </div>
+
+    {% if user.is_staff %}
+        <a href="{% url 'control_panel' %}">Control Panel</a>
     {% endif %}
-
-
 
 </body>
 </html>

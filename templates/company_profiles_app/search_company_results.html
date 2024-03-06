@@ -1,0 +1,14 @@
+{% if found_companies %}
+    {% csrf_token %}
+
+    {% for fc in found_companies %}
+        <option value="{{ fc.id }}" class="option">{{ fc.name }}</option>
+    {% endfor %}
+
+    {% else %}
+        <p>No search results</p>
+
+        <button id="add-company-btn" href="">
+            Add company
+        </button>
+{% endif %}

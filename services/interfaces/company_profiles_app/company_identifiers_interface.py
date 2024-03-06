@@ -13,6 +13,18 @@ class CompanyIdentifiersInterface(ABC):
 
     @staticmethod
     @abstractmethod
+    def create_company_identifier_email(value, company: Company, commit=True) \
+            -> CompanyIdentifiers:
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def create_company_identifier_phone_number(value, company: Company, commit=True) \
+            -> CompanyIdentifiers:
+        pass
+
+    @staticmethod
+    @abstractmethod
     def get_identifier_by_id(_id: int):
         pass
 

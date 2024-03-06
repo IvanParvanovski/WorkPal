@@ -1,9 +1,9 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, FormView, TemplateView
+from django.views.generic import FormView, TemplateView
 from django.contrib.auth import logout, authenticate, login
-from .forms.sign_in_form import SignInForm
-from .forms.sign_up_form import SignUpFormProfile, SignUpFormUser
+from ..forms.sign_in_form import SignInForm
+from ..forms.sign_up_form import SignUpFormProfile, SignUpFormUser
 
 
 class SignUpView(TemplateView):

@@ -20,6 +20,22 @@ class CompanyIdentifiersService(CompanyIdentifiersInterface):
         return identifier
 
     @staticmethod
+    def create_company_identifier_email(value, company: Company, commit=True) \
+            -> CompanyIdentifiers:
+        return CompanyIdentifiersService.create_company_identifier(_type='email',
+                                                                   value=value,
+                                                                   company=company,
+                                                                   commit=commit)
+
+    @staticmethod
+    def create_company_identifier_phone_number(value, company: Company, commit=True) \
+            -> CompanyIdentifiers:
+        return CompanyIdentifiersService.create_company_identifier(_type='phone_number',
+                                                                   value=value,
+                                                                   company=company,
+                                                                   commit=commit)
+
+    @staticmethod
     def get_identifier_by_id(_id: int):
         return CompanyIdentifiers.objects.get(id=_id)
 

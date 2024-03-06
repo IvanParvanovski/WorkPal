@@ -8,6 +8,7 @@ class CompanyInterface(ABC):
     @abstractmethod
     def create_company(address: str,
                        secondary_address: str,
+                       company_logo,
                        name: str,
                        website: str,
                        commit=True):
@@ -33,6 +34,7 @@ class CompanyInterface(ABC):
     def edit_company(_id: int,
                      address: str,
                      secondary_address: str,
+                     company_logo,
                      name: str,
                      website: str,
                      commit=True):
