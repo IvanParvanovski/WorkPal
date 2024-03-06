@@ -1,0 +1,9 @@
+<input type="text"
+       hx-post="{% url 'search_company' %}"
+       hx-target="#results"
+       hx-trigger="keyup changed delay:500ms"
+       hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+       name="search"
+       placeholder="Enter search term...">
+
+<div id="results"></div>

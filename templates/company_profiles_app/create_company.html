@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+    <style>
+        #create-form {
+            visibility: hidden;
+        }
+        .option.selected {
+            background-color: salmon;
+        }
+    </style>
+</head>
+<body>
+    {% include 'company_profiles_app/search_company.html' %}
+
+    {{ companies }}
+
+    <div id="create-form">
+        <form method="post">
+            {% csrf_token %}
+            {{ company_form.as_div }}
+            {{ company_identifiers_form.as_div }}
+
+            {{ company_identifiers.as_div }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <button id="next-btn">Next</button>
+
+    <script>
+        {# Redirect to next page #}
+        document.getElementById('next-btn').addEventListener('click', function() {
+            const elementId = document.querySelector('.selected').value;
+            window.location.href = `/company_profiles_app/create_employment/ci=${elementId}`;
+        })
+    </script>
+
+    <script>
+        {#  Add select functionality for each option  #}
+        let lastSelected;
+        createForm = document.getElementById('create-form');
+
+        function handleSelect(event) {
+            if (lastSelected) {
+                lastSelected.classList.remove('selected');
+            }
+
+            if (event.target.classList.contains('option')) {
+                const option = event.target;
+                option.classList.add('selected');
+                lastSelected = event.target;
+            }
+        }
+
+        function displayForm(event) {
+
+            if (event.target.id === 'add-company-btn') {
+                event.preventDefault();
+                addCompanyBtn = event.target;
+
+                if (addCompanyBtn.innerText === 'Add company') {
+                    addCompanyBtn.innerText = 'Hide form';
+                    createForm.style.visibility = 'visible';
+                } else {
+                    addCompanyBtn.innerText = 'Add company';
+                    createForm.style.visibility = 'hidden';
+                }
+            }
+        }
+
+        document.getElementById('results').addEventListener('click', handleSelect);
+        document.getElementById('results').addEventListener('click', displayForm);
+    </script>
+</body>
+</html>
