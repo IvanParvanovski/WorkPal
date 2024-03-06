@@ -1,18 +1,8 @@
 from django import forms
 from django.shortcuts import render
 
-from company_profiles_app.models.company_identifiers import CompanyIdentifiers
-from listing_app.models.job_offer import JobOffer
-from listing_app.models.project import Project
-
-from django.forms.widgets import TextInput
-from django.utils.safestring import mark_safe
-
-from listing_app.models.listing_identifiers import ListingIdentifiers
-from listing_app.widgets import CustomGridSliderWidget, widgets
+from shared_app.widgets import widgets
 # from listing_app.models.user_suggestion import UserSuggestion
-
-from listing_app.models.project import *
 
 
 class CustomForm(forms.Form):
