@@ -6,6 +6,8 @@
 </head>
 <body>
      <h2>{{ object.id }} | {{ object.listing.title }}</h2>
+     <a href="{% url 'create_project_application' object.id %}">Apply</a>
+
     <p>
         LOCATION - {{ object.listing.location }}
     </p>
