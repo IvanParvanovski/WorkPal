@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from application_app.models.job_offer_application_details import JobOfferApplicationDetails
 
 
-class JobOfferDetailsInterface(ABC):
+class JobOfferApplicationDetailsInterface(ABC):
     @staticmethod
     @abstractmethod
     def create_job_offer_details(cv, motivation_letter: str, commit=True) -> JobOfferApplicationDetails:

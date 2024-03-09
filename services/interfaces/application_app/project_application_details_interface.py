@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from application_app.models.project_application_details import ProjectApplicationDetails
 
 
-class ProjectDetailsInterface(ABC):
+class ProjectApplicationDetailsInterface(ABC):
     @staticmethod
     @abstractmethod
     def create_project_details(motivation_letter: str, commit=True) -> ProjectApplicationDetails:
