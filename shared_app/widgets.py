@@ -12,10 +12,14 @@ class CustomGridSliderWidget(Widget):
 
     def render(self, name, value, attrs=None, renderer=None):
         html = """
-        <div class="grid-range-bar">
-            <div class="thumb" style="left: 55%;"></div>
-            <div class="thumb" style="left: 75%;"></div>
-        </div>
+          <input type="hidden" id="thumb1Position" name="thumb1Position" value="55">
+          <input type="hidden" id="thumb2Position" name="thumb2Position" value="75">
+          
+          <!-- Grid range bar -->
+          <div class="grid-range-bar">
+              <div class="thumb inner" id="thumb1" style="left: 55%;"></div>
+              <div class="thumb outer" id="thumb2" style="left: 75%;"></div>
+          </div>
         """
 
         return mark_safe(html)
