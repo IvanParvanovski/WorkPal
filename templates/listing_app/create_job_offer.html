@@ -1,0 +1,20 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+{#    <script src="{% static 'listing_app/other_input.js' %}"></script>#}
+    {{ job_offer_form.media.css }}
+    {{ job_offer_form.media.js }}
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ listing_form }}
+        {{ job_offer_form }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
