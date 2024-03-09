@@ -10,6 +10,7 @@ from application_app.models.project_details import ProjectDetails
 
 class Application(models.Model):
     is_approved = models.BooleanField(default=False)
+    is_checked = models.BooleanField(default=False)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
 
