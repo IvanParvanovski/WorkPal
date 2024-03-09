@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
+import listing_app.urls
 from WorkPal import settings
 
 urlpatterns = [
@@ -26,7 +27,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home/index.html'), name='home'),
     path('accounts/', include('accounts_app.urls')),
     path('company_profiles_app/', include('company_profiles_app.urls')),
-    path('listing_app/', include('listing_app.urls')),
+    path('listing_app/', include(listing_app.urls.main_urls)),
     path('application_app/', include('application_app.urls')),
 ]
 

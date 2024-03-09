@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'listing_app',
     'application_app',
     'shared_app',
-    'django_htmx'
+    'dashboard_app',
+    'django_htmx',
 ]
 
 MIDDLEWARE = [
