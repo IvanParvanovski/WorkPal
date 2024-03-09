@@ -8,6 +8,7 @@
 <body>
     <h1>Index.HTML</h1>
 
+    <h2>Authentication</h2>
     <div>
         {% if user.is_authenticated %}
             <p>USER -> {{ user.username }}</p>
@@ -18,13 +19,29 @@
         {% endif %}
     </div>
 
-    <div>
-        <a href="{% url 'create_company' %}">Create Company</a>
-    </div>
+        <h2>Functionality</h2>
+
+    {% if user.is_authenticated %}
+        <div>
+            <a href="{% url 'create_company' %}">Create Company</a>
+        </div>
+        <div>
+            <a href="{% url 'create_project' %}">Create Project</a>
+        </div>
+        <div>
+            <a href="{% url 'create_job_offer' %}">Create Job Offer</a>
+        </div>
+    {% endif %}
 
     {% if user.is_staff %}
         <a href="{% url 'control_panel' %}">Control Panel</a>
     {% endif %}
+
+    <h2>Catalogs</h2>
+    <a href="{% url 'projects_catalog' %}">Projects</a>
+    <a href="{% url 'job_offers_catalog' %}">Job Offers</a>
+
+
 
 </body>
 </html>
