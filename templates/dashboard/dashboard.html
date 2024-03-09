@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        h3 {
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Dashboard</h2>
+
+    {% if user.is_authenticated %}
+        <h3>Projects</h3>
+        <div>
+            <a href="">Your Projects</a>
+            <a href="{% url 'create_project' %}">Create Project</a>
+        </div>
+
+        <h3>Job Offer</h3>
+        <div>
+            <a href="">Your Job Offers</a>
+            <a href="{% url 'create_job_offer' %}">Create Job Offer</a>
+        </div>
+
+        <h3>Companies</h3>
+        <div>
+            <a href="">Your Companies</a>
+            <a href="{% url 'create_company' %}">Create Company</a>
+        </div>
+    {% endif %}
+</body>
+</html>
