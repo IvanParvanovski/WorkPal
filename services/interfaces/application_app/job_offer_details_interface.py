@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
 
-from application_app.models.job_offer_details import JobOfferDetails
+from application_app.models.job_offer_application_details import JobOfferApplicationDetails
 
 
 class JobOfferDetailsInterface(ABC):
     @staticmethod
     @abstractmethod
-    def create_job_offer_details(cv, motivation_letter: str, commit=True) -> JobOfferDetails:
+    def create_job_offer_details(cv, motivation_letter: str, commit=True) -> JobOfferApplicationDetails:
         pass
 
     @staticmethod
@@ -16,12 +16,12 @@ class JobOfferDetailsInterface(ABC):
 
     @staticmethod
     @abstractmethod
-    def get_job_offer_details_by_id(_id: int) -> JobOfferDetails:
+    def get_job_offer_details_by_id(_id: int) -> JobOfferApplicationDetails:
         pass
 
     @staticmethod
     @abstractmethod
-    def delete_job_offer_details(job_offer_details: JobOfferDetails):
+    def delete_job_offer_details(job_offer_details: JobOfferApplicationDetails):
         pass
 
     @staticmethod
@@ -31,5 +31,5 @@ class JobOfferDetailsInterface(ABC):
 
     @staticmethod
     @abstractmethod
-    def edit_job_offer_by_id(_id: int, motivation_letter, commit=True) -> JobOfferDetails:
+    def edit_job_offer_by_id(_id: int, motivation_letter, commit=True) -> JobOfferApplicationDetails:
         pass

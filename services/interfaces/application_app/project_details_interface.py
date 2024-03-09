@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
 
-from application_app.models.project_details import ProjectDetails
+from application_app.models.project_application_details import ProjectApplicationDetails
 
 
 class ProjectDetailsInterface(ABC):
     @staticmethod
     @abstractmethod
-    def create_project_details(motivation_letter: str, commit=True) -> ProjectDetails:
+    def create_project_details(motivation_letter: str, commit=True) -> ProjectApplicationDetails:
         pass
 
     @staticmethod
@@ -16,12 +16,12 @@ class ProjectDetailsInterface(ABC):
 
     @staticmethod
     @abstractmethod
-    def get_project_details_by_id(_id: int) -> ProjectDetails:
+    def get_project_details_by_id(_id: int) -> ProjectApplicationDetails:
         pass
 
     @staticmethod
     @abstractmethod
-    def delete_project_details(project_details: ProjectDetails):
+    def delete_project_details(project_details: ProjectApplicationDetails):
         pass
 
     @staticmethod
@@ -33,5 +33,5 @@ class ProjectDetailsInterface(ABC):
     @abstractmethod
     def edit_project_details_by_id(_id: int,
                                    motivation_letter: int,
-                                   commit=True) -> ProjectDetails:
+                                   commit=True) -> ProjectApplicationDetails:
         pass

@@ -1,4 +1,4 @@
-from application_app.models.project_details import ProjectDetails
+from application_app.models.project_application_details import ProjectDetails
 from services.interfaces.application_app.project_details_interface import ProjectDetailsInterface
 
 

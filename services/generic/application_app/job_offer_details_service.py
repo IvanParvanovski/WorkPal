@@ -1,4 +1,4 @@
-from application_app.models.job_offer_details import JobOfferDetails
+from application_app.models.job_offer_application_details import JobOfferDetails
 from services.interfaces.application_app.job_offer_details_interface import JobOfferDetailsInterface
 
 

@@ -4,8 +4,8 @@ from django.db import models
 
 from accounts_app.models.profile import Profile
 from listing_app.models.listing import Listing
-from application_app.models.job_offer_details import JobOfferDetails
-from application_app.models.project_details import ProjectDetails
+from application_app.models.job_offer_application_details import JobOfferApplicationDetails
+from application_app.models.project_application_details import ProjectApplicationDetails
 
 
 class Application(models.Model):
@@ -14,6 +14,6 @@ class Application(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
 
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, limit_choices_to={'model__in': ['JobOfferDetails', 'ProjectDetails']})
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, limit_choices_to={'model__in': ['JobOfferApplicationDetails', 'ProjectApplicationDetails']})
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
