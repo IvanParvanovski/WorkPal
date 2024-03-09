@@ -29,6 +29,7 @@ urlpatterns = [
     path('company_profiles_app/', include('company_profiles_app.urls')),
     path('listing_app/', include(listing_app.urls.main_urls)),
     path('application_app/', include('application_app.urls')),
+    path('dashboard/', include('dashboard_app.urls')),
 ]
 
 if settings.DEBUG:
