@@ -1,15 +1,20 @@
 from django import forms
 from django.forms import ModelForm
 
+from company_profiles_app.models import Company, Employment
 from listing_app.models.job_offer import JobOffer
 from shared_app.widgets import widgets
 
 
 class JobOfferForm(ModelForm):
+    def __init__(self, profile, *args, **kwargs):
+        super(JobOfferForm, self).__init__(*args, **kwargs)
+        self.fields['company'].queryset = Company.objects.filter(employment__profile_id=profile.id)
+
     class Meta:
         model = JobOffer
         fields = [
-            'benefits', 'key_responsibilities', 'required_qualifications', 'preferred_qualifications', 'remote_option'
+            'company', 'benefits', 'key_responsibilities', 'required_qualifications', 'preferred_qualifications', 'remote_option'
         ]
 
     salary_range = forms.CharField(widget=widgets['custom_widget'])

@@ -25,10 +25,7 @@ class CreateProjectView(View):
         return render(request, self.template_name, context=context)
 
     def post(self, request, *args, **kwargs):
-        print(request.POST)
-        print(request.FILES)
-        print(args)
-        print(kwargs)
+        print(request.user)
 
         listing_form = self.form_class_create_listing(request.POST, request.FILES)
         project_form = self.form_class_create_project(request.POST)
@@ -39,7 +36,8 @@ class CreateProjectView(View):
                                                     images=listing_form.cleaned_data['images'],
                                                     description=listing_form.cleaned_data['description'])
 
-            ProjectService.create_project(listing=listing,
+            ProjectService.create_project(profile=request.user.profile,
+                                          listing=listing,
                                           wage=project_form.cleaned_data['wage'],
                                           preferred_payment=project_form.cleaned_data['preferred_payment'],
                                           status=project_form.cleaned_data['status'],
