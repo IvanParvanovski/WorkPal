@@ -36,6 +36,10 @@ class ApplicationService(ApplicationInterface):
         return Application.objects.get(id=_id)
 
     @staticmethod
+    def get_applications_by_profile_id(profile_id: int):
+        return Application.objects.filter(profile_id=profile_id)
+
+    @staticmethod
     def delete_application(application: Application):
         application.delete()
 

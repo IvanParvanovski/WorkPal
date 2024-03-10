@@ -8,7 +8,10 @@ from listing_app.views.project_detail import ProjectDetailView
 from listing_app.views.projects_catalog import ProjectsCatalog
 
 # from listing_app.views import test_slider
-
+dashboard_urls = [
+    path('projects/create_project/', CreateProjectView.as_view(), name='create_project'),
+    path('job_offers/create_job_offer/', CreateJobOfferView.as_view(), name='create_job_offer'),
+]
 
 main_urls = [
     path('projects_catalog/', ProjectsCatalog.as_view(), name='projects_catalog'),
@@ -16,10 +19,5 @@ main_urls = [
 
     path('job_offer_details/<int:pk>', JobOfferDetailView.as_view(), name='job_offer_detail'),
     path('project_details/<int:pk>', ProjectDetailView.as_view(), name='project_detail')
-]
-
-dashboard_urls = [
-    path('create_project/', CreateProjectView.as_view(), name='create_project'),
-    path('create_job_offer/', CreateJobOfferView.as_view(), name='create_job_offer'),
 ]
 

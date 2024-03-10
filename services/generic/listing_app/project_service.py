@@ -35,6 +35,10 @@ class ProjectService(ProjectInterface):
         return Project.objects.get(id=_id)
 
     @staticmethod
+    def get_projects_by_profile_id(_id: int):
+        return Project.objects.filter(profile_id=_id)
+
+    @staticmethod
     def delete_project(project: Project):
         project.delete()
 

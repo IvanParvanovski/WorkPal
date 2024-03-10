@@ -13,6 +13,41 @@
 <body>
     <h2>Dashboard</h2>
 
+    <div>
+        JOB OFFERS
+
+        {% for j in job_offers %}
+            <p>{{ j }}</p>
+        {% endfor %}
+    </div>
+    <div>
+        PROJECTS
+
+        {% for p in projects %}
+            <p>{{ p }}</p>
+        {% endfor %}
+    </div>
+    <div>
+        COMPANIES
+
+        {% for c in companies %}
+            <p>{{ c }}</p>
+        {% endfor %}
+    </div>
+    <div>
+        ASSOCIATION REQUEST
+
+        {% for ar in association_requests %}
+            <p>{{ ar }}</p>
+        {% endfor %}
+    </div>
+    <div>
+        APPLICATION STATUS
+        {% for ass in application_status %}
+            <p>{{ ass }}</p>
+        {% endfor %}
+    </div>
+
     {% if user.is_authenticated %}
         <h3>Projects</h3>
         <div>

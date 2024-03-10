@@ -29,6 +29,11 @@ class ProjectInterface(ABC):
 
     @staticmethod
     @abstractmethod
+    def get_projects_by_profile_id(_id: int):
+        pass
+
+    @staticmethod
+    @abstractmethod
     def delete_project(project: Project):
         pass
 

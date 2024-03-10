@@ -23,6 +23,11 @@ class EmploymentInterface(ABC):
 
     @staticmethod
     @abstractmethod
+    def get_association_requests_by_company_id(_id: int):
+        pass
+
+    @staticmethod
+    @abstractmethod
     def delete_employment(employment):
         pass
 
