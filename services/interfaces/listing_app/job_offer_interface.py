@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+from company_profiles_app.models import Company
 from listing_app.models.job_offer import JobOffer
 from listing_app.models.listing import Listing
 
@@ -7,7 +8,8 @@ from listing_app.models.listing import Listing
 class JobOfferInterface(ABC):
     @staticmethod
     @abstractmethod
-    def create_job_offer(listing: Listing,
+    def create_job_offer(company: Company,
+                         listing: Listing,
                          benefits: str,
                          salary_range_min: int,
                          salary_range_max: int,
@@ -43,6 +45,7 @@ class JobOfferInterface(ABC):
     @staticmethod
     @abstractmethod
     def edit_job_offer_by_id(_id: int,
+                             company: Company,
                              listing: Listing,
                              benefits: str,
                              salary_range_min: int,

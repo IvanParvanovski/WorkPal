@@ -15,7 +15,7 @@ class CreateJobOfferView(View):
 
     def get(self, request, *args, **kwargs):
         listing_form = self.form_class_create_listing()
-        job_offer_form = self.form_class_create_job_offer()
+        job_offer_form = self.form_class_create_job_offer(profile=request.user.profile)
         print(job_offer_form.fields['work_environment'])
         context = {
             'listing_form': listing_form,
@@ -29,9 +29,11 @@ class CreateJobOfferView(View):
         combined_data['salary_range'] = request.POST['thumb1Position'] + ' ' + request.POST['thumb2Position']
 
         listing_form = self.form_class_create_listing(request.POST, request.FILES)
-        job_offer_form = self.form_class_create_job_offer(combined_data)
 
-        if job_offer_form.is_valid() and listing_form.is_valid() :
+        profile = request.user.profile
+        job_offer_form = self.form_class_create_job_offer(profile, combined_data)
+
+        if job_offer_form.is_valid() and listing_form.is_valid():
 
             listing = ListingService.create_listing(title=listing_form.cleaned_data['title'],
                                                     location=listing_form.cleaned_data['location'],
@@ -39,8 +41,10 @@ class CreateJobOfferView(View):
                                                     description=listing_form.cleaned_data['description'])
 
             salary_range_min, salary_range_max = [round(float(x), 2) for x in job_offer_form.cleaned_data['salary_range'].split(' ')]
+            print(job_offer_form.cleaned_data)
 
             JobOfferService.create_job_offer(listing=listing,
+                                             company=job_offer_form.cleaned_data['company'],
                                              benefits=job_offer_form.cleaned_data['benefits'],
                                              salary_range_min=salary_range_min,
                                              salary_range_max=salary_range_max,
