@@ -34,6 +34,11 @@ class JobOfferInterface(ABC):
 
     @staticmethod
     @abstractmethod
+    def get_job_offers_by_company_id(company_id: int):
+        pass
+
+    @staticmethod
+    @abstractmethod
     def delete_job_offer(job_offer: JobOffer):
         pass
 
@@ -58,3 +63,5 @@ class JobOfferInterface(ABC):
                              remote_option: bool,
                              commit=True) -> JobOffer:
         pass
+
+

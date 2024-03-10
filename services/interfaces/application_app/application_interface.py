@@ -29,6 +29,11 @@ class ApplicationInterface(ABC):
 
     @staticmethod
     @abstractmethod
+    def get_applications_by_profile_id(profile_id: int):
+        pass
+
+    @staticmethod
+    @abstractmethod
     def delete_application(application: Application):
         pass
 
