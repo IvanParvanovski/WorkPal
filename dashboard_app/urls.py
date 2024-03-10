@@ -7,6 +7,6 @@ from listing_app.urls import dashboard_urls
 urlpatterns = [
     path('', render_dashboard, name='dashboard'),
     path('', include(dashboard_urls)),
-    path('projects/', UserProjectsView, name='user_projects'),
+    # path('projects/', UserProjectsView, name='user_projects'),
 
 ]

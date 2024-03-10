@@ -1,3 +1,4 @@
+from company_profiles_app.models import Company
 from listing_app.models.job_offer import JobOffer
 from listing_app.models.listing import Listing
 from services.interfaces.listing_app.job_offer_interface import JobOfferInterface
@@ -5,7 +6,8 @@ from services.interfaces.listing_app.job_offer_interface import JobOfferInterfac
 
 class JobOfferService(JobOfferInterface):
     @staticmethod
-    def create_job_offer(listing: Listing,
+    def create_job_offer(company: Company,
+                         listing: Listing,
                          benefits: str,
                          salary_range_min: int,
                          salary_range_max: int,
@@ -18,6 +20,7 @@ class JobOfferService(JobOfferInterface):
                          commit=True) -> JobOffer:
 
         job_offer = JobOffer.objects.create(
+            company=company,
             listing=listing,
             benefits=benefits,
             salary_range_min=salary_range_min,
@@ -54,6 +57,7 @@ class JobOfferService(JobOfferInterface):
 
     @staticmethod
     def edit_job_offer_by_id(_id: int,
+                             company: Company,
                              listing: Listing,
                              benefits: str,
                              salary_range_min: int,
@@ -65,6 +69,7 @@ class JobOfferService(JobOfferInterface):
                              preferred_qualifications: str,
                              remote_option: bool,
                              commit=True) -> JobOffer:
+
         job_offer = JobOfferService.get_job_offer_by_id(_id=_id)
 
         job_offer.listing = listing

@@ -1,17 +1,21 @@
+from accounts_app.models.profile import Profile
+from listing_app.models.listing import Listing
 from listing_app.models.project import Project
 from services.interfaces.listing_app.project_interface import ProjectInterface
 
 
 class ProjectService(ProjectInterface):
     @staticmethod
-    def create_project(listing,
+    def create_project(profile: Profile,
+                       listing: Listing,
                        wage: int,
                        preferred_payment: str,
                        status: Project.Status,
                        estimated_duration: str,
                        commit=True) -> Project:
 
-        project = Project.objects.create(listing=listing,
+        project = Project.objects.create(profile=profile,
+                                         listing=listing,
                                          wage=wage,
                                          preferred_payment=preferred_payment,
                                          status=status,
@@ -41,6 +45,8 @@ class ProjectService(ProjectInterface):
 
     @staticmethod
     def edit_project_by_id(_id: int,
+                           profile: Profile,
+                           listing: Listing,
                            wage: int,
                            preferred_payment: str,
                            status: Project.Status,
@@ -49,6 +55,8 @@ class ProjectService(ProjectInterface):
 
         project = ProjectService.get_project_by_id(_id=_id)
 
+        project.profile = profile
+        project.listing = listing
         project.wage = wage
         project.preferred_payment = preferred_payment
         project.status = status
