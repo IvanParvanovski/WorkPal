@@ -30,11 +30,9 @@ class EmploymentService(EmploymentInterface):
 
     @staticmethod
     def get_association_requests_by_company_id(_id: int):
-        return Employment.objects.filter(company_id=_id).filter(is_associate=False)
+        return Employment.objects.filter(company_id=_id,
+                                         is_associate=False)
 
-    @staticmethod
-    def get_associated_companies_by_profile_id(_id: int):
-        return Employment.objects.filter(profile_id=_id).filter(is_associate=True)
 
     @staticmethod
     def delete_employment(employment):
