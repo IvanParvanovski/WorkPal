@@ -12,12 +12,13 @@ def render_dashboard(request):
     profile_id = request.user.profile.id
 
     context = {
-        'job_offers': JobOfferService.get_job_offers_by_company_id(1), # THE JOB OFFERS YOU HAVE CREATED
-        'projects': ProjectService.get_projects_by_profile_id(profile_id), # THE PROJECTS YOU HAVE CREATED
-        'companies': EmploymentService.get_associated_companies_by_profile_id(profile_id), # THE COMPANIES YOU ARE ASSOCIATED WITH
+        # 'companies': EmploymentService.get_associated_companies_by_profile_id(profile_id), # THE COMPANIES YOU ARE ASSOCIATED WITH
 
         'association_requests': EmploymentService.get_association_requests_by_company_id(5), # THE ASSOCIATION REQUESTS PEOPLE HAVE MADE TO A SPECIFIC COMPANY
-        'application_status': ApplicationService.get_applications_by_profile_id(profile_id) # THE APPLICATIONS YOU HAVE MADE TO PROJECTS OR JOB OFFERS
+        'application_status': ApplicationService.get_applications_by_profile_id(profile_id), # THE APPLICATIONS YOU HAVE MADE TO PROJECTS OR JOB OFFERS
+        'applications_to_projects': ApplicationService.get_applications_to_user_project(3)
     }
+
+    print(ApplicationService.get_applications_to_user_project(3))
 
     return render(request, 'dashboard/dashboard.html', context=context)
