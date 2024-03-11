@@ -49,8 +49,6 @@ class ProjectService(ProjectInterface):
 
     @staticmethod
     def edit_project_by_id(_id: int,
-                           profile: Profile,
-                           listing: Listing,
                            wage: int,
                            preferred_payment: str,
                            status: Project.Status,
@@ -59,8 +57,6 @@ class ProjectService(ProjectInterface):
 
         project = ProjectService.get_project_by_id(_id=_id)
 
-        project.profile = profile
-        project.listing = listing
         project.wage = wage
         project.preferred_payment = preferred_payment
         project.status = status

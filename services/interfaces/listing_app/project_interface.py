@@ -45,8 +45,6 @@ class ProjectInterface(ABC):
     @staticmethod
     @abstractmethod
     def edit_project_by_id(_id: int,
-                           profile: Profile,
-                           listing: Listing,
                            wage: int,
                            preferred_payment: str,
                            status: Project.Status,

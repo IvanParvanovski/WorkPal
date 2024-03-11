@@ -66,7 +66,6 @@ class JobOfferService(JobOfferInterface):
     @staticmethod
     def edit_job_offer_by_id(_id: int,
                              company: Company,
-                             listing: Listing,
                              benefits: str,
                              salary_range_min: int,
                              salary_range_max: int,
@@ -80,7 +79,6 @@ class JobOfferService(JobOfferInterface):
 
         job_offer = JobOfferService.get_job_offer_by_id(_id=_id)
 
-        job_offer.listing = listing
         job_offer.benefits = benefits
         job_offer.salary_range_min = salary_range_min
         job_offer.salary_range_max = salary_range_max

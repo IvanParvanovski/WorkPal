@@ -56,7 +56,6 @@ class JobOfferInterface(ABC):
     @abstractmethod
     def edit_job_offer_by_id(_id: int,
                              company: Company,
-                             listing: Listing,
                              benefits: str,
                              salary_range_min: int,
                              salary_range_max: int,

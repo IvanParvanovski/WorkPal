@@ -13,8 +13,12 @@
             {% for job_offer in company_job_offers %}
                 <div>
                     <a href="#details">{{ job_offer }}</a>
-                    <a href="#edit">Edit</a>
-                    <a href="#delete">Delete</a>
+                    <a href="{% url 'edit_job_offer' job_offer.id %}">Edit</a>
+
+                    <form action="{% url 'delete_job_offer' job_offer.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
                 </div>
             {% endfor %}
         {% endfor %}
