@@ -11,8 +11,12 @@
         {% for c in user_companies %}
             <div>
                 <a href="">{{ c }}</a>
-                <a href="">Edit</a>
-                <a href="">Delete</a>
+                <a href="{% url 'edit_company' c.id %}">Edit</a>
+
+                <form action="{% url 'delete_company' c.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
             </div>
 
         {% endfor %}
