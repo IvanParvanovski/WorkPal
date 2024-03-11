@@ -34,12 +34,22 @@ class ApplicationInterface(ABC):
 
     @staticmethod
     @abstractmethod
-    def get_applications_to_user_project(project_id: int):
+    def get_applications_for_user_project(project):
         pass
 
     @staticmethod
     @abstractmethod
-    def get_applications_to_user_job_offer(job_offer_id: int):
+    def get_applications_for_user_projects(projects):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def get_applications_for_job_offer(job_offer):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def get_applications_for_companies_job_offers(companies_job_offers):
         pass
 
     @staticmethod

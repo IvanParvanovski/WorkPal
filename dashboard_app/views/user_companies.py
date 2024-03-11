@@ -8,5 +8,5 @@ class UserCompaniesView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user_companies'] = CompanyService.get_companies_by_profile_id(_id=self.request.user.profile.id)
+        context['user_companies'] = CompanyService.get_user_companies(profile_id=self.request.user.profile.id)
         return context

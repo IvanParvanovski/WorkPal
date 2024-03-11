@@ -5,7 +5,7 @@ from services.interfaces.company_profiles_app.employment_interface import Employ
 
 class EmploymentService(EmploymentInterface):
     @staticmethod
-    def create_employment(profile: Profile, company: Company, job_title: str, commit=True)\
+    def create_employment(profile: Profile, company: Company, job_title: str, commit=True) \
             -> Employment:
 
         employment = Employment(
@@ -29,10 +29,16 @@ class EmploymentService(EmploymentInterface):
         return Employment.objects.get(id=_id)
 
     @staticmethod
-    def get_association_requests_by_company_id(_id: int):
-        return Employment.objects.filter(company_id=_id,
+    def get_association_requests_for_company(company):
+        return Employment.objects.filter(company_id=company.id,
                                          is_associate=False)
 
+    @staticmethod
+    def get_association_requests_for_companies(companies):
+        res = []
+        for c in companies:
+            res.append(EmploymentService.get_association_requests_for_company(c))
+        return res
 
     @staticmethod
     def delete_employment(employment):
@@ -66,4 +72,3 @@ class EmploymentService(EmploymentInterface):
             employment.save()
 
         return employment
-

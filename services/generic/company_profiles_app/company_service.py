@@ -28,9 +28,9 @@ class CompanyService(CompanyInterface):
         return Company.objects.get(id=_id)
 
     @staticmethod
-    def get_companies_by_profile_id(_id: int):
+    def get_user_companies(profile_id: int):
         return Company.objects.filter(employment__is_associate=True,
-                                      employment__profile_id=_id)
+                                      employment__profile_id=profile_id)
 
     @staticmethod
     def delete_company_by_id(_id: int):

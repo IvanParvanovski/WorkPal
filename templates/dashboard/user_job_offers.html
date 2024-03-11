@@ -11,8 +11,11 @@
         JOB OFFERS
         {% for company_job_offers in companies_job_offers %}
             {% for job_offer in company_job_offers %}
-                <p>{{ job_offer }}</p>
-                <a href="">hi</a>
+                <div>
+                    <a href="#details">{{ job_offer }}</a>
+                    <a href="#edit">Edit</a>
+                    <a href="#delete">Delete</a>
+                </div>
             {% endfor %}
         {% endfor %}
     </div>

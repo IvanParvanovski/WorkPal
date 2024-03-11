@@ -47,24 +47,34 @@
             <div>
                 ASSOCIATION REQUEST
 
-                {% for ar in association_requests %}
-                    <p>{{ ar }}</p>
+                {% for association_requests_for_company in association_requests %}
+                    {% for association_request in association_requests_for_company %}
+                        <p>{{ association_request }}</p>
+                    {% endfor %}
                 {% endfor %}
             </div>
             <div>
                 APPLICATIONS TO YOUR PROJECTS
-                {% for application in applications_to_projects %}
-                    <p>{{ application }}</p>
+                {% for project_applications in applications_for_projects %}
+                    {% for application in project_applications %}
+                        <p>{{ application }}</p>
+                    {% endfor %}
                 {% endfor %}
             </div>
             <div>
                 APPLICATIONS TO YOUR JOB OFFERS
+
+                {% for company_job_offers in companies_applications_for_job_offers %}
+                    {% for job_offer in company_job_offers %}
+                        <p>{{ job_offer }}</p>
+                    {% endfor %}
+                {% endfor %}
             </div>
             <div>
                 APPLICATION STATUS
 
-                {% for ass in application_status %}
-                    <p>{{ ass }}</p>
+                {% for application in application_status %}
+                    <p>{{ application }}</p>
                 {% endfor %}
             </div>
         </div>

@@ -9,7 +9,12 @@
         COMPANIES
 
         {% for c in user_companies %}
-            <p>{{ c }}</p>
+            <div>
+                <a href="">{{ c }}</a>
+                <a href="">Edit</a>
+                <a href="">Delete</a>
+            </div>
+
         {% endfor %}
     </div>
 </body>
