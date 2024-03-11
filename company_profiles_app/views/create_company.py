@@ -3,13 +3,13 @@ from django.shortcuts import render
 from django.views import View
 
 from company_profiles_app.forms.company_identifiers_form import CompanyIdentifiersForm
-from company_profiles_app.forms.create_company_form import CreateCompanyForm
+from company_profiles_app.forms.company_form import CompanyForm
 from services.generic.company_profiles_app.company_identifiers_service import CompanyIdentifiersService
 from services.generic.company_profiles_app.company_service import CompanyService
 
 
 class CreateCompanyView(View):
-    form_class_create_company = CreateCompanyForm
+    form_class_create_company = CompanyForm
     form_class_company_identifiers = CompanyIdentifiersForm
 
     template_name = 'company_profiles_app/create_company.html'
