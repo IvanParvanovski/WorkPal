@@ -36,6 +36,16 @@ class CompanyIdentifiersService(CompanyIdentifiersInterface):
                                                                    commit=commit)
 
     @staticmethod
+    def get_company_identifier_phone_number(company_id):
+        return CompanyIdentifiers.objects.filter(company_id=company_id,
+                                                 type='phone_number')[0]
+
+    @staticmethod
+    def get_company_identifier_email(company_id):
+        return CompanyIdentifiers.objects.filter(company_id=company_id,
+                                                 type='email')[0]
+
+    @staticmethod
     def get_identifier_by_id(_id: int):
         return CompanyIdentifiers.objects.get(id=_id)
 
