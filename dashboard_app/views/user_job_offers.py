@@ -11,7 +11,7 @@ class UserJobOffersView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         profile = self.request.user.profile
-        user_companies = CompanyService.get_companies_by_profile_id(profile)
+        user_companies = CompanyService.get_companies_by_profile_id(_id=profile.id)
         companies_job_offers = [
             JobOfferService.get_job_offers_by_company_id(company_id=c.id)
             for c in user_companies
