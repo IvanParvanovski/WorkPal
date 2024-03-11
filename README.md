@@ -193,7 +193,7 @@ DATABASES = {
 python manage.py makemigrations
 ```
 
-11.<b id="installation-run-migrate">Run migrate:</b>To apply the pending database schema changes defined in migration files.
+11. <b id="installation-run-migrate">Run migrate:</b>To apply the pending database schema changes defined in migration files.
 ```
 python manage.py migrate
 ```
