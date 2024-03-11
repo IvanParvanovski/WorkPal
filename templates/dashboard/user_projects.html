@@ -15,8 +15,12 @@
                 <a href="#project-details">
                     {{ project }}
                 </a>
-                <a href="">Edit</a>
-                <a href="">Delete</a>
+                <a href="{% url 'edit_project' project.id %}">Edit</a>
+
+                <form action="{% url 'delete_project' project.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
             </p>
         {% endfor %}
     </div>
