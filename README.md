@@ -104,19 +104,24 @@ JavaScript (JS) is a versatile programming language primarily used for adding in
 To utilise this Django project, follow the steps below to set it up on your system.
 
 1. [Install Python](#installation-install-python)
-2. [Confirm Python Installation](#installation-confirm-installation)
-3. [Clone the project](#installation-clone-project)
-4. [Create a virtual environment in the project directory](#installation-create-virtual-environment)
-5. [Activate the virtual environment](#installation-activate-virtual-environment)
-6. [Install required packages to run the project](#installation-required-packages)
-7. [Run the application](#installation-run-application)
-8. [Open the application](#installation-open-app)
+2. [Confirm Python Installation](#installation-confirm-installation-python)
+3. [Install PostgreSQL](#installation-confirm-installation-postgres)
+4. [Confirm PostgreSQL installation](#installation-confirm-installation-postgres)
+5. [Clone the project](#installation-clone-project)
+6. [Create a virtual environment in the project directory](#installation-create-virtual-environment)
+7. [Activate the virtual environment](#installation-activate-virtual-environment)
+8. [Install required packages to run the project](#installation-required-packages)
+9. [Configure database](#installation-configure-database)
+10. [Run makemigrations](#installation-run-makemigrations)
+11. [Run migrate](#installation-run-migrate)
+12. [Run the application](#installation-run-application)
+13. [Open the application](#installation-open-app)
 
 Guide
 
 1. <b id="installation-install-python">Install Python: </b> To run the project, ensure Python is installed on your machine. Although Python comes pre-installed on many Linux distributions, the version may vary depending on the distribution and operating system version. If Python is not installed, you can download it from [here](https://www.python.org/downloads/).
 
-2. <b id="installation-confirm-installation"> Confirm Python installation: </b> To confirm the successful installation of Python, run the following command in your command line interface (CMD/Terminal...). 
+2. <b id="installation-confirm-installation-python"> Confirm Python installation: </b> To confirm the successful installation of Python, run the following command in your command line interface (CMD/Terminal...). 
 
 ```
 python3 --version
@@ -124,7 +129,15 @@ python3 --version
 
 Please note the potential variations in the command based on how Python was installed on your system: some commands may begin with `python`, others with `python3`, and yet others with `py`. Despite the differences in reference, they all refer to the same command.
 
-3. <b id="installation-clone-project">Clone the project:</b> Navigate to your preferred installation directory using your command-line interface, and proceed to clone the project. If you encounter any difficulties, you can find more information about cloning your project [here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
+3. <b id="installation-install-postgres"> Install postgres: </b> Download the installer from the [PostgreSQL website](https://www.postgresql.org) and follow the installation instructions
+
+4. <b id="installation-confirm-installation-postgres"> Confirm PostgreSQL installation: </b> To validate the successful installation of PostgreSQL, execute the subsequent command within your command line interface (CLI), whether it's CMD or Terminal.
+
+```
+postgres --version
+```
+
+5. <b id="installation-clone-project">Clone the project:</b> Navigate to your preferred installation directory using your command-line interface, and proceed to clone the project. If you encounter any difficulties, you can find more information about cloning your project [here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
 * Using HTTPS
 
@@ -142,29 +155,54 @@ git clone ssh://git@github.com/username/repository.git
 
 Substitute `ssh://git@github.com/username/repository.git` with the SSH URL you copied from GitHub. For instance:
 
-4. <b id="installation-create-virtual-environment">Create a Virtual Environment:</b> To effectively manage dependencies, versions, and ensure encapsulation, it's essential to create a virtual environment in the directory of your project using:
+6. <b id="installation-create-virtual-environment">Create a Virtual Environment:</b> To effectively manage dependencies, versions, and ensure encapsulation, it's essential to create a virtual environment in the directory of your project using:
 
 ```
 python3 -m venv ./venv
 ```
 
-5. <b id="installation-activate-virtual-environment">Activate the virtual Environment:</b> Activating the virtual environment ensures that Python commands use the environment's interpreter and packages, avoiding conflicts with system-wide installations and maintaining consistency across projects.
+7. <b id="installation-activate-virtual-environment">Activate the virtual Environment:</b> Activating the virtual environment ensures that Python commands use the environment's interpreter and packages, avoiding conflicts with system-wide installations and maintaining consistency across projects.
 
 ```
 source venv/bin/activate
 ```
 
-6. <b id="installation-required-packages">Install required packages:</b> After you have activated the venv, install the required packages to be able to run the project
+8. <b id="installation-required-packages">Install required packages:</b> After you have activated the venv, install the required packages to be able to run the project
 
 ```
 pip install -r requirements.txt
 ```
 
-7. <b id="installation-run-application">Run the application:</b> To execute the application, navigate to its directory in the command-line interface and run the appropriate command specified in the project's documentation. This command starts the app
+9. <b id="installation-configure-database">Configure database:</b> To ensure database access, configure it within the settings.py file of your project. The user
+
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'myprojectdb', # The name of your database
+        'USER': 'myprojectuser', # The name of your user or the default 'postgres' user
+        'PASSWORD': 'password', # The password associated with your account, which was set up during the PostgreSQL installation.
+        'HOST': 'localhost',  # Or the IP address of your PostgreSQL server
+        'PORT': '5432',       # Default PostgreSQL port
+    }
+}
+```
+
+10. <b id="installation-run-makemigrations">Run makemigrations:</b> To check any changes in the defined models, execute the following command:
+```
+python manage.py makemigrations
+```
+
+11.<b id="installation-run-migrate">Run migrate:</b>To apply the pending database schema changes defined in migration files.
+```
+python manage.py migrate
+```
+
+12. <b id="installation-run-application">Run the application:</b> To execute the application, navigate to its directory in the command-line interface and run the appropriate command specified in the project's documentation. This command starts the app
 
 ```
 python manage.py runserver 8080
 ```
 
-8. <b id="installation-open-app">Open the app: </b>Congratulations! You can now access the app on your local machine by visiting [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in your web browser.
+13. <b id="installation-open-app">Open the app: </b>Congratulations! You can now access the app on your local machine by visiting [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in your web browser.
 
