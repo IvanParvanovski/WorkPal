@@ -2,6 +2,8 @@ from django.contrib.contenttypes.models import ContentType
 
 from accounts_app.models.profile import Profile
 from application_app.models import Application
+from application_app.models.job_offer_application_details import JobOfferApplicationDetails
+from application_app.models.project_application_details import ProjectApplicationDetails
 from listing_app.models.listing import Listing
 from services.interfaces.application_app.application_interface import ApplicationInterface
 
@@ -38,6 +40,18 @@ class ApplicationService(ApplicationInterface):
     @staticmethod
     def get_applications_by_profile_id(profile_id: int):
         return Application.objects.filter(profile_id=profile_id)
+
+    @staticmethod
+    def get_applications_to_user_project(project_id: int):
+        return Application.objects.filter(object_id=project_id,
+                                          content_type_id=ContentType.objects
+                                                                     .get_for_model(ProjectApplicationDetails).id)
+
+    @staticmethod
+    def get_applications_to_user_job_offer(job_offer_id: int):
+        return Application.objects.filter(object_id=job_offer_id,
+                                          content_type=ContentType.objects
+                                                                  .get_for_model(JobOfferApplicationDetails).id)
 
     @staticmethod
     def delete_application(application: Application):
