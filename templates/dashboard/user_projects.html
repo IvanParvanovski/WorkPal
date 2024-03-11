@@ -7,6 +7,18 @@
 <body>
     <h2>Your Projects</h2>
 
+    <div>
+        PROJECTS
 
+        {% for project in user_projects %}
+            <p>
+                <a href="#project-details">
+                    {{ project }}
+                </a>
+                <a href="">Edit</a>
+                <a href="">Delete</a>
+            </p>
+        {% endfor %}
+    </div>
 </body>
 </html>
