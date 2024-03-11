@@ -39,6 +39,11 @@ class JobOfferInterface(ABC):
 
     @staticmethod
     @abstractmethod
+    def get_job_offers_for_companies(companies):
+        pass
+
+    @staticmethod
+    @abstractmethod
     def delete_job_offer(job_offer: JobOffer):
         pass
 

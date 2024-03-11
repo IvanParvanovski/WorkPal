@@ -5,19 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-    <h2>Your Projects</h2>
-
     <div>
-        PROJECTS
+        COMPANIES
 
-        {% for project in user_projects %}
-            <p>
-                <a href="#project-details">
-                    {{ project }}
-                </a>
+        {% for c in user_companies %}
+            <div>
+                <a href="">{{ c }}</a>
                 <a href="">Edit</a>
                 <a href="">Delete</a>
-            </p>
+            </div>
+
         {% endfor %}
     </div>
 </body>

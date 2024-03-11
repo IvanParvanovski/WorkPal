@@ -8,64 +8,78 @@
         h3 {
             padding-left: 10px;
         }
+
+        .my-grid {
+            display: flex;
+            padding-top: 50px;
+        }
+        .my-grid div {
+            margin: 0 auto;
+            width: 25%;
+        }
+
     </style>
 </head>
 <body>
     <h2>Dashboard</h2>
 
-    <div>
-        JOB OFFERS
-
-        {% for j in job_offers %}
-            <p>{{ j }}</p>
-        {% endfor %}
-    </div>
-    <div>
-        PROJECTS
-
-        {% for p in projects %}
-            <p>{{ p }}</p>
-        {% endfor %}
-    </div>
-    <div>
-        COMPANIES
-
-        {% for c in companies %}
-            <p>{{ c }}</p>
-        {% endfor %}
-    </div>
-    <div>
-        ASSOCIATION REQUEST
-
-        {% for ar in association_requests %}
-            <p>{{ ar }}</p>
-        {% endfor %}
-    </div>
-    <div>
-        APPLICATION STATUS
-        {% for ass in application_status %}
-            <p>{{ ass }}</p>
-        {% endfor %}
-    </div>
-
     {% if user.is_authenticated %}
         <h3>Projects</h3>
         <div>
-            <a href="">Your Projects</a>
+            <a href="{% url 'user_projects' %}">Your Projects</a>
             <a href="{% url 'create_project' %}">Create Project</a>
         </div>
 
         <h3>Job Offer</h3>
         <div>
-            <a href="">Your Job Offers</a>
+            <a href="{% url 'user_job_offers' %}">Your Job Offers</a>
             <a href="{% url 'create_job_offer' %}">Create Job Offer</a>
         </div>
 
         <h3>Companies</h3>
         <div>
-            <a href="">Your Companies</a>
+            <a href="{% url 'user_companies' %}">Your Companies</a>
             <a href="{% url 'create_company' %}">Create Company</a>
         </div>
+
+        <div class="my-grid">
+
+            <div>
+                ASSOCIATION REQUEST
+
+                {% for association_requests_for_company in association_requests %}
+                    {% for association_request in association_requests_for_company %}
+                        <p>{{ association_request }}</p>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            <div>
+                APPLICATIONS TO YOUR PROJECTS
+                {% for project_applications in applications_for_projects %}
+                    {% for application in project_applications %}
+                        <p>{{ application }}</p>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            <div>
+                APPLICATIONS TO YOUR JOB OFFERS
+
+                {% for company_job_offers in companies_applications_for_job_offers %}
+                    {% for job_offer in company_job_offers %}
+                        <p>{{ job_offer }}</p>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            <div>
+                APPLICATION STATUS
+
+                {% for application in application_status %}
+                    <p>{{ application }}</p>
+                {% endfor %}
+            </div>
+        </div>
+
     {% endif %}
+
 </body>
 </html>

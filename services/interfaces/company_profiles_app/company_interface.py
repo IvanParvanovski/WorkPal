@@ -17,7 +17,12 @@ class CompanyInterface(ABC):
     @staticmethod
     @abstractmethod
     def get_company_by_id(_id: int):
-        return Company.objects.get(id=_id)
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def get_user_companies(profile_id: int):
+        pass
 
     @staticmethod
     @abstractmethod

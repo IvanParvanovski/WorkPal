@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Your Job Offers</h2>
+
+    <div>
+        JOB OFFERS
+        {% for company_job_offers in companies_job_offers %}
+            {% for job_offer in company_job_offers %}
+                <div>
+                    <a href="#details">{{ job_offer }}</a>
+                    <a href="#edit">Edit</a>
+                    <a href="#delete">Delete</a>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+</body>
+</html>

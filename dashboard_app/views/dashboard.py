@@ -10,14 +10,29 @@ from services.generic.listing_app.project_service import ProjectService
 def render_dashboard(request):
 
     profile_id = request.user.profile.id
+    user_companies = CompanyService.get_user_companies(profile_id=profile_id)
+
+    # Association requests to your companies
+    association_requests = EmploymentService.get_association_requests_for_companies(user_companies)
+
+    # Applications made to your projects
+    user_projects = ProjectService.get_projects_by_profile_id(profile_id)
+    applications_for_projects = ApplicationService.get_applications_for_user_projects(user_projects)
+
+    # Applications you have made to other - statuses
+    application_statuses = ApplicationService.get_applications_by_profile_id(profile_id)
+
+    # Job offers
+    companies_job_offers = JobOfferService.get_job_offers_for_companies(user_companies)
+    applications_for_job_offers = ApplicationService.get_applications_for_companies_job_offers(companies_job_offers)
 
     context = {
-        'job_offers': JobOfferService.get_job_offers_by_company_id(1), # THE JOB OFFERS YOU HAVE CREATED
-        'projects': ProjectService.get_projects_by_profile_id(profile_id), # THE PROJECTS YOU HAVE CREATED
-        'companies': EmploymentService.get_associated_companies_by_profile_id(profile_id), # THE COMPANIES YOU ARE ASSOCIATED WITH
-
-        'association_requests': EmploymentService.get_association_requests_by_company_id(5), # THE ASSOCIATION REQUESTS PEOPLE HAVE MADE TO A SPECIFIC COMPANY
-        'application_status': ApplicationService.get_applications_by_profile_id(profile_id) # THE APPLICATIONS YOU HAVE MADE TO PROJECTS OR JOB OFFERS
+        'association_requests': association_requests,
+        'application_status': application_statuses,
+        'applications_for_projects': applications_for_projects,
+        'companies_applications_for_job_offers': applications_for_job_offers,
     }
+
+    # print(ApplicationService.get_applications_to_user_project(3))
 
     return render(request, 'dashboard/dashboard.html', context=context)
