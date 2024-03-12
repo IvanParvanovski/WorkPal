@@ -30,6 +30,18 @@ class ApplicationService(ApplicationInterface):
         return application
 
     @staticmethod
+    def set_application_is_checked_true(application):
+        application.is_checked = True
+        application.save()
+        return application
+
+    @staticmethod
+    def set_application_is_approved_true(application):
+        application.is_approved = True
+        application.save()
+        return application
+
+    @staticmethod
     def get_all_applications():
         return Application.objects.all()
 
@@ -44,6 +56,7 @@ class ApplicationService(ApplicationInterface):
     @staticmethod
     def get_applications_for_user_project(project):
         return Application.objects.filter(listing_id=project.listing.id,
+                                          is_checked=False,
                                           content_type_id=ContentType.objects
                                                                      .get_for_model(ProjectApplicationDetails).id)
 
@@ -58,7 +71,8 @@ class ApplicationService(ApplicationInterface):
     @staticmethod
     def get_applications_for_job_offer(job_offer):
         # a functionality to check if the person who is part of the company is applying for the job
-        return Application.objects.filter(listing_id=job_offer.listing.id)
+        return Application.objects.filter(listing_id=job_offer.listing.id,
+                                          is_checked=False)
 
     @staticmethod
     def get_applications_for_companies_job_offers(companies_job_offers):
