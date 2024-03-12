@@ -30,7 +30,7 @@ class CompanyService(CompanyInterface):
     @staticmethod
     def get_user_companies(profile_id: int):
         return Company.objects.filter(employment__is_associate=True,
-                                      employment__profile_id=profile_id)
+                                      employment__profile_id=profile_id).distinct()
 
     @staticmethod
     def delete_company_by_id(_id: int):

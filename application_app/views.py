@@ -1,6 +1,6 @@
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 from application_app.forms.job_offer_application_details_form import JobOfferApplicationDetailsForm
@@ -84,3 +84,20 @@ class ProjectApplicationDetailsView(View):
 
         print(project_application_form.errors)
         return HttpResponse('invalid')
+
+
+class AcceptApplication(View):
+    def post(self, request, *args, **kwargs):
+        application_id = kwargs.get('application_id')
+        application = ApplicationService.get_application_by_id(application_id)
+        ApplicationService.set_application_is_approved_true(application)
+        ApplicationService.set_application_is_checked_true(application)
+        return redirect('dashboard')
+
+
+class RejectApplication(View):
+    def post(self, request, *args, **kwargs):
+        application_id = kwargs.get('application_id')
+        application = ApplicationService.get_application_by_id(application_id)
+        ApplicationService.set_application_is_checked_true(application)
+        return redirect('dashboard')
