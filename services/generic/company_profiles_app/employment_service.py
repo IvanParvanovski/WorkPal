@@ -31,7 +31,7 @@ class EmploymentService(EmploymentInterface):
     @staticmethod
     def get_association_requests_for_company(company):
         return Employment.objects.filter(company_id=company.id,
-                                         is_associate=False)
+                                         is_checked=False)
 
     @staticmethod
     def get_association_requests_for_companies(companies):
@@ -52,6 +52,13 @@ class EmploymentService(EmploymentInterface):
     @staticmethod
     def set_employment_is_associate_to_true(employment: Employment):
         employment.is_associate = True
+        employment.save()
+        return employment
+
+    @staticmethod
+    def set_employment_is_checked_to_true(employment: Employment):
+        employment.is_checked = True
+        employment.save()
         return employment
 
     @staticmethod

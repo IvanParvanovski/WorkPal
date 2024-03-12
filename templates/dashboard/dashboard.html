@@ -17,6 +17,12 @@
             margin: 0 auto;
             width: 25%;
         }
+        .accepted {
+            background-color: lightgreen;
+        }
+        .rejected {
+            background-color: lightcoral;
+        }
 
     </style>
 </head>
@@ -50,14 +56,27 @@
                 {% for association_requests_for_company in association_requests %}
                     {% for association_request in association_requests_for_company %}
                         <p>{{ association_request }}</p>
+
+                        <form action="{% url 'accept_association_request' association_request.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Accept</button>
+                        </form>
+
+                        <form action="{% url 'reject_association_request' association_request.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Reject</button>
+                        </form>
                     {% endfor %}
                 {% endfor %}
             </div>
+
             <div>
                 APPLICATIONS TO YOUR PROJECTS
                 {% for project_applications in applications_for_projects %}
                     {% for application in project_applications %}
                         <p>{{ application }}</p>
+                        <a href="">Accept</a>
+                        <a href="">Reject</a>
                     {% endfor %}
                 {% endfor %}
             </div>
@@ -67,6 +86,8 @@
                 {% for company_job_offers in companies_applications_for_job_offers %}
                     {% for job_offer in company_job_offers %}
                         <p>{{ job_offer }}</p>
+                        <a href="">Accept</a>
+                        <a href="">Reject</a>
                     {% endfor %}
                 {% endfor %}
             </div>
@@ -74,7 +95,8 @@
                 APPLICATION STATUS
 
                 {% for application in application_status %}
-                    <p>{{ application }}</p>
+{#                    <p class="accepted">{{ application }}</p>#}
+                    <p class="rejected">{{ application }}</p>
                 {% endfor %}
             </div>
         </div>
