@@ -4,6 +4,7 @@ from django.views import View
 
 from listing_app.forms.listing_form import ListingForm
 from listing_app.forms.project_form import ProjectForm
+from services.generic.listing_app.industry_service import IndustryService
 from services.generic.listing_app.listing_service import ListingService
 from services.generic.listing_app.project_service import ProjectService
 
@@ -25,8 +26,6 @@ class CreateProjectView(View):
         return render(request, self.template_name, context=context)
 
     def post(self, request, *args, **kwargs):
-        print(request.user)
-
         listing_form = self.form_class_create_listing(request.POST, request.FILES)
         project_form = self.form_class_create_project(request.POST)
 
@@ -42,6 +41,9 @@ class CreateProjectView(View):
                                           preferred_payment=project_form.cleaned_data['preferred_payment'],
                                           status=project_form.cleaned_data['status'],
                                           estimated_duration=project_form.cleaned_data['estimated_duration'])
+
+            for industry in listing_form.cleaned_data['industries']:
+                ListingService.add_industry_to_listing(listing, industry)
 
             return redirect('projects_catalog')
         else:

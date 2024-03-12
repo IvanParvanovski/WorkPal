@@ -17,9 +17,10 @@ class EditJobOfferView(View):
         job_offer_id = kwargs.get('job_offer_id')
         job_offer = JobOfferService.get_job_offer_by_id(_id=job_offer_id)
         listing = job_offer.listing
+        selected_options = ListingService.get_all_listing_industries(listing)
 
         context = {
-            'listing_form': self.form_class_listing(instance=listing),
+            'listing_form': self.form_class_listing(instance=listing, initial={'industries': selected_options}),
             'job_offer_form': self.form_class_job_offer(instance=job_offer, profile=request.user.profile),
         }
 
@@ -38,7 +39,7 @@ class EditJobOfferView(View):
             job_offer = JobOfferService.get_job_offer_by_id(_id=job_offer_id)
             listing = job_offer.listing
 
-            ListingService.edit_listing_by_id(_id=listing.id,
+            listing = ListingService.edit_listing_by_id(_id=listing.id,
                                               title=listing_form.cleaned_data['title'],
                                               location=listing_form.cleaned_data['location'],
                                               images=listing_form.cleaned_data['images'],
@@ -57,6 +58,19 @@ class EditJobOfferView(View):
                                                  required_qualifications=job_offer_form.cleaned_data['required_qualifications'],
                                                  preferred_qualifications=job_offer_form.cleaned_data['preferred_qualifications'],
                                                  remote_option=job_offer_form.cleaned_data['remote_option'])
+
+            current_industries = ListingService.get_all_listing_industries(listing)
+            newly_selected_industries = listing_form.cleaned_data['industries']
+
+            # Add new industries
+            for industry in newly_selected_industries:
+                if industry not in current_industries:
+                    ListingService.add_industry_to_listing(listing, industry)
+
+            # Remove unselected industries
+            for industry in current_industries:
+                if industry not in newly_selected_industries:
+                    ListingService.remove_industry_from_listing(listing, industry)
 
             return redirect('user_job_offers')
 
