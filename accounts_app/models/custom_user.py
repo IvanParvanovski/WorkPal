@@ -38,6 +38,7 @@ class CustomUser(AbstractUser):
     Use the email field as the unique identifier for authentication and customize the manager with `CustomUserManager`.
     """
     email = models.EmailField(_('email address'), unique=True)
+    username = models.CharField(_('username'), max_length=150, unique=False)  # Make username field non-unique
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ('username', )
@@ -46,5 +47,9 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+
+#
+# class CustomUser(AbstractUser):
+#     email =
 
 
