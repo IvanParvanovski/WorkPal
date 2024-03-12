@@ -18,9 +18,10 @@ class EditProjectView(View):
         project_id = kwargs.get('project_id')
         project = ProjectService.get_project_by_id(project_id)
         listing = ListingService.get_listing_by_id(project.listing.id)
+        selected_options = ListingService.get_all_listing_industries(listing)
 
         context = {
-            'listing_form': self.form_class_listing(instance=listing),
+            'listing_form': self.form_class_listing(instance=listing, initial={'industries': selected_options}),
             'project_form': self.form_class_project(instance=project),
         }
 
@@ -33,6 +34,21 @@ class EditProjectView(View):
         if project_form.is_valid() and listing_form.is_valid():
             project = ProjectService.get_project_by_id(kwargs.get('project_id'))
             listing = ListingService.get_listing_by_id(_id=project.listing.id)
+
+            current_industries = ListingService.get_all_listing_industries(listing)
+            newly_selected_industries = listing_form.cleaned_data['industries']
+            print(current_industries)
+            print(newly_selected_industries)
+
+            # Add new industries
+            for industry in newly_selected_industries:
+                if industry not in current_industries:
+                    ListingService.add_industry_to_listing(listing, industry)
+
+            # Remove unselected industries
+            for industry in current_industries:
+                if industry not in newly_selected_industries:
+                    ListingService.remove_industry_from_listing(listing, industry)
 
             project_id = kwargs.get('project_id')
 

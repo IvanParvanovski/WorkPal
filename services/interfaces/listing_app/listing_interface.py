@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+from listing_app.models.industry import Industry
 from listing_app.models.listing import Listing
 
 
@@ -11,6 +12,11 @@ class ListingInterface(ABC):
                        images: str,
                        description: str,
                        commit=True) -> Listing:
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def add_industry_to_listing(listing: Listing, industry: Industry):
         pass
 
     @staticmethod

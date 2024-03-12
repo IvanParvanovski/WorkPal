@@ -1,5 +1,7 @@
 from django.db import models
 
+from listing_app.models.industry import Industry
+
 
 class Listing(models.Model):
     title = models.CharField(max_length=150, blank=False, null=False)
@@ -8,6 +10,7 @@ class Listing(models.Model):
     date_updated = models.DateField(auto_now=True)
     images = models.ImageField(upload_to='images/projects/')
     description = models.TextField(blank=False, null=False)
+    industries = models.ManyToManyField(Industry)
 
     def __str__(self):
         return self.title

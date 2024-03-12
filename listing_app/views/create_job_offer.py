@@ -16,7 +16,7 @@ class CreateJobOfferView(View):
     def get(self, request, *args, **kwargs):
         listing_form = self.form_class_create_listing()
         job_offer_form = self.form_class_create_job_offer(profile=request.user.profile)
-        print(job_offer_form.fields['work_environment'])
+
         context = {
             'listing_form': listing_form,
             'job_offer_form': job_offer_form
@@ -41,7 +41,6 @@ class CreateJobOfferView(View):
                                                     description=listing_form.cleaned_data['description'])
 
             salary_range_min, salary_range_max = [round(float(x), 2) for x in job_offer_form.cleaned_data['salary_range'].split(' ')]
-            print(job_offer_form.cleaned_data)
 
             JobOfferService.create_job_offer(listing=listing,
                                              company=job_offer_form.cleaned_data['company'],
@@ -54,6 +53,9 @@ class CreateJobOfferView(View):
                                              required_qualifications=job_offer_form.cleaned_data['required_qualifications'],
                                              preferred_qualifications=job_offer_form.cleaned_data['preferred_qualifications'],
                                              remote_option=job_offer_form.cleaned_data['remote_option'])
+
+            for industry in listing_form.cleaned_data['industries']:
+                ListingService.add_industry_to_listing(listing, industry)
 
             return redirect('job_offers_catalog')
         else:
