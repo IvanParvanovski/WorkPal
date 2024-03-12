@@ -30,6 +30,7 @@ class Employment(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=15, choices=CompanyRoles, blank=False, null=False)
     is_associate = models.BooleanField(default=False)
+    is_checked = models.BooleanField(default=False)
     suggestions = GenericRelation(UserSuggestion)
 
 
