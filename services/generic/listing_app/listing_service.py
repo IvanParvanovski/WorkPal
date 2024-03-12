@@ -1,3 +1,4 @@
+from listing_app.models.industry import Industry
 from listing_app.models.listing import Listing
 from services.interfaces.listing_app.listing_interface import ListingInterface
 
@@ -21,6 +22,18 @@ class ListingService(ListingInterface):
             listing.save()
 
         return listing
+
+    @staticmethod
+    def add_industry_to_listing(listing: Listing, industry: Industry):
+        listing.industries.add(industry)
+
+    @staticmethod
+    def get_all_listing_industries(listing):
+        return listing.industries.all()
+
+    @staticmethod
+    def remove_industry_from_listing(listing: Listing, industry: Industry):
+        listing.industries.remove(industry)
 
     @staticmethod
     def get_all_listings():
