@@ -114,8 +114,11 @@
                 APPLICATION STATUS
 
                 {% for application in application_status %}
-{#                    <p class="accepted">{{ application }}</p>#}
-                    <p class="rejected">{{ application }}</p>
+                    {% if application.is_approved %}
+                        <p class="accepted">{{ application }}</p>
+                    {% else %}
+                        <p class="rejected">{{ application }}</p>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
