@@ -74,19 +74,21 @@
                 APPLICATIONS TO YOUR PROJECTS
                 {% for project_applications in applications_for_projects %}
                     {% for application in project_applications %}
-                        <p>{{ application }}</p>
+                        <p>
+                            <a href="{% url 'project_application_details' application.id %}">{{ application }}</a>
 
-                        <form action="{% url 'accept_application' application.id %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit">Accept</button>
-                        </form>
+                            <form action="{% url 'accept_application' application.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">Accept</button>
+                            </form>
 
-                        <form action="{% url 'reject_application' application.id %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit">
-                                Reject
-                            </button>
-                        </form>
+                            <form action="{% url 'reject_application' application.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">
+                                    Reject
+                                </button>
+                            </form>
+                        </p>
                     {% endfor %}
                 {% endfor %}
             </div>
@@ -95,18 +97,22 @@
 
                 {% for company_job_offers in companies_applications_for_job_offers %}
                     {% for job_offer in company_job_offers %}
-                        <p>{{ job_offer }}</p>
-                        <form action="{% url 'accept_application' job_offer.id %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit">Accept</button>
-                        </form>
+{#                        <p>{{ job_offer }}</p>#}
+                        <p>
+                            <a href="{% url 'job_offer_application_details' job_offer.id %}">{{ job_offer }}</a>
 
-                        <form action="{% url 'reject_application' job_offer.id %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit">
-                                Reject
-                            </button>
-                        </form>
+                            <form action="{% url 'accept_application' job_offer.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">Accept</button>
+                            </form>
+
+                            <form action="{% url 'reject_application' job_offer.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">
+                                    Reject
+                                </button>
+                            </form>
+                        </p>
                     {% endfor %}
                 {% endfor %}
             </div>
