@@ -8,6 +8,7 @@ from listing_app.views.edit_job_offer import EditJobOfferView
 from listing_app.views.edit_project import EditProjectView
 from listing_app.views.job_offer_detail import JobOfferDetailView
 from listing_app.views.job_offers_catalog import JobOffersCatalog
+from listing_app.views.listing_catalog import ListingCatalog, search_listings
 from listing_app.views.project_detail import ProjectDetailView
 from listing_app.views.projects_catalog import ProjectsCatalog
 
@@ -25,6 +26,8 @@ dashboard_urls = [
 main_urls = [
     path('projects_catalog/', ProjectsCatalog.as_view(), name='projects_catalog'),
     path('job_offers_catalog/', JobOffersCatalog.as_view(), name='job_offers_catalog'),
+    path('listings_catalog/<str:industry>', ListingCatalog.as_view(), name='listings_catalog'),
+    path('listing_catalog_search/', search_listings, name='listings_catalog_search'),
 
     path('job_offer_details/<int:pk>', JobOfferDetailView.as_view(), name='job_offer_detail'),
     path('project_details/<int:pk>', ProjectDetailView.as_view(), name='project_detail')

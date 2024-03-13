@@ -19,6 +19,11 @@ class IndustryInterface(ABC):
 
     @staticmethod
     @abstractmethod
+    def get_industry_by_name(name):
+        pass
+
+    @staticmethod
+    @abstractmethod
     def delete_industry_by_id(_id: int):
         pass
 

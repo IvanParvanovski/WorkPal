@@ -21,6 +21,10 @@ class IndustryService(IndustryInterface):
         return Industry.objects.get(id=_id)
 
     @staticmethod
+    def get_industry_by_name(name):
+        return Industry.objects.get(name=name)
+
+    @staticmethod
     def delete_industry_by_id(_id: int):
         industry = IndustryService.get_industry_by_id(_id=_id)
         industry.delete()

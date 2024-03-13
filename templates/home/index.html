@@ -32,7 +32,24 @@
     <h2>Catalogs</h2>
     <a href="{% url 'projects_catalog' %}">Projects</a>
     <a href="{% url 'job_offers_catalog' %}">Job Offers</a>
-    <a href="https://google.com">RANDOM</a>
+
+    <h2>Industries</h2>
+
+    <form action="{% url 'listings_catalog_search' %}" method="get">
+        <div>
+            <label for="industries_search">Search</label>
+            <input id="industries_search" type="text" name="q" placeholder="Search...">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+
+    {% for industry in industries %}
+        <div>
+            <a href="{% url 'listings_catalog' industry.name|lower %}">{{ industry }}</a>
+{#            {{ industry }}#}
+        </div>
+    {% endfor %}
 
 
 </body>
