@@ -21,6 +21,26 @@ class ListingInterface(ABC):
 
     @staticmethod
     @abstractmethod
+    def get_listings_by_industry(industry):
+        pass
+    
+    @staticmethod
+    @abstractmethod
+    def get_all_listing_industries(listing):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def search_listings_by_query(query):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def remove_industry_from_listing(listing: Listing, industry: Industry):
+        pass
+
+    @staticmethod
+    @abstractmethod
     def get_all_listings():
         pass
 
