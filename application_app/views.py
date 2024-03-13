@@ -2,6 +2,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic import DetailView
 
 from application_app.forms.job_offer_application_details_form import JobOfferApplicationDetailsForm
 from application_app.forms.project_application_details_form import ProjectApplicationDetailsForm
@@ -84,6 +85,42 @@ class ProjectApplicationDetailsView(View):
 
         print(project_application_form.errors)
         return HttpResponse('invalid')
+
+
+class ApplicationJobOfferDetails(DetailView):
+    model = Application
+    template_name = 'application_app/application_job_offer_details.html'
+    context_object_name = 'application'
+
+    def get(self, request, *args, **kwargs):
+        # get job offer by application id
+
+        application_id = kwargs.get('application_id')
+        application = ApplicationService.get_application_by_id(application_id)
+        job_offer_application_details = JobOfferApplicationDetailsService.get_job_offer_details_by_id(_id=application.object_id)
+
+        context = {
+            'job_offer_application_details': job_offer_application_details
+        }
+
+        return render(request, ApplicationJobOfferDetails.template_name, context=context)
+
+
+class ApplicationProjectDetails(DetailView):
+    model = Application
+    template_name = 'application_app/application_project_details.html'
+    context_object_name = 'application'
+
+    def get(self, request, *args, **kwargs):
+        application_id = kwargs.get('application_id')
+        application = ApplicationService.get_application_by_id(application_id)
+        project = ProjectApplicationDetailsService.get_project_details_by_id(_id=application.object_id)
+
+        context = {
+            'project': project
+        }
+
+        return render(request, ApplicationProjectDetails.template_name, context=context)
 
 
 class AcceptApplication(View):
