@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import FormView, TemplateView
@@ -60,6 +61,7 @@ class SignInView(FormView):
             return self.form_invalid(form)
 
 
+@login_required
 def sign_out_view(request):
     logout(request)
     return redirect(reverse('home'))

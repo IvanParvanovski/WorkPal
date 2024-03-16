@@ -9,17 +9,26 @@ from company_profiles_app.views.permissions.make_rights_manager import make_righ
 from company_profiles_app.views.permissions.make_association_moderator import make_associate_moderator
 from company_profiles_app.views.search_company import search_company
 
-urlpatterns = [
-    # dashboard
-    path('accept_association/<int:employment_id>', AcceptAssociationRequest.as_view(), name='accept_association_request'),
-    path('reject_association/<int:employment_id>', RejectAssociationRequest.as_view(), name='reject_association_request'),
-    path('permissions/make_associate_moderator/<int:user_to_grant_rights_id>', make_associate_moderator, name='make_association_moderator'),
-    path('permissions/make_rights_manager/<int:user_to_grant_rights_id>', make_rights_manager, name='make_rights_manager'),
 
-    # main urls
-    path('create_company/', CreateCompanyView.as_view(), name='create_company'),
-    path('edit_company/<int:company_id>', EditCompanyView.as_view(), name='edit_company'),
-    path('delete_company/<int:company_id>', DeleteCompanyView.as_view(), name='delete_company'),
-    path('create_employment/ci=<int:company_id>', EmploymentCreateView.as_view(), name='create_employment'),
-    path('search_company/', search_company, name='search_company'),
+dashboard_urls = [
+    path('add/', CreateCompanyView.as_view(), name='create_company'),
+    path('add/ci=<int:company_id>', EmploymentCreateView.as_view(), name='create_association'),
+    path('edit/<int:company_id>', EditCompanyView.as_view(), name='edit_company'),
+    path('delete/<int:company_id>', DeleteCompanyView.as_view(), name='delete_company'),
+]
+
+main_urls = [
+    # Actions
+    path('accept_association/<int:employment_request_id>', AcceptAssociationRequest.as_view(),
+         name='accept_association_request'),
+    path('reject_association/<int:employment_request_id>', RejectAssociationRequest.as_view(),
+         name='reject_association_request'),
+    path('search/', search_company, name='search_company'),
+]
+
+permissions_urls = [
+    path('permissions/make_association_moderator/<int:user_to_grant_rights_id>', make_associate_moderator,
+         name='make_association_moderator'),
+    path('permissions/make_rights_manager/<int:user_to_grant_rights_id>', make_rights_manager,
+         name='make_rights_manager'),
 ]
