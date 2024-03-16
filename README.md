@@ -13,6 +13,7 @@
 
 * [Technologies](#technologies)
 * [Installation](#installation)
+* [Rest Endpoints](#rest-endpoints)
 
 ---
 
@@ -205,4 +206,51 @@ python manage.py runserver 8080
 ```
 
 13. <b id="installation-open-app">Open the app: </b>Congratulations! You can now access the app on your local machine by visiting [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in your web browser.
+
+---
+<h2 id="rest-endpoints">REST Endpoints</h2>
+
+
+| Required Permissions                   | Methods   | URL                                                                   | NAME                          |
+| -------------------------------------- | --------- | --------------------------------------------------------------------- | ----------------------------- |
+|                                        | GET       |                                                                       | home                          |
+|                                        | GET, POST | accounts/sign_in                                                      | sign_in                       |
+|                                        | GET, POST | accounts/sign_up                                                      | sign_up                       |
+| login_required                         | GET       | accounts/sign_out                                                     | sign_out                      |
+| login_required, adjudicate_application | POST      | applications/accept/<int:application_id>                              | accept_application            |
+| login_required, adjudicate_application | POST      | applications/reject/<int:application_id>                              | reject_application            |
+| login_required                         | GET       | applications/details/job_offer/<int:application_id>                   | job_offer_application_details |
+| login_required                         | GET       | applications/details/project/<int:project_id>                         | project_application_details   |
+| login_required                         | GET, POST | applications/add/job_offer/<int:job_offer_id>                         | create_job_offer_application  |
+| login_required                         | GET, POST | applications/add/project/<int:project_id>                             | create_project_application    |
+| login_required                         | GET       | dashboard/                                                            | dashboard                     |
+| login_required                         | GET       | dashboard/projects/                                                   | user_projects                 |
+| login_required                         | GET       | dashboard/job_offers/                                                 | user_job_offers               |
+| login_required                         | GET       | dashboard/companies/                                                  | user_companies                |
+| login_required                         | GET       | dashboard/associates                                                  | user_associates               |
+| login_required                         | GET, POST | dashboard/projects/add                                                | create_project                |
+| login_required                         | GET, POST | dashboard/projects/edit/<int:project_id>                              | edit_project                  |
+| login_required                         | POST      | dashboard/projects/delete/<int:project_id>                            | delete_project                |
+| login_required, add_joboffer           | GET, POST | dashboard/job_offers/add/                                             | create_job_offer              |
+| login_required, change_joboffer        | GET, POST | dashboard/job_offers/edit/<int:job_offer_id>                          | edit_job_offer                |
+| login_required, delete_joboffer        | POST      | dashboard/job_offers/delete/<int:job_offer_id>                        | delete_job_offer              |
+| login_required                         | GET, POST | dashboard/companies/add                                               | create_company                |
+| login_required, change_company         | GET, POST | dashboard/companies/edit/<int:company_id>                             | edit_company                  |
+| login_required, delete_company         | POST      | dashboard/companies/delete/<int:company_id>                           | delete_company                |
+| login_required,                        | GET, POST | dashboard/companies/add/ci=<int:company_id>                           | create_association            |
+|                                        | GET       | projects/                                                             | projects_catalog              |
+|                                        | GET       | projects/<int:project_id>                                             | project_detail                |
+|                                        | GET       | job_offers/                                                           | job_offers_catalog            |
+|                                        | GET       | job_offers/<int:job_offer_id>                                         | job_offer_detail              |
+|                                        | GET       | listings/<str:industry>                                               | listings_catalog              |
+|                                        | GET       | listings/search/                                                      | listings_catalog_search       |
+| login_required, verify_associate       | POST      | companies/accept_association/<int:employment_request_id>              | accept_association_request    |
+| login_required, verify_associate       | POST      | companies/reject_association/<int:employment_request_id>              | reject_association_request    |
+|                                        | GET       | companies/search/                                                     | search_company                |
+| login_required, give_rights            | GET       | permisssions/make_application_moderator/<int:user_to_grant_rights_id> | make_application_moderator    |
+| login_required, give_rights            | GET       | permissions/make_association_moderator/<int:user_to_grant_rights_id>  | make_association_moderator    |
+| login_required, give_rights            | GET       | permissions/make_rights_manager/<int:user_to_grant_rights_id>         | make_rights_manager           |
+| login_required, give_rights            | GET       | permissions/make_listings_manager/<int:user_to_grant_rights_id>       | make_listings_manager         |
+
+
 
