@@ -39,7 +39,7 @@ class JobOfferApplicationCreateView(LoginRequiredMixin, View):
 
         if job_offer_application_form.is_valid():
             profile = request.user.profile
-            listing = JobOfferService.get_job_offer_by_id(kwargs.get('pk')).listing
+            listing = JobOfferService.get_job_offer_by_id(kwargs.get('job_offer_id')).listing
 
             job_offer_application = JobOfferApplicationDetailsService.create_job_offer_details(
                 cv=job_offer_application_form.cleaned_data['cv'],
@@ -75,7 +75,7 @@ class ProjectApplicationCreateView(LoginRequiredMixin, View):
 
         if project_application_form.is_valid():
             profile = request.user.profile
-            listing = ProjectService.get_project_by_id(kwargs.get('pk')).listing
+            listing = ProjectService.get_project_by_id(kwargs.get('project_id')).listing
 
             project_application = ProjectApplicationDetailsService.create_project_details(motivation_letter=project_application_form.cleaned_data['motivation_letter'])
 

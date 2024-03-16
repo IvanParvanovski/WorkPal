@@ -9,10 +9,14 @@ class Command(BaseCommand):
         permission_create_job_offer = Permission.objects.get(codename='add_joboffer')
         permission_delete_job_offer = Permission.objects.get(codename='delete_joboffer')
         permission_edit_job_offer = Permission.objects.get(codename='change_joboffer')
+        permission_edit_company = Permission.objects.get(codename='change_company')
+        permission_delete_company = Permission.objects.get(codename='delete_company')
 
         group.permissions.add(permission_create_job_offer)
         group.permissions.add(permission_delete_job_offer)
         group.permissions.add(permission_edit_job_offer)
+        group.permissions.add(permission_edit_company)
+        group.permissions.add(permission_delete_company)
 
         if created:
             self.stdout.write(self.style.SUCCESS('Group "ListingsManager" created with permissions'
