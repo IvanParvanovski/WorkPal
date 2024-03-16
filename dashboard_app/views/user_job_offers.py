@@ -1,10 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 
 from services.generic.company_profiles_app.company_service import CompanyService
 from services.generic.listing_app.job_offer_service import JobOfferService
 
 
-class UserJobOffersView(TemplateView):
+class UserJobOffersView(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard/user_job_offers.html'
 
     def get_context_data(self, **kwargs):
@@ -13,11 +14,7 @@ class UserJobOffersView(TemplateView):
         profile = self.request.user.profile
         user_companies = CompanyService.get_user_companies(profile_id=profile.id)
         companies_job_offers = JobOfferService.get_job_offers_for_companies(user_companies)
-        #
-        # companies_job_offers = [
-        #     JobOfferService.get_job_offers_by_company_id(company_id=c.id)
-        #     for c in user_companies
-        # ]
+
         context['companies_job_offers'] = companies_job_offers
 
         return context

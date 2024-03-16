@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.views import View
@@ -9,7 +10,7 @@ from services.generic.listing_app.listing_service import ListingService
 from services.generic.listing_app.project_service import ProjectService
 
 
-class CreateProjectView(View):
+class CreateProjectView(LoginRequiredMixin, View):
     form_class_create_listing = ListingForm
     form_class_create_project = ProjectForm
     template_name = 'listing_app/create_project.html'

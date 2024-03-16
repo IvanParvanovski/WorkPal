@@ -14,7 +14,8 @@ from shared_app.models import UserSuggestion
 class Employment(models.Model):
     class Meta:
         permissions = [
-            ('verify_associate', 'Can verify if a person is associated with the given company')
+            ('verify_associate', 'Can verify if a person is associated with the given company'),
+            ('give_rights', 'Can delegate permissions to other associates to manage company resources and data.'),
         ]
 
     class CompanyRoles(models.TextChoices):
@@ -32,6 +33,12 @@ class Employment(models.Model):
     is_associate = models.BooleanField(default=False)
     is_checked = models.BooleanField(default=False)
     suggestions = GenericRelation(UserSuggestion)
+
+    def __str__(self):
+        return self.__repr__()
+
+    def __repr__(self):
+        return f'Employment(job_t={self.job_title}, pi={self.profile_id}, ci={self.company_id}, is_a={self.is_associate})'
 
 
 @receiver(pre_save, sender=Profile)

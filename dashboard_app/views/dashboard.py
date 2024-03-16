@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from services.generic.application_app.application_service import ApplicationService
@@ -7,6 +8,7 @@ from services.generic.listing_app.job_offer_service import JobOfferService
 from services.generic.listing_app.project_service import ProjectService
 
 
+@login_required
 def render_dashboard(request):
 
     profile_id = request.user.profile.id

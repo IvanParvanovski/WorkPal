@@ -9,6 +9,7 @@ from listing_app.views.edit_project import EditProjectView
 from listing_app.views.job_offer_detail import JobOfferDetailView
 from listing_app.views.job_offers_catalog import JobOffersCatalog
 from listing_app.views.listing_catalog import ListingCatalog, search_listings
+from listing_app.views.permissions.make_listings_manager import make_listings_manager
 from listing_app.views.project_detail import ProjectDetailView
 from listing_app.views.projects_catalog import ProjectsCatalog
 
@@ -21,6 +22,8 @@ dashboard_urls = [
     path('job_offers/create_job_offer/', CreateJobOfferView.as_view(), name='create_job_offer'),
     path('job_offers/edit_job_offer/<int:job_offer_id>', EditJobOfferView.as_view(), name='edit_job_offer'),
     path('job_offers/delete_job_offer/<int:job_offer_id>', DeleteJobOfferView.as_view(), name='delete_job_offer'),
+
+    path('permissions/make_listings_manager/<int:user_to_grant_rights_id>', make_listings_manager, name='make_listings_manager'),
 ]
 
 main_urls = [

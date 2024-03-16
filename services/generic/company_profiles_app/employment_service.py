@@ -29,6 +29,21 @@ class EmploymentService(EmploymentInterface):
         return Employment.objects.get(id=_id)
 
     @staticmethod
+    def get_associates_for_company(company_id):
+        return Employment.objects.filter(company_id=company_id,
+                                         is_associate=True,
+                                         is_checked=True)
+
+    @staticmethod
+    def get_associates_for_companies(companies):
+        res = []
+
+        for company in companies:
+            res.append(EmploymentService.get_associates_for_company(company.id))
+
+        return res
+
+    @staticmethod
     def get_association_requests_for_company(company):
         return Employment.objects.filter(company_id=company.id,
                                          is_checked=False)
