@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for company_associates in companies_associates %}
+        {% for associate in company_associates %}
+            <p>{{ associate }}</p>
+
+            <a href="{% url 'make_association_moderator' associate.profile_id %}">Make Associate Moderator</a>
+        {% endfor %}
+    {% endfor %}
+</body>
+</html>

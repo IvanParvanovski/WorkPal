@@ -4,11 +4,14 @@ from django.db import models
 
 from accounts_app.models.profile import Profile
 from listing_app.models.listing import Listing
-from application_app.models.job_offer_application_details import JobOfferApplicationDetails
-from application_app.models.project_application_details import ProjectApplicationDetails
 
 
 class Application(models.Model):
+    class Meta:
+        permissions = [
+            ('adjudicate_application', 'Can accept or reject application and view its details'),
+        ]
+
     is_approved = models.BooleanField(default=False)
     is_checked = models.BooleanField(default=False)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)

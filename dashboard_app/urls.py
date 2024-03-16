@@ -1,6 +1,7 @@
 from django.urls import path, include
 
 from dashboard_app.views.dashboard import render_dashboard
+from dashboard_app.views.user_associates import UserAssociatesView
 from dashboard_app.views.user_companies import UserCompaniesView
 from dashboard_app.views.user_job_offers import UserJobOffersView
 from dashboard_app.views.user_projects import UserProjectsView
@@ -13,6 +14,5 @@ urlpatterns = [
     path('projects/', UserProjectsView.as_view(), name='user_projects'),
     path('job_offers/', UserJobOffersView.as_view(), name='user_job_offers'),
     path('companies/', UserCompaniesView.as_view(), name='user_companies'),
-
-    # path('projects/', UserProjectsView, name='user_projects'),
+    path('associates/', UserAssociatesView.as_view(), name='user_associates'),
 ]

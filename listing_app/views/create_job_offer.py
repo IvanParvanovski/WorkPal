@@ -1,5 +1,8 @@
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.utils.decorators import method_decorator
 from django.views import View
 
 from listing_app.forms.job_offer_form import JobOfferForm
@@ -8,10 +11,14 @@ from services.generic.listing_app.job_offer_service import JobOfferService
 from services.generic.listing_app.listing_service import ListingService
 
 
-class CreateJobOfferView(View):
+class CreateJobOfferView(LoginRequiredMixin, View):
     form_class_create_listing = ListingForm
     form_class_create_job_offer = JobOfferForm
     template_name = 'listing_app/create_job_offer.html'
+
+    @method_decorator(permission_required('listing_app.add_joboffer', raise_exception=True))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         listing_form = self.form_class_create_listing()

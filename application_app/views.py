@@ -1,6 +1,9 @@
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import DetailView
 
@@ -18,7 +21,7 @@ from services.generic.listing_app.project_service import ProjectService
 
 
 # Can be done as a FormView
-class JobOfferApplicationDetailsView(View):
+class JobOfferApplicationCreateView(LoginRequiredMixin, View):
     form_class_job_offer_application_details = JobOfferApplicationDetailsForm
     template_name = 'application_app/create_job_offer_application.html'
 
@@ -56,7 +59,7 @@ class JobOfferApplicationDetailsView(View):
         return HttpResponse('invalid')
 
 
-class ProjectApplicationDetailsView(View):
+class ProjectApplicationCreateView(LoginRequiredMixin, View):
     form_class_project_application = ProjectApplicationDetailsForm
     template_name = 'application_app/create_project_application.html'
 
@@ -87,7 +90,7 @@ class ProjectApplicationDetailsView(View):
         return HttpResponse('invalid')
 
 
-class ApplicationJobOfferDetails(DetailView):
+class ApplicationJobOfferDetails(LoginRequiredMixin, DetailView):
     model = Application
     template_name = 'application_app/application_job_offer_details.html'
     context_object_name = 'application'
@@ -106,7 +109,7 @@ class ApplicationJobOfferDetails(DetailView):
         return render(request, ApplicationJobOfferDetails.template_name, context=context)
 
 
-class ApplicationProjectDetails(DetailView):
+class ApplicationProjectDetails(LoginRequiredMixin, DetailView):
     model = Application
     template_name = 'application_app/application_project_details.html'
     context_object_name = 'application'
@@ -123,7 +126,8 @@ class ApplicationProjectDetails(DetailView):
         return render(request, ApplicationProjectDetails.template_name, context=context)
 
 
-class AcceptApplication(View):
+class AcceptApplication(LoginRequiredMixin, View):
+    @method_decorator(permission_required('application_app.adjudicate_application', raise_exception=True))
     def post(self, request, *args, **kwargs):
         application_id = kwargs.get('application_id')
         application = ApplicationService.get_application_by_id(application_id)
@@ -132,7 +136,8 @@ class AcceptApplication(View):
         return redirect('dashboard')
 
 
-class RejectApplication(View):
+class RejectApplication(LoginRequiredMixin, View):
+    @method_decorator(permission_required('application_app.adjudicate_application', raise_exception=True))
     def post(self, request, *args, **kwargs):
         application_id = kwargs.get('application_id')
         application = ApplicationService.get_application_by_id(application_id)

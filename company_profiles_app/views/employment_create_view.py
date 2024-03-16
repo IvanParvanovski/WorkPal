@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
@@ -7,7 +8,7 @@ from services.generic.company_profiles_app.company_service import CompanyService
 from services.generic.company_profiles_app.employment_service import EmploymentService
 
 
-class EmploymentCreateView(View):
+class EmploymentCreateView(LoginRequiredMixin, View):
     form_class_employment = EmploymentForm
 
     def get(self, request, *args, **kwargs):

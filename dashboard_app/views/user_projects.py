@@ -1,9 +1,10 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 
 from services.generic.listing_app.project_service import ProjectService
 
 
-class UserProjectsView(TemplateView):
+class UserProjectsView(LoginRequiredMixin, TemplateView):
     """
     This view renders the projects a person has uploaded in the system and is an owner of
     """

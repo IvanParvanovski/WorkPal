@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
@@ -8,7 +9,7 @@ from services.generic.company_profiles_app.company_identifiers_service import Co
 from services.generic.company_profiles_app.company_service import CompanyService
 
 
-class EditCompanyView(View):
+class EditCompanyView(LoginRequiredMixin, View):
     form_class_company = CompanyForm
     form_class_company_identifiers = CompanyIdentifiersForm
     template_name = 'company_profiles_app/edit_company.html'

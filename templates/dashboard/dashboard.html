@@ -48,6 +48,11 @@
             <a href="{% url 'create_company' %}">Create Company</a>
         </div>
 
+        <h3>Associates</h3>
+        <div>
+            <a href="{% url 'user_associates' %}">Your associates</a>
+        </div>
+
         <div class="my-grid">
 
             <div>
@@ -57,15 +62,18 @@
                     {% for association_request in association_requests_for_company %}
                         <p>{{ association_request }}</p>
 
-                        <form action="{% url 'accept_association_request' association_request.id %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit">Accept</button>
-                        </form>
 
-                        <form action="{% url 'reject_association_request' association_request.id %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit">Reject</button>
-                        </form>
+                        {% if perms.company_profiles_app.verify_associate %}
+                            <form action="{% url 'accept_association_request' association_request.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">Accept</button>
+                            </form>
+
+                            <form action="{% url 'reject_association_request' association_request.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">Reject</button>
+                            </form>
+                        {% endif %}
                     {% endfor %}
                 {% endfor %}
             </div>
