@@ -1,5 +1,6 @@
 from django.urls import path
 
+from application_app.permissions import make_application_moderator
 from application_app.views import JobOfferApplicationCreateView, ProjectApplicationCreateView, AcceptApplication, \
     RejectApplication, ApplicationJobOfferDetails, ApplicationProjectDetails
 
@@ -16,4 +17,6 @@ urlpatterns = [
          name='create_job_offer_application'),
     path('create_project_application/<int:pk>', ProjectApplicationCreateView.as_view(),
          name='create_project_application'),
+
+    path('permissions/make_application_moderator/<int:user_to_grant_rights_id>', make_application_moderator, name='make_application_moderator'),
 ]
