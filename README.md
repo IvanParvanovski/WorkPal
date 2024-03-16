@@ -13,6 +13,7 @@
 
 * [Technologies](#technologies)
 * [Installation](#installation)
+* [Groups](#groups)
 * [Rest Endpoints](#rest-endpoints)
 
 ---
@@ -206,6 +207,46 @@ python manage.py runserver 8080
 ```
 
 13. <b id="installation-open-app">Open the app: </b>Congratulations! You can now access the app on your local machine by visiting [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in your web browser.
+---
+
+<h2 id="groups">Groups</h2>
+
+* ListingsManager
+* ApplicationModerator
+* RightsManager
+* AssociateModerator
+
+#### ListingsManager
+* ##### Description
+    The listings manager is crucial for the company's image, with authority over website content. They manage listings, including job offers, with the power to edit, delete, or post new ones.
+
+* ##### Permissions
+	* add_joboffer
+	* delete_joboffer
+	* change_joboffer
+	* change_company
+	* delete_company
+
+#### ApplicationModerator
+* ##### Description
+	The application moderator decides on applicant eligibility for company positions, with the authority to accept or reject submissions based on criteria.
+
+* ##### Permissions
+	* adjudicate_application
+
+#### RightsManager
+* ##### Description
+	The rights manager grants permissions to group associates, allowing them to manage the company's website, including content, administration, and other necessary tasks for the online presence.
+	
+* ##### Permissions
+	* give_rights
+
+#### AssociateModerator
+* ##### Description
+	The associate manager decides on individuals' affiliation with the company, managing their inclusion or exclusion from the company's network.
+	
+* ##### Permissions
+	* verify_associate
 
 ---
 <h2 id="rest-endpoints">REST Endpoints</h2>
@@ -251,6 +292,10 @@ python manage.py runserver 8080
 | login_required, give_rights            | GET       | permissions/make_association_moderator/<int:user_to_grant_rights_id>  | make_association_moderator    |
 | login_required, give_rights            | GET       | permissions/make_rights_manager/<int:user_to_grant_rights_id>         | make_rights_manager           |
 | login_required, give_rights            | GET       | permissions/make_listings_manager/<int:user_to_grant_rights_id>       | make_listings_manager         |
+
+---
+
+
 
 
 
