@@ -11,11 +11,11 @@ class CustomUserService(CustomUserInterface):
                            password: str,
                            commit=True) -> CustomUser:
 
-        user = CustomUser.objects.create_user(first_name=first_name,
-                                              last_name=last_name,
-                                              username=username,
-                                              email=email,
-                                              password=password)
+        user = CustomUser(first_name=first_name,
+                          last_name=last_name,
+                          username=username,
+                          email=email)
+        user.set_password(password)
 
         if commit:
             user.save()
