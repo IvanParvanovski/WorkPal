@@ -1,0 +1,232 @@
+
+@media screen and (max-width: 599px) {
+    .header__container {
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-bottom: 16px;
+    }
+
+    .header__content {
+        box-sizing: border-box;
+    }
+
+    .header__title {
+        font-size: var(--size-heading-1);
+        width: 100%;
+        max-width: 350px;
+        margin-bottom: 24px;
+    }
+
+    .header__description {
+        color: var(--clr-gray-600);
+        margin-bottom: 32px;
+
+        max-width: 380px;
+    }
+
+    .header__title,
+    .header__description {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .header__form {
+        padding: 8px;
+        background-color: var(--clr-white);
+        border-radius: 8px;
+        border: 1px solid var(--clr-gray-200);
+    }
+
+    .header__form form {
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+
+        gap: 4px;
+        box-sizing: border-box;
+    }
+
+    .header__form__icon {
+        position: absolute;
+        top: 24px;
+        left: 8px;
+        color: var(--clr-primary-500);
+        transform: translateY(-50%);
+    }
+
+    .header__form #industries_search {
+        flex: 3;
+        padding: 16px 8px 16px 32px;
+        min-width: 180px;
+        font-size: var(--size-body-medium);
+        border: none;
+    }
+
+    .header__search-button {
+        flex: 1;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .header__image {
+        display: none;
+    }
+}
+
+/* Styles for screens between 600px and 1023px */
+@media screen and (min-width: 600px) and (max-width: 1023px) {
+    .header__container {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-evenly;
+
+        padding-left: 10%;
+        padding-right: 10%;
+        padding-bottom: 16px;
+    }
+
+    .header__content {
+        width: 60%;
+        box-sizing: border-box;
+    }
+
+    .header__title {
+        font-size: var(--size-heading-1);
+        margin-bottom: 24px;
+    }
+
+    .header__description {
+        color: var(--clr-gray-600);
+        margin-bottom: 32px;
+    }
+
+    .header__title,
+    .header__description {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .header__form {
+        padding: 8px;
+        background-color: var(--clr-white);
+        border-radius: 8px;
+        border: 1px solid var(--clr-gray-200);
+    }
+
+    .header__form form {
+        display: flex;
+        position: relative;
+        gap: 4px;
+        box-sizing: border-box;
+    }
+
+    .header__form #industries_search {
+        flex: 3;
+        padding: 16px 8px 16px 36px;
+        font-size: var(--size-body-medium);
+        border: none;
+    }
+
+    .header__search-button {
+        flex: 1;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .header__form__icon {
+        position: absolute;
+        top: 50%;
+        left: 8px;
+        color: var(--clr-primary-500);
+        transform: translateY(-50%);
+    }
+
+    .header__image {
+        width: 35%;
+    }
+
+    .header__image-src {
+        width: 100%;
+        height: fit-content;
+    }
+}
+
+/* Styles for screens above 1024px */
+@media screen and (min-width: 1024px) {
+    .header__container {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 10%;
+        padding-right: 10%;
+        padding-bottom: 16px;
+    }
+
+    .header__content {
+        width: 50%;
+    }
+
+    .header__title {
+        font-size: var(--size-heading-1);
+        width: 450px;
+        margin-bottom: 24px;
+    }
+
+    .header__description {
+        color: var(--clr-gray-600);
+        margin-bottom: 32px;
+        width: 480px;
+    }
+
+    .header__title,
+    .header__description {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .header__form {
+        background-color: var(--clr-white);
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid var(--clr-gray-200);
+    }
+
+    .header__form form {
+        display: flex;
+        position: relative;
+        gap: 4px;
+        box-sizing: border-box;
+    }
+
+    .header__form #industries_search {
+        flex: 4;
+        padding: 16px 8px 16px 36px;
+        font-size: var(--size-body-medium);
+        border: none;
+    }
+
+    .header__search-button {
+        flex: 1;
+    }
+
+    .header__form__icon {
+        position: absolute;
+        top: 50%;
+        left: 8px;
+        color: var(--clr-primary-500);
+        transform: translateY(-50%);
+    }
+
+    .header__image {
+        width: 35%;
+    }
+
+    .header__image-src {
+        width: 100%;
+    }
+}
+
+.header {
+    margin-bottom: 100px;
+    background-color: var(--clr-background-primary);
+}

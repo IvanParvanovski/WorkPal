@@ -4,53 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </head>
+
 <body>
-    <h1>Index.HTML</h1>
+    <header class="header">
+        <nav>
+            <div>
+                {% if user.is_authenticated %}
+                    <p>USER -> {{ user.username }}</p>
+                    <a href="{% url 'sign_out' %}">Sign Out</a>
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                {% else %}
+                    <a href="{% url 'sign_in' %}">Sign In</a>
+                    <a href="{% url 'sign_up' %}">Sign Up</a>
+                {% endif %}
+            </div>
+        </nav>
+        
+        <div class="header__container">
+            <div class="header__content">
+                <h1 class="header__title">Find a job that suits your interests & skills</h1>
+                <p class="header__description">
+                    Aliquam vitae turpis in diam convallis finibus in at risus. Nullam in scelerisque leo, eget sollicitudin velit bestibulum.
+                </p>
+                <div class="header__form">
+                    <form action="{% url 'listings_catalog_search' %}" method="get" class="header__search-form">
+                        <input id="industries_search" type="text" name="q" placeholder="Job title, keyword ..." class="header__search-input">
+                        <i class="material-icons header__form__icon">search</i>
 
-    <h2>Authentication</h2>
-    <div>
-        {% if user.is_authenticated %}
-            <p>USER -> {{ user.username }}</p>
-            <a href="{% url 'sign_out' %}">Sign Out</a>
-        {% else %}
-            <a href="{% url 'sign_in' %}">Sign In</a>
-            <a href="{% url 'sign_up' %}">Sign Up</a>
+                        <button type="submit" class="header__search-button btn-primary">Find Job</button>
+                    </form>            
+                </div>
+            </div>
+            <div class="header__image">
+                <img src="{% static 'images/illustration.png' %}" alt="No heading image" class="header__image-src">
+            </div>
+        </div>
+    </header>
+    <main>
+        <h2>Functionality</h2>
+
+
+        {% if user.is_staff %}
+            <a href="{% url 'control_panel' %}">Control Panel</a>
         {% endif %}
-    </div>
+    
+        <h2>Catalogs</h2>
+        <a href="{% url 'projects_catalog' %}">Projects</a>
+        <a href="{% url 'job_offers_catalog' %}">Job Offers</a>
+    
+        <h2>Industries</h2>
+    
+    
+    
+        {% for industry in industries %}
+            <div>
+                <a href="{% url 'listings_catalog' industry.name|lower %}">{{ industry }}</a>
+    {#            {{ industry }}#}
+            </div>
+        {% endfor %}    
+    </main>
+    <footer>
 
-    <h2>Functionality</h2>
-
-    {% if user.is_authenticated %}
-        <a href="{% url 'dashboard' %}">Dashboard</a>
-    {% endif %}
-
-    {% if user.is_staff %}
-        <a href="{% url 'control_panel' %}">Control Panel</a>
-    {% endif %}
-
-    <h2>Catalogs</h2>
-    <a href="{% url 'projects_catalog' %}">Projects</a>
-    <a href="{% url 'job_offers_catalog' %}">Job Offers</a>
-
-    <h2>Industries</h2>
-
-    <form action="{% url 'listings_catalog_search' %}" method="get">
-        <div>
-            <label for="industries_search">Search</label>
-            <input id="industries_search" type="text" name="q" placeholder="Search...">
-        </div>
-        <button type="submit">Submit</button>
-    </form>
-
-
-    {% for industry in industries %}
-        <div>
-            <a href="{% url 'listings_catalog' industry.name|lower %}">{{ industry }}</a>
-{#            {{ industry }}#}
-        </div>
-    {% endfor %}
-
-
+    </footer>
 </body>
 </html>

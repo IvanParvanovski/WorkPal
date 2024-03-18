@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+:root {
+    /* Colors */
+    --clr-gray-100: #E4E5E8;
+    --clr-gray-200: #C8CCD1;
+    --clr-gray-300: #ADB2BA;
+    --clr-gray-400: #9199A3;
+    --clr-gray-500: #767F8C;
+    --clr-gray-600: #5E6670;
+    --clr-gray-700: #474C54;
+    --clr-gray-900: #18191C;
+
+    --clr-background-primary: rgba(241,242,244, 0.6);
+    --clr-background-secondary: #F1F2F4;
+    --clr-white: #FFFFFF;
+
+    --clr-primary-500: #0A65CC;
+    --clr-primary-800: #2F3338;
+    --clr-primary-50: #F1F2F4;
+    --clr-primary-300: #6CA3E0;
+
+    /* Fonts */
+    --font-primary: "Inter", sans-serif;
+
+    /* Display sizes */
+    --size-display-1: 3.5rem; /* 56px */
+    --size-display-2: 3rem; /* 48px */
+
+    /* Heading sizes */
+    --size-heading-1: 2.5rem; /* 40px */
+    --size-heading-2: 2.25rem; /* 36px */
+    --size-heading-3: 2rem; /* 32px */
+    --size-heading-4: 1.5rem; /* 24px */
+
+    /* Buttons sizes */
+    --size-btn: 1rem;
+    --size-btn-caption: 14px;
+
+    /* Body sizes */
+    --size-body-xl: 20px;
+    --size-body-large: 18px;
+    --size-body-medium: 16px;
+    --size-body-small: 14px;
+    --size-body-xs: 12px;
+
+    /* Heading line heights */
+    --line-height-heading-1: 48px;
+    --line-height-heading-2: 44px;
+    --line-height-heading-3: 32px;
+    --line-height-heading-4: 24px;
+}
+
+
+.btn-primary {
+    color: var(--clr-white);
+    background-color: var(--clr-primary-500);
+    
+    font-family: var(--font-primary);
+    font-size: var(--size-btn);
+
+    border: none;
+    border-radius: 4px;
+}
+
