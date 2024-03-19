@@ -47,10 +47,32 @@
                 <img src="{% static 'images/illustration.png' %}" alt="No heading image" class="header__image-src">
             </div>
         </div>
+
+        <div class="header__career-data-dashboard">
+            <div class="header__career-data-dashboard-item">
+                <i class="material-icons header__career-data-dashboard-icon">business_center</i>
+                <h4 class="header__career-data-dashboard-title">1,75,324</h4>
+                <p class="header__career-data-dashboard-description">Live job</p>
+            </div>
+            <div class="header__career-data-dashboard-item">
+                <i class="material-icons header__career-data-dashboard-icon">domain</i>
+                <h4 class="header__career-data-dashboard-title">97,354</h4>
+                <p class="header__career-data-dashboard-description">Companies</p>
+            </div>
+            <div class="header__career-data-dashboard-item">
+                <i class="material-icons header__career-data-dashboard-icon">group</i>
+                <h4 class="header__career-data-dashboard-title">38,47,154</h4>
+                <p class="header__career-data-dashboard-description">Candidates</p>
+            </div>
+            <div class="header__career-data-dashboard-item">
+                <i class="material-icons header__career-data-dashboard-icon">work</i>
+                <h4 class="header__career-data-dashboard-title">7,532</h4>
+                <p class="header__career-data-dashboard-description">New Jobs</p>
+            </div>
+        </div>
     </header>
     <main>
         <h2>Functionality</h2>
-
 
         {% if user.is_staff %}
             <a href="{% url 'control_panel' %}">Control Panel</a>

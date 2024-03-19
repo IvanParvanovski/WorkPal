@@ -17,7 +17,7 @@
 
     --clr-primary-500: #0A65CC;
     --clr-primary-800: #2F3338;
-    --clr-primary-50: #F1F2F4;
+    --clr-primary-50: #E7F0FA;
     --clr-primary-300: #6CA3E0;
 
     /* Fonts */
@@ -32,6 +32,11 @@
     --size-heading-2: 2.25rem; /* 36px */
     --size-heading-3: 2rem; /* 32px */
     --size-heading-4: 1.5rem; /* 24px */
+
+    --size-heading-1-em: 2.5em;
+    --size-heading-2-em: 2.25em;
+    --size-heading-3-em: 2em;
+    --size-heading-4-em: 1.5em;
 
     /* Buttons sizes */
     --size-btn: 1rem;
