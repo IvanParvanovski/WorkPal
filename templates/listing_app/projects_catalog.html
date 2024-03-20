@@ -1,8 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <ul>
@@ -11,8 +13,13 @@
             {{ project.id }} | {{ project.listing.title }}
             <a href="{% url 'project_detail' project.id  %}">Details</a>
         </li>
-    {% endfor %}
+        {% endfor %}
     </ul>
-
 </body>
+
+<footer>
+    <p>THIS IS FOOTER</p>
+    <p>Copyright 2024 Ivan Parvanovski</p>
+</footer>
+
 </html>
