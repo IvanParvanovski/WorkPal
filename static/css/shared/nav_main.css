@@ -161,3 +161,7 @@
 #navigation__arrow:hover {
     cursor: pointer;
 }
+
+nav {
+    margin-bottom: 80px;
+}

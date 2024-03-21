@@ -8,11 +8,11 @@ from services.generic.accounts_app.profile_service import ProfileService
 
 class SignUpFormUser(forms.ModelForm):
     # Fields from CustomUser model
-    first_name = forms.CharField(max_length=50)
-    last_name = forms.CharField(max_length=50)
-    password = forms.CharField(widget=forms.PasswordInput)
-    rePassword = forms.CharField(widget=forms.PasswordInput, label='Confirm password')
-    email = forms.EmailField()
+    first_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
+    last_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+    rePassword = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}), label='Confirm password')
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email Address'}))
 
     class Meta:
         model = CustomUser
@@ -36,9 +36,9 @@ class SignUpFormUser(forms.ModelForm):
 
 class SignUpFormProfile(forms.ModelForm):
     # Fields from Profile model
-    job_title = forms.CharField(max_length=50)
+    job_title = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Job Title'}))
     description = forms.CharField(widget=forms.Textarea)
-    image_path = forms.ImageField(required=False)
+    image_path = forms.ImageField(required=False, label='Profile Image')
 
     class Meta:
         model = Profile

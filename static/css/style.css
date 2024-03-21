@@ -1,14 +1,9 @@
 @import url('./shared.css');
 
-@import url('./shared/nav.css');
 @import url('./home/landing_page.css');
 
 html {
     font-family: var(--font-primary);
-}
-
-nav {
-    margin-bottom: 80px;
 }
 
 body {

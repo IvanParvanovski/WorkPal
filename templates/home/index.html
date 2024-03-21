@@ -1,51 +1,17 @@
+{% extends 'shared/base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+{% endblock %}
 
-    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100" rel="stylesheet" />
+{% block site_title %}
+    Index Page
+{% endblock %}
 
-</head>
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
 
-<body>
-    <header class="header">
-        <nav class="navigation">
-            <div class="navigation__container">
-                <img src="{% static '/images/work-pal-high-resolution-logo-transparent.png' %}" alt="LOGO" class="navigation__logo">
-                <i id="menu-closed-icon" class="material-symbols-outlined menu">menu</i>
-                <i id="menu-opened-icon" class="material-symbols-outlined menu">close</i>
-                
-                <div class="navigation__links">
-                    <a href="{% url 'projects_catalog' %}" class="navigation__link">Projects</a>
-                    <a href="{% url 'job_offers_catalog' %}" class="navigation__link">Job Offers</a>    
-                </div>
-            
-                <div class="navigation__user">
-                    {% if user.is_authenticated %}
-                        <p class="navigation__username">{{ user.username }}</p>
-                        <a href="{% url 'dashboard' %}" class="navigation__link dashboard">Dashboard</a>
-                        <a href="{% url 'sign_out' %}" class="navigation__link sign_out">Sign Out</a>
-                    {% else %}
-                        <a href="{% url 'sign_in' %}" class="navigation__link sign_in">Sign In</a>
-                        <a href="{% url 'sign_up' %}" class="navigation__link sign_up">Sign Up</a>
-                    {% endif %}
-                </div>
-            
-                <!-- 
-                {% if user.is_staff %}
-                    <a href="{% url 'control_panel' %}" class="navigation__link">Control Panel</a>
-                {% endif %}
-                -->
-            </div> 
-        </nav>
-        
         <div class="header__container">
             <div class="header__content">
                 <h1 class="header__title">Find a job that suits your interests & skills</h1>
@@ -58,7 +24,7 @@
                         <i class="material-symbols-outlined header__form__icon">search</i>
 
                         <button type="submit" class="header__search-button btn-primary">Find Job</button>
-                    </form>            
+                    </form>
                 </div>
             </div>
             <div class="header__image">
@@ -88,21 +54,22 @@
                 <p class="header__career-data-dashboard-description">New Jobs</p>
             </div>
         </div>
-    </header>
-    <main>
-        <div class="industries-search">
+{% endblock %}
+
+{% block site_main %}
+     <div class="industries-search">
             <h2 class="industries-search__title">Explore by category</h2>
-            
+
             <div class="industries-search__list">
                 {% for industry in industries %}
                 <a class="industries-search__item" href="{% url 'listings_catalog' industry.name|lower %}">
                     <i class="material-symbols-outlined industries-search__icon">{{ industry.icon }}</i>
                     <span class="industries-search__name">{{ industry.name }}</span>
                 </a>
-                {% endfor %}  
+                {% endfor %}
             </div>
         </div>
-        
+
         <div>
             <p>Ssss</p>
             <p>Ssss</p>
@@ -113,14 +80,9 @@
         <i id="navigation__arrow" class="material-symbols-outlined arrow-visible">
             keyboard_double_arrow_up
         </i>
-    </main>
+{% endblock %}
 
-    <footer>
-        <p>THIS IS FOOTER</p>
-        <p>Copyright 2024 Ivan Parvanovski</p>
-    </footer>
-
+{% block site_scripts %}
     <script src="{% static 'js/shared/nav.js' %}"></script>
     <script src="{% static 'js/shared/nav-arrow.js' %}"></script>
-</body>
-</html>
+{% endblock %}
