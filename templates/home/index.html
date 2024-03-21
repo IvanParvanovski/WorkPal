@@ -1,33 +1,17 @@
+{% extends 'shared/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+{% endblock %}
 
-</head>
+{% block site_title %}
+    Index Page
+{% endblock %}
 
-<body>
-    <header class="header">
-        <nav>
-            <div>
-                {% if user.is_authenticated %}
-                    <p>USER -> {{ user.username }}</p>
-                    <a href="{% url 'sign_out' %}">Sign Out</a>
-                    <a href="{% url 'dashboard' %}">Dashboard</a>
-                {% else %}
-                    <a href="{% url 'sign_in' %}">Sign In</a>
-                    <a href="{% url 'sign_up' %}">Sign Up</a>
-                {% endif %}
-            </div>
-        </nav>
-        
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+
         <div class="header__container">
             <div class="header__content">
                 <h1 class="header__title">Find a job that suits your interests & skills</h1>
@@ -37,42 +21,68 @@
                 <div class="header__form">
                     <form action="{% url 'listings_catalog_search' %}" method="get" class="header__search-form">
                         <input id="industries_search" type="text" name="q" placeholder="Job title, keyword ..." class="header__search-input">
-                        <i class="material-icons header__form__icon">search</i>
+                        <i class="material-symbols-outlined header__form__icon">search</i>
 
                         <button type="submit" class="header__search-button btn-primary">Find Job</button>
-                    </form>            
+                    </form>
                 </div>
             </div>
             <div class="header__image">
                 <img src="{% static 'images/illustration.png' %}" alt="No heading image" class="header__image-src">
             </div>
         </div>
-    </header>
-    <main>
-        <h2>Functionality</h2>
 
-
-        {% if user.is_staff %}
-            <a href="{% url 'control_panel' %}">Control Panel</a>
-        {% endif %}
-    
-        <h2>Catalogs</h2>
-        <a href="{% url 'projects_catalog' %}">Projects</a>
-        <a href="{% url 'job_offers_catalog' %}">Job Offers</a>
-    
-        <h2>Industries</h2>
-    
-    
-    
-        {% for industry in industries %}
-            <div>
-                <a href="{% url 'listings_catalog' industry.name|lower %}">{{ industry }}</a>
-    {#            {{ industry }}#}
+        <div class="header__career-data-dashboard">
+            <div class="header__career-data-dashboard-item">
+                <i class="material-symbols-outlined header__career-data-dashboard-icon">business_center</i>
+                <h4 class="header__career-data-dashboard-title">1,75,324</h4>
+                <p class="header__career-data-dashboard-description">Live job</p>
             </div>
-        {% endfor %}    
-    </main>
-    <footer>
+            <div class="header__career-data-dashboard-item">
+                <i class="material-symbols-outlined header__career-data-dashboard-icon">domain</i>
+                <h4 class="header__career-data-dashboard-title">97,354</h4>
+                <p class="header__career-data-dashboard-description">Companies</p>
+            </div>
+            <div class="header__career-data-dashboard-item">
+                <i class="material-symbols-outlined header__career-data-dashboard-icon">group</i>
+                <h4 class="header__career-data-dashboard-title">38,47,154</h4>
+                <p class="header__career-data-dashboard-description">Candidates</p>
+            </div>
+            <div class="header__career-data-dashboard-item">
+                <i class="material-symbols-outlined header__career-data-dashboard-icon">work</i>
+                <h4 class="header__career-data-dashboard-title">7,532</h4>
+                <p class="header__career-data-dashboard-description">New Jobs</p>
+            </div>
+        </div>
+{% endblock %}
 
-    </footer>
-</body>
-</html>
+{% block site_main %}
+     <div class="industries-search">
+            <h2 class="industries-search__title">Explore by category</h2>
+
+            <div class="industries-search__list">
+                {% for industry in industries %}
+                <a class="industries-search__item" href="{% url 'listings_catalog' industry.name|lower %}">
+                    <i class="material-symbols-outlined industries-search__icon">{{ industry.icon }}</i>
+                    <span class="industries-search__name">{{ industry.name }}</span>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div>
+            <p>Ssss</p>
+            <p>Ssss</p>
+            <p>Ssss</p>
+            <p>Ssss</p>
+        </div>
+
+        <i id="navigation__arrow" class="material-symbols-outlined arrow-visible">
+            keyboard_double_arrow_up
+        </i>
+{% endblock %}
+
+{% block site_scripts %}
+    <script src="{% static 'js/shared/nav.js' %}"></script>
+    <script src="{% static 'js/shared/nav-arrow.js' %}"></script>
+{% endblock %}

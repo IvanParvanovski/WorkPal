@@ -1,29 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>Sign In.HTML</h1>
+{% extends 'shared/base.html' %}
+{% load static %}
 
-    <br />
+{% block site_title %}
+    Sign in page
+{% endblock %}
 
-    <a href="{% url 'home' %}">Home</a>
-    <a href="{% url 'sign_up' %}">Sign Up</a>
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/shared/nav_secondary.css'%}">
+    <link rel="stylesheet" href="{% static 'css/accounts/sign_in.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shared/forms-input.css' %}">
+{% endblock %}
 
-    <br />
-    <br />
-    <br />
+{% block site_header %}
+    {% include 'shared/nav_secondary.html' %}
+{% endblock %}
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-{#        {{ form.email.label_tag }}#}
-{#        {{ form.email }}#}
-{#        {{ form.password.label_tag }}#}
-{#        {{ form.password }}#}
-        <button type="submit">Submit</button>
-    </form>
-</body>
-</html>
+{% block site_main %}
+        <div class="container">
+
+        <div class="container__form">
+            <h2 class="container__form__heading">Sign in</h2>
+
+            <div class="container__form__links">
+                <p class="container__form__link__description">Don't have an account yet
+                    <a class="container__form__link" href="{% url 'sign_up' %}">Create account</a>
+                </p>
+
+            </div>
+
+            <form class="form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <ul class="errorlist">
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <!-- {{ form.email.label_tag }} -->
+                {{ form.email.errors }}
+                {{ form.email }}
+
+                <!-- {{ form.password.label_tag }} -->
+                {{ form.password.errors }}
+                {{ form.password }}
+
+
+                <button class="form__submit" type="submit">
+                    Sign In
+                    <i class="material-symbols-outlined">arrow_forward</i>
+                </button>
+            </form>
+
+        </div>
+
+        <div class="container__image">
+            <img class="container__image__element" src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="No image">
+        </div>
+    </div>
+{% endblock %}

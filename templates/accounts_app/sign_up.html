@@ -1,28 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>Sign Up.HTML</h1>
+{% extends 'shared/base.html' %}
+{% load static %}
 
-    <br />
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/shared/nav_secondary.css'%}">
+    <link rel="stylesheet" href="{% static 'css/shared/forms-input.css' %}">
+    <link rel="stylesheet" href="{% static 'css/accounts/sign_up.css'%}">
+{% endblock %}
 
-    <a href="{% url 'home' %}">Home</a>
-    <a href="{% url 'sign_in' %}">Sign In</a>
+{% block site_title %}
+    Sign up page
+{% endblock %}
 
-    <br />
-    <br />
-    <br />
+{% block site_header %}
+    {% include 'shared/nav_secondary.html' %}
+{% endblock %}
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form_user.as_p }}
-        {{ form_profile.as_p }}
+{% block site_main %}
+      <div class="container">
 
-        {{ form_profile.errors }}
-        <button type="submit">Submit</button>
-    </form>
-</body>
-</html>
+        <div class="container__form">
+            <h2 class="container__form__heading">Sign up</h2>
+
+            <div class="container__form__links">
+                <p class="container__form__link__description">Already have an account
+                    <a class="container__form__link" href="{% url 'sign_in' %}">Sign In</a>
+                </p>
+
+                <!-- <a class="container__form__link" href="{% url 'home' %}">Home</a> -->
+
+            </div>
+
+            <form class="form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <ul class="errorlist">
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                
+                <div class="container__form__names">
+                    {{ form_user.first_name.errors }}
+                    {{ form_user.first_name }}
+
+                    {{ form_user.last_name.errors }}
+                    {{ form_user.last_name }}
+                </div>
+      
+                {{ form_user.email.errors }}
+                {{ form_user.email }}
+
+                {{ form_user.password.errors }}
+                {{ form_user.password }}
+
+                {{ form_user.rePassword.errors }}
+                {{ form_user.rePassword }}
+
+                {{ form_profile.job_title.errors }}
+                {{ form_profile.job_title }}
+
+                {{ form_profile.description.errors }}
+                {{ form_profile.description.label_tag }}
+                {{ form_profile.description }}
+
+                {{ form_profile.image_path.errors }}
+                {{ form_profile.image_path.label_tag }}
+                {{ form_profile.image_path }}
+
+
+                <button class="form__submit" type="submit">
+                    Sign Up
+                    <i class="material-symbols-outlined">arrow_forward</i>
+                </button>
+            </form>
+
+        </div>
+
+        <div class="container__image">
+            <img class="container__image__element" src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="No image">
+        </div>
+    </div>
+
+    <!-- <a href="{% url 'home' %}">Home</a> -->
+{% endblock %}
+

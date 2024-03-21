@@ -1,0 +1,33 @@
+{% load static %}
+
+<nav class="navigation">
+    <div class="navigation__container">
+        <a href="{% url 'home' %}">
+            <img src="{% static '/images/work-pal-high-resolution-logo-transparent.png' %}" alt="LOGO" class="navigation__logo">
+        </a>
+        <i id="menu-closed-icon" class="material-symbols-outlined menu">menu</i>
+        <i id="menu-opened-icon" class="material-symbols-outlined menu">close</i>
+
+        <div class="navigation__links">
+            <a href="{% url 'projects_catalog' %}" class="navigation__link">Projects</a>
+            <a href="{% url 'job_offers_catalog' %}" class="navigation__link">Job Offers</a>
+        </div>
+
+        <div class="navigation__user">
+            {% if user.is_authenticated %}
+                <p class="navigation__username">{{ user.username }}</p>
+                <a href="{% url 'dashboard' %}" class="navigation__link dashboard">Dashboard</a>
+                <a href="{% url 'sign_out' %}" class="navigation__link sign_out">Sign Out</a>
+            {% else %}
+                <a href="{% url 'sign_in' %}" class="navigation__link sign_in">Sign In</a>
+                <a href="{% url 'sign_up' %}" class="navigation__link sign_up">Sign Up</a>
+            {% endif %}
+        </div>
+
+        <!--
+        {% if user.is_staff %}
+            <a href="{% url 'control_panel' %}" class="navigation__link">Control Panel</a>
+        {% endif %}
+        -->
+    </div>
+</nav>
