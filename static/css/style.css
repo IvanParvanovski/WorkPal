@@ -1,6 +1,6 @@
 @import url('./shared.css');
 
-@import url('./home/landing_page.css');
+/* @import url('./home/landing_page.css'); */
 
 html {
     font-family: var(--font-primary);
