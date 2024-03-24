@@ -1,25 +1,41 @@
+{% extends 'shared/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <ul>
-        {% for project in projects %}
-        <li>
-            {{ project.id }} | {{ project.listing.title }}
-            <a href="{% url 'project_detail' project.id  %}">Details</a>
-        </li>
-        {% endfor %}
-    </ul>
-</body>
 
-<footer>
-    <p>THIS IS FOOTER</p>
-    <p>Copyright 2024 Ivan Parvanovski</p>
-</footer>
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/listing_app/projects_catalog.css' %}">
+{% endblock %}
 
-</html>
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_main %}
+<div class="project">
+    {% for project in projects %}
+        {% include 'listing_app/project_card.html' with project=project %}
+    {% endfor %}
+</div>
+
+{% include 'shared/nav-arrow.html' %}
+{% endblock %}
+
+{% block site_scripts %}
+
+    <script>
+        function loadScript() {
+            console.log('in')
+            console.log(window.matchMedia("(max-width: 899px)").matches)
+            if (window.matchMedia("(max-width: 899px)").matches) {
+                var script = document.createElement("script");
+                script.src = '{% static "js/shared/clickable-div.js" %}'
+                console.log(script)
+                document.querySelector('main').appendChild(script);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadScript);
+        console.log('hi');
+        // window.onload = loadScript;
+    </script>
+{% endblock %}

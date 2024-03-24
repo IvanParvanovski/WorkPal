@@ -1,0 +1,60 @@
+<div class="job-offer">
+    <div class="job-offer__company">
+        <div class="job-offer__company-logo">
+            <!-- <img src="{{ job_offer.company.company_logo.url }}" alt="No image"> -->
+            <!-- <img src="/media/images/default/.jpg" alt="No Image"> -->
+            <img src="/static/images/work-pal-high-resolution-logo-transparent.png" alt="No Image">
+            
+            <!-- <img src="{}" alt="No image"> -->
+        </div>
+    </div>
+    <div class="job-offer__content">
+        <div class="job-offer__details">
+            <div class="job-offer__details-title">
+                {{ job_offer.listing.title }}
+            </div>
+            <div class="job-offer__details-location">
+                <i class="material-symbols-outlined">location_on</i>{{ job_offer.listing.location }}
+            </div>
+            <div class="job-offer__details-dates">
+                <div class="job-offer__details-date-created">
+                    C: {{ job_offer.listing.date_created }}
+                </div>
+                <div class="job-offer__details-date-updated">
+                    U: {{ job_offer.listing.date_updated }}
+                </div>
+            </div>
+        </div>
+        <div class="job-offer__extra-info">
+            <div class="job-offer__salary-range">
+                <i class="material-symbols-outlined">payments</i>
+                <div class="job-offer__salary-min">
+                    {{ job_offer.salary_range_min }}
+                </div> -
+                <div class="job-offer__salary-max">
+                    {{ job_offer.salary_range_max }}
+                </div>
+            </div>
+            <div class="job-offer__work-commitment">
+                <i class="material-symbols-outlined ">schedule</i>
+                {{ job_offer.work_commitment }}
+            </div>
+            <div class="job-offer__work-environment">
+                <i class="material-symbols-outlined">apartment</i>
+                {{ job_offer.work_environment }}
+            </div>
+            <div class="job-offer__remote-option">
+                <i class="material-symbols-outlined">laptop</i>
+                {% if job_offer.remote_option %}
+                    <div class="job-offer__remote">Remote</div>
+                {% else %}
+                    <div class="job-offer__not-remote">Not Remote</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="job-offer__controls">
+            <a href="{% url 'job_offer_detail' job_offer.id %}" class="job-offer__details-link more">MORE</a>
+            <a href="{% url 'create_job_offer_application' job_offer.id %}" class="job-offer__details-link apply">APPLY</a>
+        </div>
+    </div>
+</div>

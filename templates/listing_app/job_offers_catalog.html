@@ -1,18 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <ul>
-        {% for jo in job_offers %}
-            <li>
-                {{ jo.id }} | {{ jo.listing.title }}
-                <a href="{% url 'job_offer_detail' jo.id %}">Details</a>
-            </li>
-        {% endfor %}
-    </ul>
+{% extends 'shared/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/listing_app/job_offers_catalog.css' %}">
+{% endblock %}
+
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_main %}
+<div class="listing-list">
+    {% for job_offer in job_offers %}
+        {% include 'listing_app/job_offer_card.html' with job_offer=job_offer %}
+    {% endfor %}
+</div>
+{% include 'shared/nav-arrow.html' %}
+{% endblock %}
