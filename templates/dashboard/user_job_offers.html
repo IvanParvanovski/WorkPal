@@ -1,27 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/listing_app/job_offers_catalog.css'%}">
+    <link rel="stylesheet" href="{% static 'css/dashboard/user_job_offers.css' %}">
+{% endblock %}
+
+{% block site_main %}
+    {% for company_job_offers in companies_job_offers %}
+        <div class="listing-list">
+            {% for job_offer in company_job_offers %}
+                {% include 'listing_app/job_offer_card.html' with job_offer=job_offer %}
+
+                <div class="controls">
+                    <a class="controls__edit" href="{% url 'edit_job_offer' job_offer.id %}">Edit</a>
+
+                    <form class="controls__delete-form" action="{% url 'delete_job_offer' job_offer.id %}" method="post">
+                        {% csrf_token %}
+                        <button class="controls__delete" type="submit">Delete</button>
+                    </form>
+                </div>
+        {% endfor %}
+        </div>
+       
+    {% endfor %}
+
+    {% include 'shared/nav-arrow.html' %}
+{% endblock %}
+
+
     <h2>Your Job Offers</h2>
 
     <div>
         JOB OFFERS
-        {% for company_job_offers in companies_job_offers %}
-            {% for job_offer in company_job_offers %}
-                <div>
-                    <a href="#details">{{ job_offer }}</a>
-                    <a href="{% url 'edit_job_offer' job_offer.id %}">Edit</a>
-
-                    <form action="{% url 'delete_job_offer' job_offer.id %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit">Delete</button>
-                    </form>
-                </div>
-            {% endfor %}
-        {% endfor %}
+        
     </div>
 
 </body>
