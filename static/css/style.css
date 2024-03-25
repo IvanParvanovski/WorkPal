@@ -13,6 +13,10 @@ body {
     margin: 0; /* Remove default margin */
 }
 
+main {
+    margin-bottom: 64px;
+}
+
 body i {
     font-variation-settings:
         'FILL' 1,

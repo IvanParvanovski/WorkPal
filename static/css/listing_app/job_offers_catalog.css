@@ -5,7 +5,7 @@
     .job-offer__content {
         width: 100%;
         margin: auto auto;
-        padding: 8px;
+        padding: 16px;
     }
 
     .job-offer__company {
@@ -356,8 +356,8 @@
 
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-bottom: 16px;
+    gap: 24px;
+    margin-bottom: 24px;
 }
 
 .job-offer {

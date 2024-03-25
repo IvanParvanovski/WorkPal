@@ -1,44 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'shared/base.html' %}
+{% load static %}
 
-    <h2>{{ object.id }} | {{ object.listing.title }}</h2>
-    <a href="{% url 'create_job_offer_application' object.id %}">Apply</a>
-    <p>
-        LOCATION - {{ object.listing.location }}
-    </p>
-    <p>
-        DATE CREATED - {{ object.listing.date_created }}
-    </p>
-    <p>
-        DATE UPDATED - {{ object.listing.date_updated }}
-    </p>
-    <p>
-        MIN SALARY - {{ object.salary_range_min }}
-        MAX SALARY - {{ object.salary_range_max }}
-    </p>
-    <p>
-        WORK ENVIRONMENT - {{ object.work_environment }}
-    </p>
-    <p>
-        WORK COMMITMENT - {{ object.work_commitment }}
-    </p>
-    <p>
-        KEY RESPONSIBILITIES - {{ object.key_responsibilities }}
-    </p>
-    <p>
-        REQUIRED QUALIFICATIONS - {{ object.required_qualifications }}
-    </p>
-    <p>
-        PREFERRED QUALIFICATIONS - {{ object.preferred_qualifications }}
-    </p>
-    <p>
-        IMAGES:
-            {{ object.listing.images }}
-    </p>
-</body>
-</html>
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/listing_app/job_offer_detail.css' %}">
+{% endblock %}
+
+{% block site_main %}
+    <div class="job-offer">
+        <h2 class="job-offer__title">{{ object.id }} | {{ object.listing.title }}</h2>
+
+        <div class="company-details">
+            <div class="company-details__info">
+                <div class="company-details__logo">
+                    <!-- <img src="/media/2bfb04ad814c4995f0c537c68db5cd0b-multicolor-swirls-circle-logo_QUtFNfl.png" alt=""> -->
+                    <!-- <img src="/media/Screenshot_2024-03-08_at_14.05.04.png" alt=""> -->
+                    <img src="/media/images/default/default_company_img.jpg" alt="No image">
+                </div>
+                <div class="company-details__name">{{ object.company.name }}</div>
+            </div>
+            <div class="company-details__contacts">
+                <h3 class="company-contacts__heading">Company details</h3>
+                <div class="company-details__address">
+                    <div class="company-details__label">Address: </div>
+                    <div class="company-details__value">{{ object.company.address }}</div>
+                </div>
+                <div class="company-details__secondary-address">
+                    <div class="company-details__label">Second address</div>
+                    <div class="company-details__value">{{ object.company.secondary_address }}</div>
+                </div>
+                <div class="company-details__website">
+                    <div class="company-details__label">Website</div>
+                    <div class="company-details__value">{{ object.company.website }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="general-info">
+                <div class="general-info__detail">
+                    <div class="general-info__label">Location:</div>
+                    <div class="general-info__value">{{ object.listing.location }}</div>
+                </div>
+                <div class="general-info__detail">
+                    <div class="general-info__label">Date Created:</div>
+                    <div class="general-info__value">{{ object.listing.date_created }}</div>
+                </div>
+                <div class="general-info__detail">
+                    <div class="general-info__label">Date Updated:</div>
+                    <div class="general-info__value">{{ object.listing.date_updated }}</div>
+                </div>
+                <div class="general-info__detail">
+                    <div class="general-info__label">Salary Range:</div>
+                    <div class="general-info__value">${{ object.salary_range_min }} - ${{ object.salary_range_max }}</div>
+                </div>
+                <div class="general-info__detail">
+                    <div class="general-info__label">Remote Option:</div>
+                    <div class="general-info__value">
+                        {% if object.remote_option %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="general-info__detail">
+                    <div class="general-info__label">Work Environment:</div>
+                    <div class="general-info__value">{{ object.work_environment }}</div>
+                </div>
+                <div class="general-info__detail">
+                    <div class="general-info__label">Work Commitment:</div>
+                    <div class="general-info__value">{{ object.work_commitment }}</div>
+                </div>
+            </div>
+
+            <div class="additional-info">
+                <div class="additional-info__detail">
+                    <div class="additional-info__label">Description:</div>
+                    <div class="additional-info__value">{{ object.listing.description }}</div>
+                </div>
+                <div class="additional-info__detail">
+                    <div class="additional-info__label">Benefits</div>
+                    <div class="additional-info__value">{{ object.benefits }}</div>
+                </div>
+                <div class="additional-info__detail">
+                    <div class="additional-info__label">Key Responsibilities</div>
+                    <div class="additional-info__value">{{ object.key_responsibilities }}</div>
+                </div>
+                <div class="additional-info__detail">
+                    <div class="additional-info__label">Required Qualifications</div>
+                    <div class="additional-info__value">{{ object.required_qualifications }}</div>
+                </div>
+                <div class="additional-info__detail">
+                    <div class="additional-info__label">Preferred Qualifications</div>
+                    <div class="additional-info__value">{{ object.preferred_qualifications }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="apply-button">
+            <a class="apply-button__link" href="{% url 'create_job_offer_application' object.id %}">Apply</a>
+        </div>
+    </div>
+{% endblock %}
