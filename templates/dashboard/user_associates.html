@@ -1,19 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/dashboard/user_associates.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+{% endblock %}
+
+{% block site_main %}
+
+    <div class="companies-associates">
     {% for company_associates in companies_associates %}
         {% for associate in company_associates %}
-            <p>{{ associate }}</p>
-
-            <a href="{% url 'make_association_moderator' associate.profile_id %}">Make Associate Moderator</a>
-            <a href="{% url 'make_application_moderator' associate.profile.id %}">Make Application Moderator</a>
-            <a href="{% url 'make_rights_manager' associate.profile.id %}">Make Rights Manager</a>
-            <a href="{% url 'make_listings_manager' associate.profile.id %}">Make Listings Manager</a>
+        <div class="associate-card">
+            <div class="associate-card__info">
+                <div class="associate-card__avatar">
+                    <img src="/media/images/default/default_profile_img.jpg" alt="No image">
+                </div>
+                <div class="associate-card__username">{{ associate.profile.user.username }}</div>
+                <div class="associate-card__email">{{ associate.profile.user.email }}</div>
+                <div class="associate-card__job-title">{{ associate.profile.job_title }}</div>
+                <div class="associate-card__associate-job-title">{{ associate.job_title }}</div>
+            </div>
+            <div class="associate-card__actions">
+                <a href="{% url 'make_association_moderator' associate.profile_id %}" class="associate-card__action">Make Associate Moderator</a>
+                <a href="{% url 'make_application_moderator' associate.profile.id %}" class="associate-card__action">Make Application Moderator</a>
+                <a href="{% url 'make_rights_manager' associate.profile.id %}" class="associate-card__action">Make Rights Manager</a>
+                <a href="{% url 'make_listings_manager' associate.profile.id %}" class="associate-card__action">Make Listings Manager</a>
+            </div>      
+        </div>
         {% endfor %}
     {% endfor %}
+    </div>
+
+    {% include 'shared/nav-arrow.html' %}
+
+{% endblock %}
+
+<body>
+
 </body>
 </html>
