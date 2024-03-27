@@ -15,13 +15,6 @@ form {
     /* background-color: lightcoral; */
 }
 
-/* input,
-textarea,
-select {
-    margin-bottom: 16px;
-    width: 50%;
-    display: block;
-} */
 
 form div:not(:has(fieldset),
     #id_industries,
@@ -44,12 +37,10 @@ form div:not(:has(fieldset), #id_industries,
 }
 
 form div:not(:has(fieldset), #id_industries,
-    #id_industries > *) input, textarea {
+    #id_industries > *) input:not(#id_remote_option), textarea {
     width: 100%;
     border-radius: 4px;
     border: none;
-    /* border: 2px solid var(--clr-primary-500); */
-
 }
 
 form div:not(:has(fieldset), #id_industries,
@@ -58,8 +49,18 @@ form div:not(:has(fieldset), #id_industries,
     font-size: var(--size-body-medium);
 }
 
+
 form textarea {
     resize: none;
+}
+
+form div:has(#id_images) > div:nth-child(4) {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+form div:has(#id_images) > div:nth-child(4) > * {
+    width: 100%;
 }
 
 #id_industries {
@@ -72,6 +73,7 @@ form textarea {
     margin-bottom: 32px;
 }
 
+
 #id_industries legend {
     font-size: var(--size-body-large);
     font-weight: 200;
@@ -81,7 +83,6 @@ form textarea {
     flex: 1;
     min-width: 200px;
     text-align: center;
-    
 }
 
 #id_industries input[type='checkbox'] {
@@ -110,7 +111,7 @@ form textarea {
     display: inline;
 }
 
-#btn-create {
+#btn-submit {
     background-color: var(--clr-primary-500);
     color: var(--clr-white);
     font-size: var(--size-body-large);
@@ -121,7 +122,11 @@ form textarea {
     transition: box-shadow 0.3s ease; 
 }
 
-#btn-create:hover {
+#btn-submit:hover {
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+#otherInputContainer {
+    width: 100%;
 }

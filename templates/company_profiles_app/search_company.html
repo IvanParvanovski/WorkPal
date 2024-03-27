@@ -1,4 +1,5 @@
-<input type="text"
+<div class="search__field">
+       <input class="search__input" type="text"
        hx-post="{% url 'search_company' %}"
        hx-target="#results"
        hx-trigger="keyup changed delay:500ms"
@@ -6,4 +7,12 @@
        name="search"
        placeholder="Enter search term...">
 
-<div id="results"></div>
+       <i class="material-symbols-outlined search__icon">search</i>
+</div>
+
+
+<div id="results" class="search__results">
+       <p class="search__results__desc"> 
+              No search results
+       </p>
+</div>

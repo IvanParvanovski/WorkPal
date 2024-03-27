@@ -1,17 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <form method="post">
-        {% csrf_token %}
-        {{ company_form.as_div }}
-        {{ company_identifiers_form.as_div }}
+{% extends 'shared/base.html' %}
+{% load static %}
 
-        {{ company_identifiers.as_div }}
-        <button type="submit">Submit</button>
-    </form>
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/company_profiles_app/company_edit_form.css'%}">
+{% endblock %}
+
+
+{% block site_main %}
+    <div class="edit-form">
+        <h1>Edit Company</h1>
+        <form method="post">
+            <div class="edit-form__fields">
+                {% csrf_token %}
+                {{ company_form.as_div }}
+                {{ company_identifiers.as_div }}
+            </div>
+            <div>
+                <button id="btn-submit" type="submit">Edit</button>
+            </div>
+            <!-- {{ company_identifiers.as_div }} -->
+        </form>
+    </div>
+{% include 'shared/nav-arrow.html' %}
+
+{% endblock %}
+<body>
+  
 </body>
 </html>

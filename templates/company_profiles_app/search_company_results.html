@@ -6,9 +6,10 @@
     {% endfor %}
 
     {% else %}
-        <p>No search results</p>
-
-        <button id="add-company-btn" href="">
-            Add company
-        </button>
+        <div class="search__no-results">
+            <p class="search__no-results__description">No search results</p>
+            <button class="search__no-results__btn" id="add-company-btn" href="">
+                Add company
+            </button>
+        </div>
 {% endif %}

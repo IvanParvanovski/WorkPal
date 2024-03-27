@@ -16,7 +16,7 @@ class EditJobOfferView(LoginRequiredMixin, View):
     form_class_job_offer = JobOfferForm
     template_name = 'listing_app/edit_job_offer.html'
 
-    @method_decorator(permission_required('listing_app.edit_joboffer'))
+    @method_decorator(permission_required('listing_app.change_joboffer'))
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 

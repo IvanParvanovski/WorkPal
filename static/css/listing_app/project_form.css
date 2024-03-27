@@ -12,9 +12,15 @@ form {
     margin: auto auto;
     padding: 5%;
     box-sizing: border-box;
-    /* background-color: lightcoral; */
 }
 
+/* input,
+textarea,
+select {
+    margin-bottom: 16px;
+    width: 50%;
+    display: block;
+} */
 
 form div:not(:has(fieldset),
     #id_industries,
@@ -37,10 +43,20 @@ form div:not(:has(fieldset), #id_industries,
 }
 
 form div:not(:has(fieldset), #id_industries,
-    #id_industries > *) input:not(#id_remote_option), textarea {
+    #id_industries > *) input, textarea {
     width: 100%;
     border-radius: 4px;
     border: none;
+    /* border: 2px solid var(--clr-primary-500); */
+}
+
+form div:has(#id_images) > div:nth-child(4) {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+form div:has(#id_images) > div:nth-child(4) > * {
+    width: 100%;
 }
 
 form div:not(:has(fieldset), #id_industries,
@@ -48,7 +64,6 @@ form div:not(:has(fieldset), #id_industries,
     padding: 12px;
     font-size: var(--size-body-medium);
 }
-
 
 form textarea {
     resize: none;
@@ -63,7 +78,6 @@ form textarea {
     align-items: center;
     margin-bottom: 32px;
 }
-
 
 #id_industries legend {
     font-size: var(--size-body-large);
@@ -82,13 +96,14 @@ form textarea {
 }
 
 #id_industries div label {
+    /* background-color: lawngreen; */
     display: inline-block;
     padding: 5px;
     width: 70%;
     cursor: pointer; /* Change cursor to pointer to indicate clickable */
     padding: 10px; /* Add padding for clickable area */
     border-radius: 4px; /* Add rounded corners for a button-like appearance */
-    background-color: #f0f0f0; /* Add a background color */
+    background-color: #f0f0f0;
     transition: background-color 0.3s ease; 
     
 }
@@ -102,7 +117,7 @@ form textarea {
     display: inline;
 }
 
-#btn-create {
+#btn-submit {
     background-color: var(--clr-primary-500);
     color: var(--clr-white);
     font-size: var(--size-body-large);
@@ -113,11 +128,7 @@ form textarea {
     transition: box-shadow 0.3s ease; 
 }
 
-#btn-create:hover {
+#btn-submit:hover {
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-}
-
-#otherInputContainer {
-    width: 100%;
 }

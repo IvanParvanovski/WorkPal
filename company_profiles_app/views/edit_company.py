@@ -39,6 +39,13 @@ class EditCompanyView(LoginRequiredMixin, View):
             phone_identifier = CompanyIdentifiersService.get_company_identifier_phone_number(company_id)
             email_identifier = CompanyIdentifiersService.get_company_identifier_email(company_id)
 
+            CompanyService.edit_company(_id=company_id,
+                                        address=company_form.cleaned_data['address'],
+                                        secondary_address=company_form.cleaned_data['secondary_address'],
+                                        name=company_form.cleaned_data['name'],
+                                        company_logo=company_form.cleaned_data['company_logo'],
+                                        website=company_form.cleaned_data['website'])
+
             CompanyIdentifiersService.edit_identifier_by_id(_id=phone_identifier.id,
                                                             _type='phone_number',
                                                             value=company_identifiers_form.cleaned_data['phone_number'],
