@@ -9,6 +9,9 @@ class ListingForm(ModelForm):
     class Meta:
         model = Listing
         fields = ['title', 'location', 'images', 'description']
+        widgets = {
+            'images': forms.ClearableFileInput(attrs={'class': 'image-section'})
+        }
 
     industries = forms.ModelMultipleChoiceField(
         queryset=Industry.objects.all(),

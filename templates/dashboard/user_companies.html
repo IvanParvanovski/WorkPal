@@ -1,25 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/dashboard/user_companies.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+{% endblock %}
+
+{% block site_main %}
     <div>
-        COMPANIES
-
         {% for c in user_companies %}
-            <div>
-                <a href="">{{ c }}</a>
-                <a href="{% url 'edit_company' c.id %}">Edit</a>
-
+        <div class="company-card">
+            <div class="company-card__info">
+                <div class="company-card__image">
+                    <img src="https://images.unsplash.com/photo-1496200186974-4293800e2c20?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcGFueSUyMGxvZ298ZW58MHx8MHx8fDA%3D" alt="No image">
+                </div>
+                <div class="company-card__name">{{ c.name }}</div>
+                <div class="company-card__website">
+                    <i class="material-symbols-outlined">globe_asia</i>
+                    {{ c.website }}
+                </div>
+                <div class="company-card__address">
+                    <i class="material-symbols-outlined">location_on</i>
+                    {{ c.address }}
+                </div>
+                <div class="company-card__registered-at">
+                    <i class="material-symbols-outlined">calendar_month</i>
+                    {{ c.registered_at }}
+                </div>
+            </div>
+        
+            <div class="company-card__actions">
+                <a href="{% url 'edit_company' c.id %}" class="company-card__actions--edit">Edit</a>
                 <form action="{% url 'delete_company' c.id %}" method="post">
                     {% csrf_token %}
-                    <button type="submit">Delete</button>
+                    <button type="submit" class="company-card__actions--delete">Delete</button>
                 </form>
             </div>
-
+        </div>
         {% endfor %}
     </div>
-</body>
-</html>
+
+    {% include 'shared/nav-arrow.html' %}
+{% endblock %}
+
+{% block site_scripts %}
+{% endblock %}

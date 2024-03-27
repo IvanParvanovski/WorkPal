@@ -120,7 +120,7 @@ class ApplicationProjectDetails(LoginRequiredMixin, DetailView):
         project = ProjectApplicationDetailsService.get_project_details_by_id(_id=application.object_id)
 
         context = {
-            'project': project
+            'project_application_details': project
         }
 
         return render(request, ApplicationProjectDetails.template_name, context=context)
