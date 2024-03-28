@@ -1,0 +1,36 @@
+.application-details {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 50%;
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-height: 350px;
+}
+
+.application-details__title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.application-details__section {
+    margin-bottom: 20px;
+}
+
+.application-details__label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.application-details__value {
+    color: #333;
+    font-style: italic;
+}

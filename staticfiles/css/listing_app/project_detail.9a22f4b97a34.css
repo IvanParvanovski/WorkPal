@@ -1,0 +1,134 @@
+.project-details--full {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.project-details__title {
+    font-size: var(--size-heading-2);
+    margin-bottom: 16px;
+}
+
+.profile-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9; /* Add a light background color */
+    padding: 20px; /* Add some padding */
+    border-radius: 10px; /* Add a rounded border */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+/* Profile details info container styling */
+.profile-details__info {
+    display: flex;
+    align-items: center;
+}
+
+/* Profile image styling */
+.profile-details__img img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #fff; /* Add a border */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    transition: transform 0.3s ease; /* Add a smooth transition */
+}
+
+/* Profile image hover effect */
+.profile-details__img:hover img {
+    transform: scale(1.1); /* Scale up the image on hover */
+}
+
+/* Profile content styling */
+.profile-details__content {
+    margin-left: 20px;
+}
+
+/* Username styling */
+.profile-details__username {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Job title styling */
+.profile-details__job-title {
+    font-size: 18px;
+    color: #777;
+}
+
+/* ------ */
+
+/* Project info container styling */
+
+.content {
+    background-color: #f9f9f9;
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 48px;
+}
+
+.project-info {
+    width: 80%;
+    margin: auto auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+}
+
+.project-info__detail {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    border-bottom: 1px solid #C039B4;
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.project-info__detail:hover {
+    transform: translateY(-3px); 
+    transition: transform 0.3s ease; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    /* border: 1px solid #C039B4; */
+    border-bottom-color: transparent;
+    border-radius: 8px;
+}
+
+.project-info__label {
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #FF856B;
+}
+
+.project-info__value {
+    color: var(--clr-gray-600);
+    font-style: italic;
+    font-weight: 300;
+}
+
+.apply-button {
+    text-align: center;
+}
+
+.apply-button__link {
+    padding: 16px 32px;
+    background-color: lightcoral;
+    border-radius: 4px;
+    background-color: var(--clr-primary-500);
+    text-decoration: none;
+    color: var(--clr-white);
+    font-size: var(--size-body-medium);
+    transition: transform 0.3 ease;
+}
+
+.apply-button__link:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    background-color: #064fa2;
+    transition: transform 0.3 ease;
+}

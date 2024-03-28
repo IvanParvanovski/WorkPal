@@ -1,0 +1,36 @@
+.controls {
+    display: flex;
+    gap: 16px;
+    margin: auto;
+    margin-bottom: 24px;
+}
+
+.controls__edit,
+.controls__delete {
+    padding: 10px 24px; /* Adjusted padding */
+    text-decoration: none;
+    color: #fff; /* Improved text color for better contrast */
+    border-radius: 6px; /* Enhanced border-radius */
+    border: none;
+    font-size: var(--size-body-medium);
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+.controls__edit {
+    background-color: #ffcc00; /* Between yellow and orange for edit */
+}
+
+.controls__delete {
+    background-color: #f44336; /* Professional red color */
+}
+
+/* Hover effects */
+.controls__edit:hover,
+.controls__delete:hover {
+    background-color: #ffa500; /* Orange on hover for edit */
+}
+
+.controls__delete:hover {
+    background-color: #d32f2f; /* Darker red on hover for delete */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adding subtle box-shadow on hover */
+}
