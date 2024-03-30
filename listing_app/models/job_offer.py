@@ -21,7 +21,6 @@ class JobOffer(models.Model):
         PART_TIME = 'part_time', _('Part-Time')
         SEASONAL = 'zero_hours', _('Zero-Hours')
         FLEXTIME = 'flextime', _('Flextime')
-        OTHER = 'other', _('Other')
 
     company = models.ForeignKey(Company, on_delete=CASCADE)
     listing = models.OneToOneField(Listing, on_delete=CASCADE, related_name='job_offer')

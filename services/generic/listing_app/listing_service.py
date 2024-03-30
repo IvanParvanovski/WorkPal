@@ -11,14 +11,12 @@ class ListingService(ListingInterface):
     @staticmethod
     def create_listing(title: str,
                        location: str,
-                       images: str,
                        description: str,
                        commit=True) -> Listing:
 
         listing = Listing.objects.create(
             title=title,
             location=location,
-            images=images,
             description=description,
         )
 
@@ -88,7 +86,6 @@ class ListingService(ListingInterface):
     def edit_listing_by_id(_id: int,
                            title: str,
                            location: str,
-                           images: str,
                            description: str,
                            commit=True) -> Listing:
 
@@ -96,7 +93,6 @@ class ListingService(ListingInterface):
 
         listing.title = title
         listing.location = location
-        listing.images = images
         listing.description = description
 
         if commit:

@@ -9,7 +9,6 @@ class ListingInterface(ABC):
     @abstractmethod
     def create_listing(title: str,
                        location: str,
-                       images: str,
                        description: str,
                        commit=True) -> Listing:
         pass
@@ -64,7 +63,6 @@ class ListingInterface(ABC):
     def edit_listing_by_id(_id: int,
                            title: str,
                            location: str,
-                           images: str,
                            description: str,
                            commit=True) -> Listing:
         pass

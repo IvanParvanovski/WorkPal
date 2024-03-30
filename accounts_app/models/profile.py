@@ -63,3 +63,9 @@ class Profile(models.Model):
     image = models.ImageField(upload_to=user_directory_path, default='images/default/default_profile_img.jpg')
     companies = models.ManyToManyField(Company, through='company_profiles_app.Employment')
     applications = models.ManyToManyField(Listing, through='application_app.Application')
+
+    def __repr__(self):
+        return self.user.username
+
+    def __str__(self):
+        return self.__repr__()

@@ -1,3 +1,5 @@
+from django.db.models import Q
+
 from listing_app.models.industry import Industry
 from services.interfaces.listing_app.industry_interface import IndustryInterface
 
@@ -22,7 +24,7 @@ class IndustryService(IndustryInterface):
 
     @staticmethod
     def get_industry_by_name(name):
-        return Industry.objects.get(name=name)
+        return Industry.objects.filter(Q(name__iexact=name)).first()
 
     @staticmethod
     def delete_industry_by_id(_id: int):

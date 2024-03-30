@@ -56,7 +56,6 @@ class EditProjectView(LoginRequiredMixin, View):
             ListingService.edit_listing_by_id(_id=listing.id,
                                               title=listing_form.cleaned_data['title'],
                                               location=listing_form.cleaned_data['location'],
-                                              images=listing_form.cleaned_data['images'],
                                               description=listing_form.cleaned_data['description'])
 
             ProjectService.edit_project_by_id(_id=project_id,

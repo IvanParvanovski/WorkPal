@@ -33,7 +33,6 @@ class CreateProjectView(LoginRequiredMixin, View):
         if listing_form.is_valid() and project_form.is_valid():
             listing = ListingService.create_listing(title=listing_form.cleaned_data['title'],
                                                     location=listing_form.cleaned_data['location'],
-                                                    images=listing_form.cleaned_data['images'],
                                                     description=listing_form.cleaned_data['description'])
 
             ProjectService.create_project(profile=request.user.profile,

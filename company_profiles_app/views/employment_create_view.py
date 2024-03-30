@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 from company_profiles_app.forms.employment_form import EmploymentForm
@@ -32,5 +32,5 @@ class EmploymentCreateView(LoginRequiredMixin, View):
                                                 company=company,
                                                 job_title=employment_form.cleaned_data['job_title'])
 
-        return HttpResponse('POST request received')
+        return redirect('dashboard')
 

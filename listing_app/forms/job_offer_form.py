@@ -12,7 +12,6 @@ class JobOfferForm(ModelForm):
     def __init__(self, profile, *args, **kwargs):
         super(JobOfferForm, self).__init__(*args, **kwargs)
         self.fields['company'].queryset = CompanyService.get_user_companies(profile_id=profile.id)
-        # self.fields['company'].queryset = Company.objects.filter(employment__profile_id=profile.id)
 
     class Meta:
         model = JobOffer

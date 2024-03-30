@@ -13,13 +13,20 @@
 
 {% block site_main %}
     <div class="listing-list">
-        {% for listing in listings %}
-            {% if listing.project %}
-                {% include 'listing_app/project_card.html' with project=listing.project %}
-            {% elif listing.job_offer %}
-                {% include 'listing_app/job_offer_card.html' with job_offer=listing.job_offer %}
-            {% endif %}
-        {% endfor %}
+        {% if listings|length != 0 %}
+             {% for listing in listings %}
+                {% if listing.project %}
+                    {% include 'listing_app/project_card.html' with project=listing.project %}
+                {% elif listing.job_offer %}
+                    {% include 'listing_app/job_offer_card.html' with job_offer=listing.job_offer %}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <div>
+                No results
+            </div>
+        {% endif %}
+
     </div>
 
     {% include 'shared/nav-arrow.html' %}

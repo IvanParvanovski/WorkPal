@@ -44,16 +44,21 @@ class CreateJobOfferView(LoginRequiredMixin, View):
 
             listing = ListingService.create_listing(title=listing_form.cleaned_data['title'],
                                                     location=listing_form.cleaned_data['location'],
-                                                    images=listing_form.cleaned_data['images'],
                                                     description=listing_form.cleaned_data['description'])
 
             salary_range_min, salary_range_max = [round(float(x), 2) for x in job_offer_form.cleaned_data['salary_range'].split(' ')]
+            if salary_range_min <= 100 and salary_range_max <= 100:
+                salary_min_value = round(salary_range_min / 100 * 200000)
+                salary_max_value = round(salary_range_max / 100 * 200000)
+            else:
+                salary_min_value = salary_range_min
+                salary_max_value = salary_range_max
 
             JobOfferService.create_job_offer(listing=listing,
                                              company=job_offer_form.cleaned_data['company'],
                                              benefits=job_offer_form.cleaned_data['benefits'],
-                                             salary_range_min=salary_range_min,
-                                             salary_range_max=salary_range_max,
+                                             salary_range_min=salary_min_value,
+                                             salary_range_max=salary_max_value,
                                              work_environment=job_offer_form.cleaned_data['work_environment'],
                                              work_commitment=job_offer_form.cleaned_data['work_commitment'],
                                              key_responsibilities=job_offer_form.cleaned_data['key_responsibilities'],

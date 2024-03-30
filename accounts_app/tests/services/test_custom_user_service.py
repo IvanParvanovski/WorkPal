@@ -159,7 +159,7 @@ class TestCustomUserService(unittest.TestCase):
 
         self.assertIn('CustomUser object can\'t be deleted because its id attribute is set to None', str(context.exception))
 
-    def test_delete_user_by_id_should_delete_user_when_valid_id_is_provided(self):
+    # def test_delete_user_by_id_should_delete_user_when_valid_id_is_provided(self):
 
 
 if __name__ == '__main__':

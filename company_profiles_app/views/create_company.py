@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 from company_profiles_app.forms.company_identifiers_form import CompanyIdentifiersForm
@@ -44,7 +44,8 @@ class CreateCompanyView(LoginRequiredMixin, View):
             CompanyIdentifiersService.create_company_identifier_phone_number(value=company_identifiers_form.cleaned_data['phone_number'],
                                                                              company=company)
 
-            return render(self.request, 'home/index.html', {'success_message': 'Registration successful'})
+            return redirect('home')
+            # return render(self.request, 'home/index.html', {'success_message': 'Registration successful'})
 
         else:
             print(company_form.errors)

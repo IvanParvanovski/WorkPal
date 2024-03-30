@@ -48,6 +48,12 @@ class Company(models.Model):
     is_verified = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
 
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.__repr__()
+
     @property
     def days_since_creation(self):
         """

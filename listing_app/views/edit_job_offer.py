@@ -47,10 +47,9 @@ class EditJobOfferView(LoginRequiredMixin, View):
             listing = job_offer.listing
 
             listing = ListingService.edit_listing_by_id(_id=listing.id,
-                                              title=listing_form.cleaned_data['title'],
-                                              location=listing_form.cleaned_data['location'],
-                                              images=listing_form.cleaned_data['images'],
-                                              description=listing_form.cleaned_data['description'])
+                                                        title=listing_form.cleaned_data['title'],
+                                                        location=listing_form.cleaned_data['location'],
+                                                        description=listing_form.cleaned_data['description'])
 
             salary_range_min, salary_range_max = [round(float(x), 2) for x in job_offer_form.cleaned_data['salary_range'].split(' ')]
 

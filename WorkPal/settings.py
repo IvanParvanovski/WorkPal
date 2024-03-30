@@ -29,12 +29,12 @@ environ.Env.read_env()
 SECRET_KEY = 'django-insecure-e=j%r#l$&wxd%f0$9l2srd99utv89v4g(=vluwc&n44ihu-q4y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
-PRODUCTION = True
+PRODUCTION = False
 
-ALLOWED_HOSTS = ['*', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -107,14 +107,6 @@ if not PRODUCTION:
                 "NAME": "test_db"
             }
         },
-        # 'test': {
-        #     'ENGINE': 'django.db.backends.postgresql',
-        #     'NAME': 'test_db',
-        #     'USER': 'postgres',
-        #     'PASSWORD': 'postgres',
-        #     'HOST': 'localhost',
-        #     'PORT': '5432',
-        # }
     }
 
     if 'test' in sys.argv:

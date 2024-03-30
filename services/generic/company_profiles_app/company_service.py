@@ -38,6 +38,11 @@ class CompanyService(CompanyInterface):
         company.delete()
 
     @staticmethod
+    def get_verified_companies(search_text):
+        return Company.objects.filter(name__icontains=search_text,
+                                      is_verified=True)
+
+    @staticmethod
     def delete_company(company: Company):
         company.delete()
 

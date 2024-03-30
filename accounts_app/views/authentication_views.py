@@ -23,9 +23,6 @@ class SignUpView(TemplateView):
         form_user = self.form_class_user(request.POST)
         form_profile = self.form_class_profile(request.POST)
 
-        print(form_user.is_valid())
-        print(form_profile.is_valid())
-
         if form_user.is_valid() and form_profile.is_valid():
             return self.forms_valid(form_user, form_profile)
         else:
@@ -38,7 +35,7 @@ class SignUpView(TemplateView):
 
             login(self.request, user)
 
-            return render(self.request, 'home/index.html', {'success_message': 'Registration successful'})
+            return redirect('home')
         except Exception as e:
             if str(e) == 'Passwords do not match!':
                 form_user.add_error('password', 'Passwords do not match!')

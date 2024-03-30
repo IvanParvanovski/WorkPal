@@ -52,11 +52,11 @@ class JobOfferApplicationCreateView(LoginRequiredMixin, View):
                                                       JobOfferApplicationDetails),
                                                   object_id=job_offer_application.id)
 
-            return HttpResponse('valid')
+            return redirect('dashboard')
         else:
             print(job_offer_application_form.errors)
 
-        return HttpResponse('invalid')
+        return render(request, self.template_name, context={'job_offer_form': job_offer_application_form})
 
 
 class ProjectApplicationCreateView(LoginRequiredMixin, View):
@@ -84,10 +84,10 @@ class ProjectApplicationCreateView(LoginRequiredMixin, View):
                                                   content_type=ContentType.objects.get_for_model(ProjectApplicationDetails),
                                                   object_id=project_application.id)
 
-            return HttpResponse('valid')
+            return redirect('dashboard')
 
         print(project_application_form.errors)
-        return HttpResponse('invalid')
+        return render(request, self.template_name, {'project_application_form': project_application_form})
 
 
 class ApplicationJobOfferDetails(LoginRequiredMixin, DetailView):

@@ -14,7 +14,7 @@ class ListingCatalog(TemplateView):
         print(kwargs)
 
         context = super().get_context_data(**kwargs)
-        industry_name = kwargs.get('industry').capitalize()
+        industry_name = kwargs.get('industry')
         industry = IndustryService.get_industry_by_name(industry_name)
         context['listings'] = ListingService.get_listings_by_industry(industry)
 

@@ -30,9 +30,16 @@ def render_dashboard(request):
 
     context = {
         'association_requests': association_requests,
+        'any_association_request': any(inner_list for inner_list in association_requests),
+
         'application_status': application_statuses,
+        'any_applications_statuses': any(inner_list for inner_list in application_statuses),
+
         'applications_for_projects': applications_for_projects,
+        'any_project_applications': any(inner_list for inner_list in applications_for_projects),
+
         'companies_applications_for_job_offers': applications_for_job_offers,
+        'any_job_offers_applications': any(inner_list for inner_list in applications_for_job_offers)
     }
 
     # print(ApplicationService.get_applications_to_user_project(3))
