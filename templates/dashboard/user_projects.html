@@ -9,22 +9,39 @@
     <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
     <link rel="stylesheet" href="{% static 'css/listing_app/projects_catalog.css'%}">
     <link rel="stylesheet" href="{% static 'css/dashboard/user_projects.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard/no-results.css' %}">
 {% endblock %}
 
 {% block site_main %}
-    {% for project in user_projects %}
-    <div class="project">
-        {% include 'listing_app/project_card.html' with project=project %}
+    {% if user_projects.count == 0 %}
+      <div class="message">
+         <h1 class="message__title">Add Your First Project</h1>
 
-        <div class="controls">
-            <a class="controls__edit" href="{% url 'edit_project' project.id %}">Edit</a>
-            <form class="controls__delete-form" action="{% url 'delete_project' project.id %}" method="post">
-                {% csrf_token %}
-                <button class="controls__delete" type="submit">Delete</button>
-            </form>
+        <p class="message__text">
+            You currently have no projects. You can add one from the dashboard.
+        </p>
+        <div class="message__action">
+            <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
+            <a href="{% url 'create_project' %}" class="message__link action">Add project <i class="material-symbols-outlined">arrow_forward</i></a>
         </div>
     </div>
-    {% endfor %}
+
+    {% else %}
+        {% for project in user_projects %}
+        <div class="project">
+            {% include 'listing_app/project_card.html' with project=project %}
+
+            <div class="controls">
+                <a class="controls__edit" href="{% url 'edit_project' project.id %}">Edit</a>
+                <form class="controls__delete-form" action="{% url 'delete_project' project.id %}" method="post">
+                    {% csrf_token %}
+                    <button class="controls__delete" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+
 
     {% include 'shared/nav-arrow.html' %}
 {% endblock %}

@@ -17,7 +17,6 @@
 .container__form form input {
     box-sizing: border-box;
     margin-bottom: 24px;
-    font-size: var(--size-);
     padding: 16px 16px;
     border-radius: 4px;
     border: none;

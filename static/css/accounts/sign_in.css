@@ -120,3 +120,7 @@
     border-left: 2px solid red;
     margin-bottom: 8px;
 }
+
+main {
+    margin-bottom: 0;
+}

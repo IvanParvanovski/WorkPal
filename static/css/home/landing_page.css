@@ -582,3 +582,7 @@
 .header {
     background-color: var(--clr-background-primary);
 }
+
+.navigation {
+    margin-bottom: 64px;
+}
