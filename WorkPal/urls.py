@@ -23,7 +23,7 @@ import application_app.urls
 import company_profiles_app.urls
 import listing_app.urls
 from WorkPal import settings
-from WorkPal.views import HomeView
+from WorkPal.views import HomeView, custom_page_404_not_found
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,6 +39,9 @@ urlpatterns = [
     path('applications/', include(application_app.urls.main_urls)),
     path('companies/', include(company_profiles_app.urls.main_urls)),
 ]
+
+handler404 = 'WorkPal.views.custom_page_404_not_found'
+handler403 = 'WorkPal.views.custom_page_403_forbidden'
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

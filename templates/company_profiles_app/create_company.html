@@ -93,14 +93,31 @@
         }
     }
 
+    function displayInvalidData(event) {
+        console.log('in')
+        console.log(isFormEmpty())
+        if (!isFormEmpty()) {
+            createForm.style.visibility = 'visible';
+            createForm.style.position = 'relative';
+        }
+    }
+
+    function isFormEmpty() {
+        // Modify this function according to your form fields
+        // For example, check if input fields are empty
+        const inputFields = document.querySelectorAll('#create-form__form input');
+        console.log(inputFields)
+        for (let i = 0; i < inputFields.length; i++) {
+            if (inputFields[i].name !== 'company_logo' && !inputFields[i].value.trim()) {
+
+                return true; // Form is empty
+            }
+        }
+        return false; // Form has content
+    }
+
     document.getElementById('results').addEventListener('click', handleSelect);
     document.getElementById('results').addEventListener('click', displayForm);
+    document.addEventListener('DOMContentLoaded', displayInvalidData);
 </script>
 {% endblock %}
-
-<body>
-   
-
-
-</body>
-</html>

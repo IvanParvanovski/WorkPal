@@ -1,18 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>HALLO</h1>
-    {{ user }}
-    {{ employments }}
-    <form method="post">
-        {% csrf_token %}
-        {{ employment_form.as_div }}
-        <button type="submit">Submit</button>
-    </form>
+{% extends 'shared/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/company_profiles_app/employment_info.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+{% endblock %}
+
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_main %}
+    <div class="employment-info">
+        <h1 class="employment-info__title">Employment Info</h1>
+
+        <form class="employment-info__form" method="post">
+            {% csrf_token %}
+            {{ employment_form.as_div }}
+            <button class="employment-info__submit" type="submit">Submit</button>
+        </form>
+    </div>
+
+{% endblock %}
+

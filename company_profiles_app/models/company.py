@@ -3,11 +3,7 @@ from pathlib import Path
 
 from cloudinary.models import CloudinaryField
 from django.db import models
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
 from django.utils import timezone
-
-from WorkPal import settings
 
 
 class Company(models.Model):
@@ -18,7 +14,7 @@ class Company(models.Model):
 
     address = models.CharField(max_length=192)
     secondary_address = models.CharField(max_length=192)
-    company_logo = CloudinaryField('company_field')
+    company_logo = CloudinaryField('company_logo')
     name = models.CharField(max_length=160)
     website = models.URLField(max_length=128)
     registered_at = models.DateTimeField(auto_now_add=True)

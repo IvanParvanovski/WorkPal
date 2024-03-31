@@ -16,19 +16,17 @@ class CreateCompanyView(LoginRequiredMixin, View):
     template_name = 'company_profiles_app/create_company.html'
 
     def get(self, request, *args, **kwargs):
-        # print(f'CREATE COMPANY VIEW - True' if request.htmx else 'CREATE COMPANY VIEW - False')
         context = {
             'company_form': self.form_class_create_company(),
             'company_identifiers': self.form_class_company_identifiers(),
         }
-        # print(context)
+
         return render(request, self.template_name, context=context)
 
     def post(self, request, *args, **kwargs):
         company_form = self.form_class_create_company(request.POST, request.FILES)
         company_identifiers_form = self.form_class_company_identifiers(request.POST)
 
-        # print(company_identifiers_form)
         if company_form.is_valid() and \
                 company_identifiers_form.is_valid():
 
@@ -49,12 +47,18 @@ class CreateCompanyView(LoginRequiredMixin, View):
             CompanyIdentifiersService.create_company_identifier_phone_number(value=company_identifiers_form.cleaned_data['phone_number'],
                                                                              company=company)
 
-            return redirect('home')
+            return redirect('success_create_new_company')
             # return render(self.request, 'home/index.html', {'success_message': 'Registration successful'})
 
         else:
             print(company_form.errors)
             print(company_identifiers_form.errors)
 
-        return HttpResponse('POST request received')
+        print(company_form)
+        context = {
+            'company_form': company_form,
+            'company_identifiers': company_identifiers_form,
+        }
+
+        return render(request, self.template_name, context=context)
 

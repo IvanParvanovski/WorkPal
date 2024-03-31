@@ -14,9 +14,12 @@
 {% block site_main %}
     <div class="edit-form">
         <h1>Edit Company</h1>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div class="edit-form__fields">
                 {% csrf_token %}
+{#                {{ company_form.errors }}#}
+{#                {{ company_identifiers.errors }}#}
+
                 {{ company_form.as_div }}
                 {{ company_identifiers.as_div }}
             </div>
@@ -29,7 +32,3 @@
 {% include 'shared/nav-arrow.html' %}
 
 {% endblock %}
-<body>
-  
-</body>
-</html>

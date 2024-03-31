@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'shared/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responses/error_403_forbidden.css' %}">
+{% endblock %}
+
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_main %}
+     <div class="error-page">
+        <div class="error-page__content">
+            <h1 class="error-page__title">Forbidden (403)</h1>
+            <p class="error-page__message">
+                Sorry, you are not authorized to perform this action. Please contact the administrator for assistance.
+            </p>
+
+            <div class="error-page__link">
+                <a href="{% url 'home' %}" class="error-page__link-text">Home <i class="material-symbols-outlined">arrow_forward</i> </a>
+            </div>
+        </div>
+
+        <div class="error-page__image">
+            <img src="https://res.cloudinary.com/dpjfbxicd/image/upload/v1711890898/forbidden.png" alt="No image" class="error-page__image-src">
+        </div>
+    </div>
+{% endblock %}

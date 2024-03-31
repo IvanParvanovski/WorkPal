@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from company_profiles_app.views.create_company import CreateCompanyView
 from company_profiles_app.views.delete_company import DeleteCompanyView
@@ -7,6 +7,8 @@ from company_profiles_app.views.employment_create_view import EmploymentCreateVi
 from company_profiles_app.views.handle_association_requests import AcceptAssociationRequest, RejectAssociationRequest
 from company_profiles_app.views.permissions.make_rights_manager import make_rights_manager
 from company_profiles_app.views.permissions.make_association_moderator import make_associate_moderator
+from company_profiles_app.views.response_create_new_company import ResponseCreateNewCompany
+from company_profiles_app.views.response_send_association_request import ResponseSendAssociationRequest
 from company_profiles_app.views.search_company import search_company
 
 
@@ -17,7 +19,16 @@ dashboard_urls = [
     path('delete/<int:company_id>', DeleteCompanyView.as_view(), name='delete_company'),
 ]
 
+responses_urls = [
+    path('success_add_new_company/', ResponseCreateNewCompany.as_view(), name='success_create_new_company'),
+    path('success_send_association_request/', ResponseSendAssociationRequest.as_view(),
+         name='success_send_association_request'),
+]
+
+
 main_urls = [
+    path('responses/', include(responses_urls)),
+
     # Actions
     path('accept_association/<int:employment_request_id>', AcceptAssociationRequest.as_view(),
          name='accept_association_request'),
@@ -32,3 +43,4 @@ permissions_urls = [
     path('permissions/make_rights_manager/<int:user_to_grant_rights_id>', make_rights_manager,
          name='make_rights_manager'),
 ]
+

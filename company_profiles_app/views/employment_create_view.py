@@ -13,7 +13,6 @@ class EmploymentCreateView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         context = {
-            'employments': EmploymentService.get_all_employments(), # SHOULD BE DELETED
             'employment_form': self.form_class_employment(),
         }
 
@@ -32,5 +31,5 @@ class EmploymentCreateView(LoginRequiredMixin, View):
                                                 company=company,
                                                 job_title=employment_form.cleaned_data['job_title'])
 
-        return redirect('dashboard')
+        return redirect('success_send_association_request')
 

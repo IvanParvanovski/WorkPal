@@ -39,6 +39,7 @@ class EditCompanyView(LoginRequiredMixin, View):
             phone_identifier = CompanyIdentifiersService.get_company_identifier_phone_number(company_id)
             email_identifier = CompanyIdentifiersService.get_company_identifier_email(company_id)
 
+            print(company_form.cleaned_data['company_logo'])
             CompanyService.edit_company(_id=company_id,
                                         address=company_form.cleaned_data['address'],
                                         secondary_address=company_form.cleaned_data['secondary_address'],
@@ -56,9 +57,11 @@ class EditCompanyView(LoginRequiredMixin, View):
                                                             value=company_identifiers_form.cleaned_data['email'],
                                                             company=company)
 
-            return redirect('')
-        else:
-            print(company_form.errors)
-            print(company_identifiers_form.errors)
+            return redirect('user_companies')
 
-        return HttpResponse('invalid')
+        context = {
+            'company_form': company_form,
+            'company_identifiers': company_identifiers_form,
+        }
+
+        return render(request, self.template_name, context=context)

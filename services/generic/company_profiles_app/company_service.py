@@ -60,6 +60,7 @@ class CompanyService(CompanyInterface):
 
         company.address = address
         company.secondary_address = secondary_address
+        company.company_logo = company_logo
         company.name = name
         company.website = website
 

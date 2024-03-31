@@ -1,3 +1,6 @@
+from django.http import HttpResponseNotFound
+from django.shortcuts import render
+from django.template import loader
 from django.views.generic import TemplateView
 
 from services.generic.listing_app.industry_service import IndustryService
@@ -46,3 +49,12 @@ class HomeView(TemplateView):
         context['industries'] = industries
 
         return context
+
+
+def custom_page_404_not_found(request, exception):
+    return render(request, 'responses/error_404.html', status=404)
+
+
+def custom_page_403_forbidden(request, exception):
+    return render(request, 'responses/error_403_forbidden.html', status=403)
+
