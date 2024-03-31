@@ -25,7 +25,7 @@ class EditJobOfferView(LoginRequiredMixin, View):
         job_offer = JobOfferService.get_job_offer_by_id(_id=job_offer_id)
         listing = job_offer.listing
         selected_options = ListingService.get_all_listing_industries(listing)
-
+        print(selected_options)
         context = {
             'listing_form': self.form_class_listing(instance=listing, initial={'industries': selected_options}),
             'job_offer_form': self.form_class_job_offer(instance=job_offer, profile=request.user.profile),
@@ -53,11 +53,18 @@ class EditJobOfferView(LoginRequiredMixin, View):
 
             salary_range_min, salary_range_max = [round(float(x), 2) for x in job_offer_form.cleaned_data['salary_range'].split(' ')]
 
+            if salary_range_min <= 100 and salary_range_max <= 100:
+                salary_min_value = round(salary_range_min / 100 * 200000)
+                salary_max_value = round(salary_range_max / 100 * 200000)
+            else:
+                salary_min_value = salary_range_min
+                salary_max_value = salary_range_max
+
             JobOfferService.edit_job_offer_by_id(_id=job_offer_id,
                                                  company=job_offer_form.cleaned_data['company'],
                                                  benefits=job_offer_form.cleaned_data['benefits'],
-                                                 salary_range_min=salary_range_min,
-                                                 salary_range_max=salary_range_max,
+                                                 salary_range_min=salary_min_value,
+                                                 salary_range_max=salary_max_value,
                                                  work_environment=job_offer_form.cleaned_data['work_environment'],
                                                  work_commitment=job_offer_form.cleaned_data['work_commitment'],
                                                  key_responsibilities=job_offer_form.cleaned_data['key_responsibilities'],

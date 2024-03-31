@@ -107,6 +107,7 @@ form div:has(#id_images) > div:nth-child(4) > * {
     color: var(--clr-white);
 }
 
+
 #id_industries input {
     display: inline;
 }
@@ -130,3 +131,5 @@ form div:has(#id_images) > div:nth-child(4) > * {
 #otherInputContainer {
     width: 100%;
 }
+
+

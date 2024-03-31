@@ -1,4 +1,5 @@
 {% extends 'shared/base.html' %}
+{% load custom_filters %}
 {% load static %}
 
 {% block site_header %}
@@ -32,14 +33,18 @@
                     {{ c.registered_at }}
                 </div>
             </div>
-        
-            <div class="company-card__actions">
-                <a href="{% url 'edit_company' c.id %}" class="company-card__actions--edit">Edit</a>
-                <form action="{% url 'delete_company' c.id %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="company-card__actions--delete">Delete</button>
-                </form>
-            </div>
+
+            {% if user|has_group:"CompanyManager" %}
+                 <div class="company-card__actions">
+                    <a href="{% url 'edit_company' c.id %}" class="company-card__actions--edit">Edit</a>
+                    <form action="{% url 'delete_company' c.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="company-card__actions--delete">Delete</button>
+                    </form>
+                </div>
+            {% endif %}
+
+
         </div>
         {% endfor %}
     </div>

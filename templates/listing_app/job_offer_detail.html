@@ -1,5 +1,6 @@
 {% extends 'shared/base.html' %}
 {% load static %}
+{% load custom_filters %}
 
 {% block site_header %}
     {% include 'shared/nav_main.html' %}
@@ -11,6 +12,7 @@
 {% endblock %}
 
 {% block site_main %}
+
     <div class="job-offer">
         <h2 class="job-offer__title">{{ object.id }} | {{ object.listing.title }}</h2>
 
@@ -100,8 +102,12 @@
             </div>
         </div>
 
-        <div class="apply-button">
-            <a class="apply-button__link" href="{% url 'create_job_offer_application' object.id %}">Apply</a>
-        </div>
+
+        {% if not user|is_associate:object.company_id %}
+            <div class="apply-button">
+                <a class="apply-button__link" href="{% url 'create_job_offer_application' object.id %}">Apply</a>
+            </div>
+        {% endif %}
+
     </div>
 {% endblock %}

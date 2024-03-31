@@ -40,6 +40,7 @@
     height: auto;
     border-radius: 50%;
     margin-bottom: 8px;
+    object-fit: contain;
 }
 
 .associate-card__username,
@@ -99,6 +100,7 @@
 
     .associate-card__avatar img {
         width: 80px;
+        object-fit: cover;
     }
 
     .associate-card__username,
@@ -153,4 +155,9 @@
 
 .associate-card__actions {
     margin-top: auto;
+}
+
+.selected {
+    background-color: var(--clr-primary-500);
+    color: var(--clr-white);
 }

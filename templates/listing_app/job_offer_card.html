@@ -1,3 +1,5 @@
+{% load custom_filters %}
+
 <div class="job-offer">
     <div class="job-offer__company">
         <div class="job-offer__company-logo">
@@ -52,7 +54,9 @@
         </div>
         <div class="job-offer__controls">
             <a href="{% url 'job_offer_detail' job_offer.id %}" class="job-offer__details-link more">MORE</a>
-            <a href="{% url 'create_job_offer_application' job_offer.id %}" class="job-offer__details-link apply">APPLY</a>
+            {% if not user|is_associate:job_offer.company_id %}
+                <a href="{% url 'create_job_offer_application' job_offer.id %}" class="job-offer__details-link apply">APPLY</a>
+            {% endif %}
         </div>
     </div>
 </div>

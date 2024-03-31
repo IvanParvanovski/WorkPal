@@ -278,6 +278,10 @@
         color: var(--clr-primary-500);
         background-color: transparent;
         border: 1px solid var(--clr-primary-500);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
     }
     
     .job-offer__details-link.apply {

@@ -60,10 +60,12 @@
         
             <div class="description">Description: {{ object.listing.description }}</div>
         </div>
-        
-        <div class="apply-button">
-            <a href="{% url 'create_project_application' object.id %}" class="apply-button__link">Apply Now</a>
-        </div>
+
+        {% if object.profile.user.id != user.id %}
+            <div class="apply-button">
+                <a href="{% url 'create_project_application' object.id %}" class="apply-button__link">Apply Now</a>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
 

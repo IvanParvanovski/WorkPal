@@ -1,6 +1,8 @@
+from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.utils.decorators import method_decorator
 from django.views import View
 
 from company_profiles_app.forms.company_form import CompanyForm
@@ -13,6 +15,10 @@ class EditCompanyView(LoginRequiredMixin, View):
     form_class_company = CompanyForm
     form_class_company_identifiers = CompanyIdentifiersForm
     template_name = 'company_profiles_app/edit_company.html'
+
+    @method_decorator(permission_required('company_profiles_app.change_company', raise_exception=True))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         company_id = kwargs.get('company_id')

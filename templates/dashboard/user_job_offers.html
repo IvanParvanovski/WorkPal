@@ -1,5 +1,6 @@
 {% extends 'shared/base.html' %}
 {% load static %}
+{% load custom_filters %}
 
 {% block site_header %}
     {% include 'shared/nav_main.html' %}
@@ -17,14 +18,17 @@
             {% for job_offer in company_job_offers %}
                 {% include 'listing_app/job_offer_card.html' with job_offer=job_offer %}
 
-                <div class="controls">
-                    <a class="controls__edit" href="{% url 'edit_job_offer' job_offer.id %}">Edit</a>
+                {% if user|has_group:"ListingsManager" %}
+                     <div class="controls">
+                        <a class="controls__edit" href="{% url 'edit_job_offer' job_offer.id %}">Edit</a>
 
-                    <form class="controls__delete-form" action="{% url 'delete_job_offer' job_offer.id %}" method="post">
-                        {% csrf_token %}
-                        <button class="controls__delete" type="submit">Delete</button>
-                    </form>
-                </div>
+                        <form class="controls__delete-form" action="{% url 'delete_job_offer' job_offer.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="controls__delete" type="submit">Delete</button>
+                        </form>
+                    </div>
+                {% endif %}
+
         {% endfor %}
         </div>
        

@@ -126,8 +126,7 @@ class ApplicationProjectDetails(LoginRequiredMixin, DetailView):
         return render(request, ApplicationProjectDetails.template_name, context=context)
 
 
-class AcceptApplication(LoginRequiredMixin, View):
-    @method_decorator(permission_required('application_app.adjudicate_application', raise_exception=True))
+class AcceptApplicationAbstract(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         application_id = kwargs.get('application_id')
         application = ApplicationService.get_application_by_id(application_id)
@@ -136,10 +135,31 @@ class AcceptApplication(LoginRequiredMixin, View):
         return redirect('dashboard')
 
 
-class RejectApplication(LoginRequiredMixin, View):
+class AcceptProjectApplication(AcceptApplicationAbstract):
+    def post(self, request, *args, **kwargs):
+        return super().post(self, request, *args, **kwargs)
+
+
+class AcceptJobOfferApplication(AcceptApplicationAbstract):
     @method_decorator(permission_required('application_app.adjudicate_application', raise_exception=True))
+    def post(self, request, *args, **kwargs):
+        return super().post(self, request, *args, **kwargs)
+
+
+class RejectApplicationAbstract(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         application_id = kwargs.get('application_id')
         application = ApplicationService.get_application_by_id(application_id)
         ApplicationService.set_application_is_checked_true(application)
         return redirect('dashboard')
+
+
+class RejectJobOfferApplication(RejectApplicationAbstract):
+    @method_decorator(permission_required('application_app.adjudicate_application', raise_exception=True))
+    def post(self, request, *args, **kwargs):
+        return super().post(self, request, *args, **kwargs)
+
+
+class RejectProjectApplication(RejectApplicationAbstract):
+    def post(self, request, *args, **kwargs):
+        return super().post(self, request, *args, **kwargs)

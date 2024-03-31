@@ -138,12 +138,12 @@
                                             <span class="dashboard__label">Application Location:</span> {{ application.listing.location }}
                                         </div>
                                         <div class="dashboard__controls">
-                                            <form class="dashboard__accept-form" action="{% url 'accept_application' application.id %}" method="post">
+                                            <form class="dashboard__accept-form" action="{% url 'accept_project_application' application.id %}" method="post">
                                                 {% csrf_token %}
                                                 <button type="submit" class="dashboard__accept-button">Accept</button>
                                             </form>
 
-                                            <form class="dashboard__reject-form" action="{% url 'reject_application' application.id %}" method="post">
+                                            <form class="dashboard__reject-form" action="{% url 'reject_project_application' application.id %}" method="post">
                                                 {% csrf_token %}
                                                 <button type="submit" class="dashboard__reject-button">Reject</button>
                                             </form>
@@ -187,16 +187,19 @@
                                         </div>
 
                                         <div class="dashboard__controls">
-                                            <form class="dashboard__accept-form" action="{% url 'accept_application' application.id %}" method="post">
+                                            {% if perms.application_app.adjudicate_application %}
+                                                 <form class="dashboard__accept-form" action="{% url 'accept_job_offer_application' application.id %}" method="post">
                                                 {% csrf_token %}
                                                 <button class="dashboard__accept-button" type="submit">Accept</button>
-                                            </form>
-                                            <form class="dashboard__reject-form" action="{% url 'reject_application' application.id %}" method="post">
-                                                {% csrf_token %}
-                                                <button class="dashboard__reject-button" type="submit">
-                                                    Reject
-                                                </button>
-                                            </form>
+                                                </form>
+                                                <form class="dashboard__reject-form" action="{% url 'reject_job_offer_application' application.id %}" method="post">
+                                                    {% csrf_token %}
+                                                    <button class="dashboard__reject-button" type="submit">
+                                                        Reject
+                                                    </button>
+                                                </form>
+                                            {% endif %}
+
                                             <a class="dashboard__details-link" href="{% url 'job_offer_application_details' application.id %}">Details</a>
                                         </div>
 

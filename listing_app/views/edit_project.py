@@ -68,4 +68,9 @@ class EditProjectView(LoginRequiredMixin, View):
             print(project_form.errors)
             print(listing_form.errors)
 
-        return HttpResponse('invalid')
+        context = {
+            'listing_form': listing_form,
+            'project_form': project_form,
+        }
+
+        return render(request, EditProjectView.template_name, context=context)

@@ -1,13 +1,19 @@
 from django.urls import path
 
 from application_app.permissions import make_application_moderator
-from application_app.views import JobOfferApplicationCreateView, ProjectApplicationCreateView, AcceptApplication, \
-    RejectApplication, ApplicationJobOfferDetails, ApplicationProjectDetails
+from application_app.views import JobOfferApplicationCreateView, ProjectApplicationCreateView, \
+    ApplicationJobOfferDetails, ApplicationProjectDetails, AcceptProjectApplication, \
+    RejectProjectApplication, AcceptJobOfferApplication, RejectJobOfferApplication
 
 main_urls = [
     # Actions
-    path('accept/<int:application_id>', AcceptApplication.as_view(), name='accept_application'),
-    path('reject/<int:application_id>', RejectApplication.as_view(), name='reject_application'),
+    path('accept/project/<int:application_id>', AcceptProjectApplication.as_view(), name='accept_project_application'),
+    path('reject/project/<int:application_id>', RejectProjectApplication.as_view(), name='reject_project_application'),
+
+    path('accept/job_offer/<int:application_id>', AcceptJobOfferApplication.as_view(),
+         name='accept_job_offer_application'),
+    path('reject/job_offer/<int:application_id>', RejectJobOfferApplication.as_view(),
+         name='reject_job_offer_application'),
 
     # Details views
     path('details/job_offer/<int:application_id>',
