@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('job_title', models.CharField(max_length=50)),
                 ('description', models.TextField(max_length=5000)),
-                ('image', models.ImageField(default='images/default/default_profile_img.jpg', upload_to=accounts_app.models.profile.Profile.user_directory_path)),
+                ('image', models.ImageField(default='images/default/default_profile_img.jpg')),
             ],
         ),
         migrations.CreateModel(

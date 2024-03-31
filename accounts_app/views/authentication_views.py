@@ -21,7 +21,7 @@ class SignUpView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         form_user = self.form_class_user(request.POST)
-        form_profile = self.form_class_profile(request.POST)
+        form_profile = self.form_class_profile(request.POST, request.FILES)
 
         if form_user.is_valid() and form_profile.is_valid():
             return self.forms_valid(form_user, form_profile)

@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 from company_profiles_app.forms.company_form import CompanyForm
@@ -56,7 +56,7 @@ class EditCompanyView(LoginRequiredMixin, View):
                                                             value=company_identifiers_form.cleaned_data['email'],
                                                             company=company)
 
-            return HttpResponse('valid')
+            return redirect('')
         else:
             print(company_form.errors)
             print(company_identifiers_form.errors)

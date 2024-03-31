@@ -25,12 +25,11 @@
             {% include 'company_profiles_app/search_company.html' %}
 
             <button class="search__next-btn" disabled id="next-btn">Next</button>
-
         </div>
     
         <!-- {{ companies }} -->
         <div class="create-form">
-            <form id="create-form__form" method="post">
+            <form id="create-form__form" method="post" enctype="multipart/form-data">
                 <h3 class="create-form__title">Add new company</h3>
                 {% csrf_token %}
                 {{ company_form.as_div }}

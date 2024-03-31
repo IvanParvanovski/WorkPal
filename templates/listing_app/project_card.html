@@ -1,8 +1,7 @@
 <div class="project__item clickable-div" data-url="{% url 'project_detail' project.id %}">
     <div class="project__user">
-        <!-- <div class="project__user-image">{{ project.profile.image }}</div> -->
         <div class="project__user-image">
-            <img src="/media/images/default/default_profile_img.jpg" alt="No Image">
+            <img src="{{ project.profile.image.url }}" alt="No Image">
         </div>
         <div class="project__user-username">{{ project.profile.user.username }} | {{ project.profile.job_title }}</div>
         <!-- <div class="project__user-job-title"></div> -->

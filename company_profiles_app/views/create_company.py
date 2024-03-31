@@ -25,12 +25,17 @@ class CreateCompanyView(LoginRequiredMixin, View):
         return render(request, self.template_name, context=context)
 
     def post(self, request, *args, **kwargs):
-        company_form = self.form_class_create_company(request.POST)
+        company_form = self.form_class_create_company(request.POST, request.FILES)
         company_identifiers_form = self.form_class_company_identifiers(request.POST)
 
         # print(company_identifiers_form)
         if company_form.is_valid() and \
                 company_identifiers_form.is_valid():
+
+            if not company_form.cleaned_data['company_logo']:
+                company_form.cleaned_data['company_logo'] = 'https://res.cloudinary.com/dpjfbxicd/image/upload/v1711847315/default_company_img_hwuiww.jpg'
+
+            print(company_form.cleaned_data['company_logo'])
 
             company = CompanyService.create_company(address=company_form.cleaned_data['address'],
                                                     secondary_address=company_form.cleaned_data['secondary_address'],

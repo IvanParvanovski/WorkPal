@@ -41,20 +41,3 @@ class Employment(models.Model):
         return f'Employment(job_t={self.job_title}, pi={self.profile_id}, ci={self.company_id}, is_a={self.is_associate})'
 
 
-@receiver(pre_save, sender=Profile)
-def delete_old_profile_pic_when_save(sender, *args, **kwargs):
-    """
-    Deletes the existing profile picture to avoid name conflicts with new uploads.
-    """
-
-    instance = kwargs['instance']
-    path = Profile.get_absolute_path_to_user_profile_storage(instance.user_id)
-
-    if os.path.exists(path):
-        files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
-        print(files)
-
-        for f in files:
-            if 'profile_picture' in f:
-                os.remove(path + '/' + f)
-                break

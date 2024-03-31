@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('address', models.CharField(max_length=192)),
                 ('secondary_address', models.CharField(max_length=192)),
-                ('company_logo', models.ImageField(default='images/default/default_company_img.jpg', upload_to=company_profiles_app.models.company.Company.save_company_logo)),
+                ('company_logo', models.ImageField(default='images/default/default_company_img.jpg')),
                 ('name', models.CharField(max_length=160)),
                 ('website', models.URLField(max_length=128)),
                 ('registered_at', models.DateTimeField(auto_now_add=True)),

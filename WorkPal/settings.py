@@ -15,6 +15,11 @@ from pathlib import Path
 import environ
 import dj_database_url
 
+# Cloudinary imports
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -54,6 +59,7 @@ INSTALLED_APPS = [
     'dashboard_app',
 
     'django_htmx',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -180,3 +186,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# Cloudinary - Django integration
+
+cloudinary.config(
+    cloud_name=env('CLOUD_NAME'),
+    api_key=env('API_KEY'),
+    api_secret=env('API_SECRET'),
+)
+

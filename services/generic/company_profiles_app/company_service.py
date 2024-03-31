@@ -14,6 +14,7 @@ class CompanyService(CompanyInterface):
         company = Company(
             address=address,
             secondary_address=secondary_address,
+            company_logo=company_logo,
             name=name,
             website=website
         )

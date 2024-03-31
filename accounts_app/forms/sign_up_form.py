@@ -45,6 +45,10 @@ class SignUpFormProfile(forms.ModelForm):
         fields = ['job_title', 'description', 'image_path']
 
     def save(self, user=None, commit=True):
+        # Set default image
+        if not self.cleaned_data['image_path']:
+            self.cleaned_data['image_path'] = 'https://res.cloudinary.com/dpjfbxicd/image/upload/v1711846080/default_profile_img.jpg'
+
         profile = ProfileService.create_profile(user=user,
                                                 job_title=self.cleaned_data['job_title'],
                                                 description=self.cleaned_data['description'],
