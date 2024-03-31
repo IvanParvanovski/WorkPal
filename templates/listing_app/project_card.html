@@ -1,0 +1,29 @@
+<div class="project__item clickable-div" data-url="{% url 'project_detail' project.id %}">
+    <div class="project__user">
+        <div class="project__user-image">
+            <img src="{{ project.profile.image.url }}" alt="No Image">
+        </div>
+        <div class="project__user-username">{{ project.profile.user.username }} | {{ project.profile.job_title }}</div>
+        <!-- <div class="project__user-job-title"></div> -->
+    </div>
+    <div class="project__info">
+        <div class="project__details">
+            <div class="project__detail project__details-title">{{ project.listing.title }}</div>
+            <div class="project__detail project__details-created">Created: {{ project.listing.date_created }}</div>
+            <div class="project__detail project__details-updated">Updated: {{ project.listing.date_updated }}</div>
+        </div>
+        <div class="project__extras">
+            <div class="project__detail project__extras-location"><span class="project__detail__highlight"><i class="material-symbols-outlined">location_on</i></span> {{ project.listing.location }}</div>
+            <div class="project__detail project__extras-duration"><span class="project__detail__highlight"><i class="material-symbols-outlined">timer</i></span> {{ project.estimated_duration }}</div>
+            <div class="project__detail project__extras-payment"><span class="project__detail__highlight"><i class="material-symbols-outlined">payments</i></span>${{ project.wage }}</div>
+        </div>
+    </div>
+
+    <div class="project__controls">
+        <a href="{% url 'project_detail' project.id  %}" class="project__details-link more">MORE</a>
+
+        {% if project.profile.user.id != user.id %}
+            <a href="{% url 'create_project_application' project.id %}" class="project__details-link apply">APPLY</a>
+        {% endif %}
+    </div>
+</div>

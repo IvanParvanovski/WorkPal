@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
-from django.contrib.contenttypes.models import ContentType
+from django.db.models import CASCADE
+
+from accounts_app.models.profile import Profile
 
 from listing_app.models.listing import Listing
 from django.utils.translation import gettext_lazy as _
@@ -14,6 +16,7 @@ class Project(models.Model):
         OPEN = 'open', _('Open')
         COMPLETED = 'completed', _('Completed')
 
+    profile = models.ForeignKey(Profile, on_delete=CASCADE)
     listing = models.OneToOneField(Listing, on_delete=models.CASCADE, related_name='project')
     wage = models.PositiveIntegerField()
     preferred_payment = models.CharField(max_length=50)

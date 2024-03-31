@@ -1,0 +1,66 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/listing_app/job_offers_catalog.css'%}">
+    <link rel="stylesheet" href="{% static 'css/dashboard/user_job_offers.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard/no-results.css' %}">
+
+{% endblock %}
+
+{% block site_main %}
+    {% if companies_job_offers|length == 0 %}
+        <div class="message">
+             <h1 class="message__title">Add Your First Job Offer</h1>
+
+            <p class="message__text">
+                To view job offers, you must be affiliated with a company that has posted openings. If you are authorised, you can post listings too.
+            </p>
+            <div class="message__action">
+                <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
+                <a href="{% url 'create_job_offer' %}" class="message__link action">Add job offer <i class="material-symbols-outlined">arrow_forward</i></a>
+            </div>
+        </div>
+
+    {% else %}
+
+    {% for company_job_offers in companies_job_offers %}
+        <div class="listing-list">
+            {% for job_offer in company_job_offers %}
+                {% include 'listing_app/job_offer_card.html' with job_offer=job_offer %}
+
+                {% if user|has_group:"ListingsManager" %}
+                     <div class="controls">
+                        <a class="controls__edit" href="{% url 'edit_job_offer' job_offer.id %}">Edit</a>
+
+                        <form class="controls__delete-form" action="{% url 'delete_job_offer' job_offer.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="controls__delete" type="submit">Delete</button>
+                        </form>
+                    </div>
+                {% endif %}
+
+        {% endfor %}
+        </div>
+    {% endfor %}
+    {% endif %}
+
+    {% include 'shared/nav-arrow.html' %}
+{% endblock %}
+
+
+    <h2>Your Job Offers</h2>
+
+    <div>
+        JOB OFFERS
+        
+    </div>
+
+</body>
+</html>

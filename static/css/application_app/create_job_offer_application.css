@@ -1,0 +1,97 @@
+@media screen and (max-width: 499px) {
+    .job-offer-application {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 899px) {
+    .job-offer-application {
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .job-offer-application {
+        width: 40%;
+    }
+}
+
+
+.job-offer-application {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.job-offer-application__title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.job-offer-application__form-container {
+    margin-bottom: 20px;
+}
+
+.job-offer-application__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    
+}
+
+.job-offer-application__form-field {
+    margin-bottom: 20px;
+}
+
+.job-offer-application__form div:has(textarea) {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.job-offer-application__form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+
+    min-height: 200px;
+    max-height: 350px;
+}
+
+.job-offer-application__submit-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: var(--size-body-large);
+
+}
+
+.job-offer-application__submit-btn:hover {
+    background-color: #0056b3;
+}
+
+.errorlist {
+    padding-left: 8px;
+    margin-left: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-left: 2px solid red;
+    margin-bottom: 8px;
+}
+

@@ -1,30 +1,77 @@
+{% extends 'shared/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>Index.HTML</h1>
 
-    <div>
-        {% if user.is_authenticated %}
-            <p>USER -> {{ user.username }}</p>
-            <a href="{% url 'sign_out' %}">Sign Out</a>
-        {% else %}
-            <a href="{% url 'sign_in' %}">Sign In</a>
-            <a href="{% url 'sign_up' %}">Sign Up</a>
-        {% endif %}
-    </div>
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home/landing_page.css'%}">
+{% endblock %}
 
-    <div>
-        <a href="{% url 'create_company' %}">Create Company</a>
-    </div>
+{% block site_title %}
+    Index Page
+{% endblock %}
 
-    {% if user.is_staff %}
-        <a href="{% url 'control_panel' %}">Control Panel</a>
-    {% endif %}
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
 
-</body>
-</html>
+        <div class="header__container">
+            <div class="header__content">
+                <h1 class="header__title">Find a job that suits your interests & skills</h1>
+                <p class="header__description">
+                    Aliquam vitae turpis in diam convallis finibus in at risus. Nullam in scelerisque leo, eget sollicitudin velit bestibulum.
+                </p>
+                <div class="header__form">
+                    <form action="{% url 'listings_catalog_search' %}" method="get" class="header__search-form">
+                        <input id="industries_search" type="text" name="q" placeholder="Job title, keyword ..." class="header__search-input">
+                        <i class="material-symbols-outlined header__form__icon">search</i>
+
+                        <button type="submit" class="header__search-button btn-primary">Find Job</button>
+                    </form>
+                </div>
+            </div>
+            <div class="header__image">
+                <img src="{% static 'images/Illustration.png' %}" alt="No heading image" class="header__image-src">
+            </div>
+        </div>
+
+        <div class="header__career-data-dashboard">
+            <div class="header__career-data-dashboard-item">
+                <i class="material-symbols-outlined header__career-data-dashboard-icon">business_center</i>
+                <h4 class="header__career-data-dashboard-title">1,75,324</h4>
+                <p class="header__career-data-dashboard-description">Live job</p>
+            </div>
+            <div class="header__career-data-dashboard-item">
+                <i class="material-symbols-outlined header__career-data-dashboard-icon">domain</i>
+                <h4 class="header__career-data-dashboard-title">97,354</h4>
+                <p class="header__career-data-dashboard-description">Companies</p>
+            </div>
+            <div class="header__career-data-dashboard-item">
+                <i class="material-symbols-outlined header__career-data-dashboard-icon">group</i>
+                <h4 class="header__career-data-dashboard-title">38,47,154</h4>
+                <p class="header__career-data-dashboard-description">Candidates</p>
+            </div>
+            <div class="header__career-data-dashboard-item">
+                <i class="material-symbols-outlined header__career-data-dashboard-icon">work</i>
+                <h4 class="header__career-data-dashboard-title">7,532</h4>
+                <p class="header__career-data-dashboard-description">New Jobs</p>
+            </div>
+        </div>
+{% endblock %}
+
+{% block site_main %}
+     <div class="industries-search">
+            <h2 class="industries-search__title">Explore by category</h2>
+
+            <div class="industries-search__list">
+                {% for industry in industries %}
+                <a class="industries-search__item" href="{% url 'listings_catalog' industry.name|lower %}">
+                    <i class="material-symbols-outlined industries-search__icon">{{ industry.icon }}</i>
+                    <span class="industries-search__name">{{ industry.name }}</span>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% include 'shared/nav-arrow.html' %}
+{% endblock %}
+
+{% block site_scripts %}
+{% endblock %}

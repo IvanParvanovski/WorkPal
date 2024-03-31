@@ -1,0 +1,131 @@
+.company-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 32px;
+    transition: box-shadow 0.3s ease;
+}
+
+.company-card i {
+    color: var(--clr-primary-500);
+    font-size: 28px;
+}
+
+.company-card:hover {
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+/* Elements */
+.company-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.company-card__image img {
+    width: 140px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.company-card__name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.company-card__website,
+.company-card__address,
+.company-card__secondary-address {
+    font-size: 18px;
+    color: #666;
+}
+
+.company-card__website,
+.company-card__address,
+.company-card__secondary-address,
+.company-card__registered-at {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Modifier */
+.company-card__actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.company-card__actions--edit,
+.company-card__actions--delete {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #007bff;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background-color: var(--clr-gray-100);
+
+}
+
+.company-card__actions--edit:hover,
+.company-card__actions--delete:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.company-card__actions--delete {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.company-card__actions--delete:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.company-card__actions--delete:active {
+    transform: translateY(2px);
+}
+
+.company-card__actions--delete:focus {
+    outline: none;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .company-card {
+        width: 80%;
+    }
+
+    .company-card__image img {
+        width: 60px;
+    }
+
+    .company-card__name {
+        font-size: 20px;
+    }
+
+    .company-card__website,
+    .company-card__address,
+    .company-card__secondary-address {
+        font-size: 16px;
+    }
+
+    .company-card__actions--edit,
+    .company-card__actions--delete {
+        padding: 8px 16px;
+        font-size: 16px;
+    }
+}

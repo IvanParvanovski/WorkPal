@@ -1,0 +1,588 @@
+
+@media screen and (max-width: 599px) {
+    .header__container {
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-bottom: 16px;
+    }
+
+    .header__content {
+        box-sizing: border-box;
+    }
+
+    .header__title {
+        font-size: var(--size-heading-1);
+        width: 100%;
+        max-width: 350px;
+        margin-bottom: 24px;
+    }
+
+    .header__description {
+        color: var(--clr-gray-600);
+        margin-bottom: 32px;
+
+        max-width: 380px;
+    }
+
+    .header__title,
+    .header__description {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .header__form {
+        padding: 8px;
+        background-color: var(--clr-white);
+        border-radius: 8px;
+        border: 1px solid var(--clr-gray-200);
+    }
+
+    .header__form form {
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+
+        gap: 4px;
+        box-sizing: border-box;
+    }
+
+    .header__form__icon {
+        position: absolute;
+        top: 24px;
+        left: 8px;
+        color: var(--clr-primary-500);
+        transform: translateY(-50%);
+    }
+
+    .header__form #industries_search {
+        flex: 3;
+        padding: 16px 8px 16px 36px;
+        min-width: 180px;
+        font-size: var(--size-body-medium);
+        border: none;
+    }
+
+    .header__search-button {
+        flex: 1;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        cursor: pointer;
+    }
+
+    .header__career-data-dashboard { 
+        padding-left: 2.5%;
+        padding-right: 2.5%;
+        padding-bottom: 16px;
+        box-sizing: border-box;
+        gap: 16px;
+
+        display: flex;
+        width: 100%;
+
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .header__career-data-dashboard-item {
+        background-color: var(--clr-white);
+        border-radius: 8px;
+        padding: 20px;
+        flex: 1;
+        min-width: 160px;
+
+        display: grid;
+        grid-template-areas: 
+            "item-icon title"
+            "item-icon description";
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .header__career-data-dashboard-item .header__career-data-dashboard-icon {
+        grid-area: item-icon;
+        align-self: center;
+        background-color: var(--clr-primary-50);
+        color: var(--clr-primary-500);
+        padding: 12px;
+        font-size: 28px;
+        margin-right: 16px;
+        align-self: center;
+        border-radius: 8px;
+    }
+
+    .header__career-data-dashboard-item:hover .header__career-data-dashboard-icon {
+        background-color: var(--clr-primary-500);
+        color: white;
+        transition: background-color 0.3s ease, color 0.3s ease; /* Add transition effect */
+    }
+
+    .header__career-data-dashboard .header__career-data-dashboard-title {
+        grid-area: title;
+        align-self: center;
+        font-weight: 400;
+        font-size: var(--size-body-xl);
+    }
+
+    .header__career-data-dashboard .header__career-data-dashboard-description {
+        grid-area: description;
+        align-self: center;
+        font-weight: 200;
+        font-size: var(--size-body-medium);
+    }
+
+    .header__image {
+        display: none;
+    }
+
+    /* Industries */
+
+    .industries-search {
+        /* box-sizing: border-box; */
+        padding: 16px;
+        width: 90%;
+        margin: auto auto;
+    }
+
+    .industries-search__title {
+        margin-bottom: 32px;
+        font-size: var(--size-heading-4);
+    }
+
+    .industries-search__list {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-evenly;
+        gap: 16px;
+    }
+
+    .industries-search__item {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+
+        flex: 1;
+        min-width: 140px;
+        padding: 8px;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--clr-primary-500);
+        border-radius: 8px;
+
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition */
+    }
+
+    .industries-search .industries-search__icon {
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+        transition: transform 0.7s ease, box-shadow 0.7s ease; /* Add transition for hover effect */
+        padding: 8px;
+        line-height: 1; 
+    }
+
+    .industries-search .industries-search__name {
+        font-size: var(--size-body-small); 
+    }
+
+}
+
+/* Styles for screens between 600px and 1023px */
+@media screen and (min-width: 600px) and (max-width: 1023px) {
+    .header__container {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-evenly;
+
+        padding-left: 10%;
+        padding-right: 10%;
+        padding-bottom: 16px;
+    }
+
+    .header__content {
+        width: 60%;
+        box-sizing: border-box;
+    }
+
+    .header__title {
+        font-size: var(--size-heading-1);
+        margin-bottom: 24px;
+    }
+
+    .header__description {
+        color: var(--clr-gray-600);
+        margin-bottom: 32px;
+    }
+
+    .header__title,
+    .header__description {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .header__form {
+        padding: 8px;
+        background-color: var(--clr-white);
+        border-radius: 8px;
+        border: 1px solid var(--clr-gray-200);
+    }
+
+    .header__form form {
+        display: flex;
+        position: relative;
+        gap: 4px;
+        box-sizing: border-box;
+    }
+
+    .header__form #industries_search {
+        flex: 3;
+        padding: 16px 8px 16px 36px;
+        font-size: var(--size-body-medium);
+        border: none;
+    }
+
+    .header__search-button {
+        flex: 1;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        cursor: pointer;
+    }
+
+    .header__form__icon {
+        position: absolute;
+        top: 50%;
+        left: 8px;
+        color: var(--clr-primary-500);
+        transform: translateY(-50%);
+    }
+
+    .header__image {
+        width: 35%;
+    }
+
+    .header__image-src {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .header__career-data-dashboard {
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 16px;
+
+        padding-left: 10%;
+        padding-right: 10%;
+        box-sizing: border-box;
+        gap: 16px;
+    }
+
+    .header__career-data-dashboard-item {
+        width: 40%;
+        background-color: var(--clr-white);
+        display: grid;
+        padding: 20px;
+        border-radius: 8px;
+
+        grid-template-areas: 
+            "item-icon title"
+            "item-icon description";
+        grid-template-columns: auto 1fr; /* Adjusted column widths */
+        grid-template-rows: auto auto; /* Adjusted row heights */
+    }
+ 
+    .header__career-data-dashboard-item .header__career-data-dashboard-icon {
+        grid-area: item-icon;
+        background-color: var(--clr-primary-50);
+        color: var(--clr-primary-500);
+        border-radius: 8px;
+        padding: 16px;
+        font-size: 32px;
+        margin-right: 16px;
+        align-self: center;
+    }
+
+    .header__career-data-dashboard-item:hover .header__career-data-dashboard-icon {
+        background-color: var(--clr-primary-500);
+        color: white;
+        transition: background-color 0.3s ease, color 0.3s ease; /* Add transition effect */
+    }
+      
+    .header__career-data-dashboard-item .header__career-data-dashboard-title {
+        grid-area: title;
+        font-size: var(--size-heading-4);
+        font-weight: 400;
+        align-self: center;
+    }
+    
+    .header__career-data-dashboard-item .header__career-data-dashboard-description {
+        grid-area: description;
+        font-size: var(--size-body-medium);
+        font-weight: 200;
+        align-self: center;
+    }
+
+    /* Industries */
+
+    .industries-search__title {
+        margin-bottom: 24px;
+        font-size: var(--size-heading-3);
+    }
+
+    .industries-search {
+        width: 90%;
+        margin: auto auto;
+        padding: 32px;
+    }
+
+    .industries-search__list {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 8px;
+    }
+
+    .industries-search__item {
+        min-width: 140px;
+        flex: 1;
+
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        border-radius: 8px;
+
+        text-decoration: none;
+        color: var(--clr-primary-500);
+    }
+
+    .industries-search__item:hover {
+        transform: translateY(-5px); 
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);       
+    }
+
+    .industries-search .industries-search__icon {
+        border-radius: 8px;
+        padding: 8px;
+        font-size: 32px; 
+        line-height: 1;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+        transition: transform 0.7s ease, box-shadow 0.7s ease; 
+
+    }
+
+    .industries-search__item:hover .industries-search__icon {
+        background-color: var(--clr-primary-500);
+        color: white;
+        transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    }
+
+    .industries-search .industries-search__name {
+        font-size: var(--size-body-small); 
+    }
+}
+
+/* Styles for screens above 1024px */
+@media screen and (min-width: 1024px) {
+    .header__container {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 10%;
+        padding-right: 10%;
+        margin-bottom: 32px;
+    }
+
+    .header__content {
+        width: 50%;
+    }
+
+    .header__title {
+        font-size: var(--size-heading-1);
+        width: 450px;
+        margin-bottom: 24px;
+    }
+
+    .header__description {
+        color: var(--clr-gray-600);
+        margin-bottom: 32px;
+        width: 480px;
+    }
+
+    .header__title,
+    .header__description {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .header__form {
+        background-color: var(--clr-white);
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid var(--clr-gray-200);
+    }
+
+    .header__form form {
+        display: flex;
+        position: relative;
+        gap: 4px;
+        box-sizing: border-box;
+    }
+
+    .header__form #industries_search {
+        flex: 4;
+        padding: 16px 8px 16px 36px;
+        font-size: var(--size-body-medium);
+        border: none;
+    }
+
+    .header__search-button {
+        flex: 1;
+        cursor: pointer;
+    }
+
+    .header__form__icon {
+        position: absolute;
+        top: 50%;
+        left: 8px;
+        color: var(--clr-primary-500);
+        transform: translateY(-50%);
+    }
+
+    .header__image {
+        width: 35%;
+    }
+
+    .header__image-src {
+        width: 100%;
+    }
+
+    .header__career-data-dashboard {
+        padding-left: 2.5%;
+        padding-right: 2.5%;
+        box-sizing: border-box;
+
+        padding-bottom: 16px;
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        flex-wrap: wrap; /* Allow items to wrap to the next line */
+    }
+    
+    .header__career-data-dashboard-item {
+        background-color: var(--clr-white);
+        width: 20%;
+        padding: 20px;
+        margin-bottom: 16px; /* Add some space between items */
+        display: grid;
+        border-radius: 8px;
+        grid-template-areas: 
+            "item-icon title"
+            "item-icon description";
+        grid-template-columns: auto 1fr; /* Adjusted column widths */
+        grid-template-rows: auto auto; /* Adjusted row heights */
+    }
+    
+    .header__career-data-dashboard-item .header__career-data-dashboard-icon {
+        grid-area: item-icon;
+        background-color: var(--clr-primary-50);
+        color: var(--clr-primary-500);
+        border-radius: 8px;
+        padding: 16px;
+        font-size: 48px;
+        margin-right: 16px;
+        align-self: center;
+    }
+
+    .header__career-data-dashboard-item:hover .header__career-data-dashboard-icon {
+        background-color: var(--clr-primary-500);
+        color: white;
+        transition: background-color 0.3s ease, color 0.3s ease; /* Add transition effect */
+    }
+    
+    .header__career-data-dashboard-item .header__career-data-dashboard-title {
+        grid-area: title;
+        font-size: var(--size-heading-4-em);
+        font-weight: 400;
+        align-self: center;
+    }
+    
+    .header__career-data-dashboard-item .header__career-data-dashboard-description {
+        grid-area: description;
+        font-size: var(--size-body-medium);
+        font-weight: 200;
+        align-self: center;
+    }
+
+    /* Industries */
+
+    .industries-search {
+        padding: 48px;
+        width: 90%;
+        margin: auto auto;
+    }
+
+    .industries-search__title {
+        margin-bottom: 32px;
+        font-size: var(--size-heading-2);
+    }
+
+    .industries-search__list {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: 24px;
+        align-items: flex-start; /* Change to flex-start to prevent centering vertically */
+      }
+      
+      .industries-search__item {
+        width: 22%;
+        flex-grow: 1; /* Allow items to grow and fill the space */
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+
+        padding: 16px;
+        gap: 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--clr-primary-500);
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition */
+      }
+
+    .industries-search__item:hover {
+        transform: translateY(-5px); 
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);       
+    }
+
+    .industries-search .industries-search__icon {
+        /* margin-bottom: 16px; */
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+        transition: transform 0.7s ease, box-shadow 0.7s ease; /* Add transition for hover effect */
+        padding: 8px;
+
+        font-size: 36px; 
+        line-height: 1; 
+    }
+
+    .industries-search__item:hover .industries-search__icon {
+        background-color: var(--clr-primary-500);
+        color: white;
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover effect */
+        
+    }
+
+    .industries-search .industries-search__name {
+        font-size: var(--size-body-large); 
+    }
+}
+
+.header {
+    background-color: var(--clr-background-primary);
+}
+
+.navigation {
+    margin-bottom: 64px;
+}

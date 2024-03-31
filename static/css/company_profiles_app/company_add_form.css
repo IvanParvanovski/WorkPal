@@ -1,0 +1,217 @@
+@media screen and (max-width: 499px){
+    .company-card {
+        width: 90%;
+    }
+
+    .search__no-results,
+    .search__results__desc {
+        font-size: var(--size-body-medium);
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .company-card {
+        width: 60%;
+    }
+
+    .search__no-results,
+    .search__results__desc {
+        font-size: var(--size-body-large);
+
+    }
+}
+
+.company-card {
+    /* background-color: lightseagreen; */
+    margin: auto auto;
+    padding: 8px;
+}
+
+.company-card .search {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    padding: 32px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    background-color: #f8f9fa;
+}
+
+.search__field {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.search__input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    padding-left: 48px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: var(--size-body-medium);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.search__title {
+    text-align: center;
+    margin-bottom: 16px;
+    color: var(--clr-primary-500);
+    font-size: var(--size-body-xl);
+}
+
+
+.search__results {
+    /* background-color: lightgoldenrodyellow; */
+    background-color: var(--clr-white);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 300px;
+    overflow: scroll;
+    padding: 8px;
+    border-radius: 8px;
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.search__icon {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-60%);
+    color: var(--clr-primary-500);
+}
+
+.search__no-results,
+.search__results__desc {
+    margin: auto auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--clr-primary-500);
+}
+
+.search__no-results__description {
+    margin-bottom: 16px;
+}
+
+.search__no-results__btn {
+    background-color: var(--clr-primary-500);
+    color: var(--clr-white);
+    padding: 8px 32px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    border: none;
+    font-size: var(--size-body-medium);
+}
+
+.create-form__submit-btn,
+.search__next-btn {
+    background-color: var(--clr-primary-500);
+    padding: 8px 32px;
+    color: var(--clr-white);
+    border-radius: 4px;
+    border: none;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    
+}
+
+.search__next-btn:disabled {
+    background-color: var(--clr-gray-200);
+}
+
+.create-form__submit-btn:hover,
+.search__next-btn:hover {
+    cursor: pointer;
+}
+
+.create-form__submit-btn {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.create-form {
+    position: absolute;
+    visibility: hidden;
+    top: 0;
+}
+
+.option.selected {
+    background-color: salmon;
+}
+
+.search-results {
+    background-color: aqua;
+}
+
+.search__results .option {
+    margin-bottom: 8px;
+    padding: 16px;
+    border-radius: 4px;
+    border: 1px solid var(--clr-gray-200);
+    width: 100%;
+    box-sizing: border-box;
+    color: var(--clr-gray-600);
+    overflow: visible;
+    white-space: normal; 
+}
+
+.search__results .option.selected {
+    background-color: var(--clr-primary-500);
+    color: var(--clr-white);
+}
+
+.create-form {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.create-form__title {
+    font-size: var(--size-heading-4);
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+#create-form__form div {
+    /* background-color: lightcoral; */
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+#create-form__form div input {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+}
+
+#create-form__form div label {
+    width: 50%;
+    text-align: left;
+    /* background-color: blueviolet; */
+    box-sizing: border-box;
+    font-size: var(--size-body-large);
+    margin-bottom: 4px;
+    padding: 4px;
+}
+
+
+.errorlist {
+    padding-left: 8px;
+    margin-left: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-left: 2px solid red;
+    margin-bottom: 8px;
+}
+

@@ -5,7 +5,7 @@ from services.interfaces.company_profiles_app.employment_interface import Employ
 
 class EmploymentService(EmploymentInterface):
     @staticmethod
-    def create_employment(profile: Profile, company: Company, job_title: str, commit=True)\
+    def create_employment(profile: Profile, company: Company, job_title: str, commit=True) \
             -> Employment:
 
         employment = Employment(
@@ -29,6 +29,33 @@ class EmploymentService(EmploymentInterface):
         return Employment.objects.get(id=_id)
 
     @staticmethod
+    def get_associates_for_company(company_id):
+        return Employment.objects.filter(company_id=company_id,
+                                         is_associate=True,
+                                         is_checked=True)
+
+    @staticmethod
+    def get_associates_for_companies(companies):
+        res = []
+
+        for company in companies:
+            res.append(EmploymentService.get_associates_for_company(company.id))
+
+        return res
+
+    @staticmethod
+    def get_association_requests_for_company(company):
+        return Employment.objects.filter(company_id=company.id,
+                                         is_checked=False)
+
+    @staticmethod
+    def get_association_requests_for_companies(companies):
+        res = []
+        for c in companies:
+            res.append(EmploymentService.get_association_requests_for_company(c))
+        return res
+
+    @staticmethod
     def delete_employment(employment):
         employment.delete()
 
@@ -40,6 +67,13 @@ class EmploymentService(EmploymentInterface):
     @staticmethod
     def set_employment_is_associate_to_true(employment: Employment):
         employment.is_associate = True
+        employment.save()
+        return employment
+
+    @staticmethod
+    def set_employment_is_checked_to_true(employment: Employment):
+        employment.is_checked = True
+        employment.save()
         return employment
 
     @staticmethod
@@ -60,4 +94,3 @@ class EmploymentService(EmploymentInterface):
             employment.save()
 
         return employment
-

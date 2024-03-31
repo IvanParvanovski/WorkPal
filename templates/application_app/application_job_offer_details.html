@@ -1,0 +1,27 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/application_app/application_details.css'%}">
+{% endblock %}
+
+{% block site_main %}
+<div class="application-details">
+    <h1 class="application-details__title">Application details</h1>
+
+    <div class="application-details__section">
+        <div class="application-details__label">CV</div>
+        <div class="application-details__value">{{ job_offer_application_details.cv }}</div>
+    </div>
+    <div class="application-details__section">
+        <div class="application-details__label">Motivation Letter</div>
+        <div class="application-details__value"> {{ job_offer_application_details.motivation_letter }}</div>
+    </div>
+   
+</div>
+{% endblock %}

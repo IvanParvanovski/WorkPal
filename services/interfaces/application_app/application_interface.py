@@ -29,7 +29,37 @@ class ApplicationInterface(ABC):
 
     @staticmethod
     @abstractmethod
+    def get_applications_by_profile_id(profile_id: int):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def get_applications_for_user_project(project):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def get_applications_for_user_projects(projects):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def get_applications_for_job_offer(job_offer):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def get_applications_for_companies_job_offers(companies_job_offers):
+        pass
+
+    @staticmethod
+    @abstractmethod
     def delete_application(application: Application):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def delete_application_by_id(_id: int):
         pass
 
     @staticmethod

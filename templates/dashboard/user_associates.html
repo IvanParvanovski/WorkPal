@@ -1,0 +1,79 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/dashboard/user_associates.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard/no-results.css' %}">
+{% endblock %}
+
+{% block site_main %}
+
+    <div class="companies-associates">
+    {% if companies_associates.count != 0 %}
+        <div class="message">
+             <h1 class="message__title">Company Affiliation Required for Association!</h1>
+
+            <p class="message__text">
+                To have associates, you must be affiliated with a company.
+            </p>
+            <div class="message__action">
+                <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
+                <a href="{% url 'create_company' %}" class="message__link action">Add company <i class="material-symbols-outlined">arrow_forward</i></a>
+            </div>
+        </div>
+    {% else %}
+        {% for company_associates in companies_associates %}
+            {% for associate in company_associates %}
+            <div class="associate-card">
+                <div class="associate-card__info">
+                    <div class="associate-card__avatar">
+                        <img src="{{ associate.profile.image.url }}" alt="No image">
+                    </div>
+                    <div class="associate-card__username">{{ associate.profile.user.username }}</div>
+                    <div class="associate-card__email">{{ associate.profile.user.email }}</div>
+                    <div class="associate-card__job-title">{{ associate.profile.job_title }}</div>
+                    <div class="associate-card__associate-job-title">{{ associate.job_title }}</div>
+                </div>
+                {% if user|has_group:"RightsManager"  %}
+                     <div class="associate-card__actions">
+                     {% if associate.profile.user|has_group:"AssociatesModerator" %}
+                        <a class="associate-card__action selected">Make Associate Moderator</a>
+                     {% else %}
+                        <a href="{% url 'make_association_moderator' associate.profile_id %}" class="associate-card__action">Make Associate Moderator</a>
+                     {% endif %}
+
+                     {% if associate.profile.user|has_group:"ApplicationModerator" %}
+                        <a class="associate-card__action selected">Make Application Moderator</a>
+                     {% else %}
+                        <a href="{% url 'make_application_moderator' associate.profile.id %}" class="associate-card__action">Make Application Moderator</a>
+                     {% endif %}
+
+                     {% if associate.profile.user|has_group:"RightsManager" %}
+                        <a class="associate-card__action selected">Make Rights Manager</a>
+                     {% else %}
+                        <a href="{% url 'make_rights_manager' associate.profile.id %}" class="associate-card__action">Make Rights Manager</a>
+                     {% endif %}
+
+                     {% if associate.profile.user|has_group:"ListingsManager" %}
+                        <a class="associate-card__action selected">Make Listings Manager</a>
+                     {% else %}
+                        <a href="{% url 'make_listings_manager' associate.profile.id %}" class="associate-card__action">Make Listings Manager</a>
+                     {% endif %}
+                     </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% endfor %}
+        </div>
+    {% endif %}
+
+
+    {% include 'shared/nav-arrow.html' %}
+
+{% endblock %}

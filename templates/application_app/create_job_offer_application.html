@@ -1,0 +1,25 @@
+{% extends 'shared/base.html'%}
+{% load static %}
+
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/application_app/create_job_offer_application.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+{% endblock %}
+
+{% block site_main%}
+    <div class="job-offer-application">
+        <h2 class="job-offer-application__title">Job Offer Application</h2>
+        <div class="job-offer-application__form-container">
+            <form class="job-offer-application__form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ job_offer_form.as_div }}
+                <button class="job-offer-application__submit-btn" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

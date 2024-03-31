@@ -1,0 +1,48 @@
+.employment-info {
+    width: 50%;
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.employment-info__title {
+    font-size: 24px;
+    margin-bottom: 32px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 300;
+}
+
+/* Style the select element */
+select {
+    width: 50%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+#id_job_title {
+    margin-bottom: 16px;
+}
+
+.employment-info__submit {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: var(--size-body-large);
+
+}
+
+.employment-info__submit:hover {
+    background-color: #0056b3;
+}

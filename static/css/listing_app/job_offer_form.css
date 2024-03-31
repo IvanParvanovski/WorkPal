@@ -1,0 +1,144 @@
+body {
+    background-color: var(--clr-background-primary);
+}
+
+h1 {
+    text-align: center;
+    font-size: var(--size-heading-3);
+}
+
+form {
+    width: 70%;
+    margin: auto auto;
+    padding: 5%;
+    box-sizing: border-box;
+    /* background-color: lightcoral; */
+}
+
+
+form div:not(:has(fieldset),
+    #id_industries,
+    #id_industries > *) {
+
+    /* background-color: lightblue; */
+    /* padding-bottom: 16px; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-bottom: 32px;
+}
+
+form div:not(:has(fieldset), #id_industries,
+    #id_industries > *) label {
+        font-size: var(--size-body-large);
+        text-transform: capitalize;
+        font-weight: 200;
+}
+
+form div:not(:has(fieldset), #id_industries,
+    #id_industries > *) input:not(#id_remote_option), textarea {
+    width: 100%;
+    border-radius: 4px;
+    border: none;
+}
+
+form div:not(:has(fieldset), #id_industries,
+    #id_industries > *) input {
+    padding: 12px;
+    font-size: var(--size-body-medium);
+}
+
+
+form textarea {
+    resize: none;
+}
+
+form div:has(#id_images) > div:nth-child(4) {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+form div:has(#id_images) > div:nth-child(4) > * {
+    width: 100%;
+}
+
+#id_industries {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 16px;
+    box-sizing: border-box;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+
+#id_industries legend {
+    font-size: var(--size-body-large);
+    font-weight: 200;
+}
+
+#id_industries div {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+
+#id_industries input[type='checkbox'] {
+    visibility: hidden;
+    position: absolute;
+}
+
+#id_industries div label {
+    display: inline-block;
+    padding: 5px;
+    width: 70%;
+    cursor: pointer; /* Change cursor to pointer to indicate clickable */
+    padding: 10px; /* Add padding for clickable area */
+    border-radius: 4px; /* Add rounded corners for a button-like appearance */
+    background-color: #f0f0f0; /* Add a background color */
+    transition: background-color 0.3s ease; 
+    
+}
+
+#id_industries div label.clicked {
+    background-color: var(--clr-primary-500);
+    color: var(--clr-white);
+}
+
+
+#id_industries input {
+    display: inline;
+}
+
+#btn-submit {
+    background-color: var(--clr-primary-500);
+    color: var(--clr-white);
+    font-size: var(--size-body-large);
+    padding: 8px 48px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    transition: box-shadow 0.3s ease; 
+}
+
+#btn-submit:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+#otherInputContainer {
+    width: 100%;
+}
+
+
+.errorlist {
+    padding-left: 8px;
+    margin-left: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-left: 2px solid red;
+    margin-bottom: 8px;
+}
+

@@ -14,6 +14,7 @@ class CompanyService(CompanyInterface):
         company = Company(
             address=address,
             secondary_address=secondary_address,
+            company_logo=company_logo,
             name=name,
             website=website
         )
@@ -28,9 +29,19 @@ class CompanyService(CompanyInterface):
         return Company.objects.get(id=_id)
 
     @staticmethod
+    def get_user_companies(profile_id: int):
+        return Company.objects.filter(employment__is_associate=True,
+                                      employment__profile_id=profile_id).distinct()
+
+    @staticmethod
     def delete_company_by_id(_id: int):
         company = CompanyService.get_company_by_id(_id)
         company.delete()
+
+    @staticmethod
+    def get_verified_companies(search_text):
+        return Company.objects.filter(name__icontains=search_text,
+                                      is_verified=True)
 
     @staticmethod
     def delete_company(company: Company):
@@ -49,6 +60,7 @@ class CompanyService(CompanyInterface):
 
         company.address = address
         company.secondary_address = secondary_address
+        company.company_logo = company_logo
         company.name = name
         company.website = website
 

@@ -1,0 +1,72 @@
+{% extends 'shared/base.html' %}
+{% load custom_filters %}
+{% load static %}
+
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/dashboard/user_companies.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard/no-results.css' %}">
+
+{% endblock %}
+
+{% block site_main %}
+    {% if user_companies.count == 0 %}
+         <div class="message">
+             <h1 class="message__title">Your Affiliated Companies</h1>
+
+            <p class="message__text">
+                When you join a company, all your affiliated companies will be listed here.
+            </p>
+            <div class="message__action">
+                <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
+                <a href="{% url 'create_company' %}" class="message__link action">Add company <i class="material-symbols-outlined">arrow_forward</i></a>
+            </div>
+        </div>
+
+    {% else %}
+        <div>
+        {% for c in user_companies %}
+        <div class="company-card">
+            <div class="company-card__info">
+                <div class="company-card__image">
+                    <img src="{{ c.company_logo.url }}" alt="No image">
+                </div>
+                <div class="company-card__name">{{ c.name }}</div>
+                <div class="company-card__website">
+                    <i class="material-symbols-outlined">globe_asia</i>
+                    {{ c.website }}
+                </div>
+                <div class="company-card__address">
+                    <i class="material-symbols-outlined">location_on</i>
+                    {{ c.address }}
+                </div>
+                <div class="company-card__registered-at">
+                    <i class="material-symbols-outlined">calendar_month</i>
+                    {{ c.registered_at }}
+                </div>
+            </div>
+
+            {% if user|has_group:"CompanyManager" %}
+                 <div class="company-card__actions">
+                    <a href="{% url 'edit_company' c.id %}" class="company-card__actions--edit">Edit</a>
+                    <form action="{% url 'delete_company' c.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="company-card__actions--delete">Delete</button>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
+    {% include 'shared/nav-arrow.html' %}
+{% endblock %}
+
+{% block site_scripts %}
+{% endblock %}

@@ -30,6 +30,16 @@ class CompanyIdentifiersInterface(ABC):
 
     @staticmethod
     @abstractmethod
+    def get_company_identifier_email(company_id):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def get_company_identifier_phone_number(company_id):
+        pass
+
+    @staticmethod
+    @abstractmethod
     def delete_identifier(identifier: CompanyIdentifiers):
         pass
 

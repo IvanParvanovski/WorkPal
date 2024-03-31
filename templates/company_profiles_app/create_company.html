@@ -1,79 +1,123 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
-    <style>
-        #create-form {
-            visibility: hidden;
-        }
-        .option.selected {
-            background-color: salmon;
-        }
-    </style>
-</head>
-<body>
-    {% include 'company_profiles_app/search_company.html' %}
+{% extends 'shared/base.html' %}
+{% load static %}
 
-    {{ companies }}
+<!-- TODO TODO TODO -->
+<!-- TODO TODO TODO -->
+<!-- HAS TO BE IMPLEMENTED, NOTHING IS DONE -->
+<!-- TODO TODO TODO -->
+<!-- TODO TODO TODO -->
+<!-- TODO TODO TODO -->
 
-    <div id="create-form">
-        <form method="post">
-            {% csrf_token %}
-            {{ company_form.as_div }}
-            {{ company_identifiers_form.as_div }}
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
 
-            {{ company_identifiers.as_div }}
-            <button type="submit">Submit</button>
-        </form>
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/company_profiles_app/company_add_form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css'%}">
+{% endblock%}
+
+{% block site_main %}
+
+    <div class="company-card">
+        <div class="search">
+            <h3 class="search__title">Search companies</h3>
+            {% include 'company_profiles_app/search_company.html' %}
+
+            <button class="search__next-btn" disabled id="next-btn">Next</button>
+        </div>
+    
+        <!-- {{ companies }} -->
+        <div class="create-form">
+            <form id="create-form__form" method="post" enctype="multipart/form-data">
+                <h3 class="create-form__title">Add new company</h3>
+                {% csrf_token %}
+                {{ company_form.as_div }}
+                {{ company_identifiers_form.as_div }}
+    
+                {{ company_identifiers.as_div }}
+                <button class="create-form__submit-btn" type="submit">Submit</button>
+            </form>
+        </div>
     </div>
 
-    <button id="next-btn">Next</button>
 
-    <script>
-        {# Redirect to next page #}
-        document.getElementById('next-btn').addEventListener('click', function() {
-            const elementId = document.querySelector('.selected').value;
-            window.location.href = `/company_profiles_app/create_employment/ci=${elementId}`;
-        })
-    </script>
+{% endblock %}
 
-    <script>
-        {#  Add select functionality for each option  #}
-        let lastSelected;
-        createForm = document.getElementById('create-form');
+{% block site_scripts %}
+<script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
 
-        function handleSelect(event) {
-            if (lastSelected) {
-                lastSelected.classList.remove('selected');
-            }
+<script>
+    document.getElementById('next-btn').addEventListener('click', function() {
+        const elementId = document.querySelector('.selected').value;
+        window.location.href = `/dashboard/companies/add/ci=${elementId}`;
+    })
+</script>
 
-            if (event.target.classList.contains('option')) {
-                const option = event.target;
-                option.classList.add('selected');
-                lastSelected = event.target;
-            }
+<script>
+    let lastSelected;
+    createForm = document.getElementsByClassName('create-form')[0];
+
+    function handleSelect(event) {
+        const nextBtn = document.getElementsByClassName('search__next-btn')[0];
+
+        if (lastSelected) {
+            lastSelected.classList.remove('selected');
         }
 
-        function displayForm(event) {
+        if (event.target.classList.contains('option')) {
+            const option = event.target;
+            option.classList.add('selected');
+            lastSelected = event.target;
+            console.log(nextBtn)
+            nextBtn.removeAttribute('disabled');
+        }
+    }
 
-            if (event.target.id === 'add-company-btn') {
-                event.preventDefault();
-                addCompanyBtn = event.target;
+    function displayForm(event) {
 
-                if (addCompanyBtn.innerText === 'Add company') {
-                    addCompanyBtn.innerText = 'Hide form';
-                    createForm.style.visibility = 'visible';
-                } else {
-                    addCompanyBtn.innerText = 'Add company';
-                    createForm.style.visibility = 'hidden';
-                }
+        if (event.target.id === 'add-company-btn') {
+            event.preventDefault();
+            addCompanyBtn = event.target;
+
+            if (addCompanyBtn.innerText === 'Add company') {
+                addCompanyBtn.innerText = 'Hide form';
+                createForm.style.visibility = 'visible';
+                createForm.style.position = 'relative';
+                
+            } else {
+                addCompanyBtn.innerText = 'Add company';
+                createForm.style.visibility = 'hidden';
+                createForm.style.position = 'absolute';
             }
         }
+    }
 
-        document.getElementById('results').addEventListener('click', handleSelect);
-        document.getElementById('results').addEventListener('click', displayForm);
-    </script>
-</body>
-</html>
+    function displayInvalidData(event) {
+        console.log('in')
+        console.log(isFormEmpty())
+        if (!isFormEmpty()) {
+            createForm.style.visibility = 'visible';
+            createForm.style.position = 'relative';
+        }
+    }
+
+    function isFormEmpty() {
+        // Modify this function according to your form fields
+        // For example, check if input fields are empty
+        const inputFields = document.querySelectorAll('#create-form__form input');
+        console.log(inputFields)
+        for (let i = 0; i < inputFields.length; i++) {
+            if (inputFields[i].name !== 'company_logo' && !inputFields[i].value.trim()) {
+
+                return true; // Form is empty
+            }
+        }
+        return false; // Form has content
+    }
+
+    document.getElementById('results').addEventListener('click', handleSelect);
+    document.getElementById('results').addEventListener('click', displayForm);
+    document.addEventListener('DOMContentLoaded', displayInvalidData);
+</script>
+{% endblock %}

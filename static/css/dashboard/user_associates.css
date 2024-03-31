@@ -1,0 +1,163 @@
+.companies-associates {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    justify-content: space-around;
+}
+
+.associate-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 20px;
+    width: 45%; 
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.associate-card__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.associate-card__avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.associate-card__avatar img {
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    object-fit: contain;
+}
+
+.associate-card__username,
+.associate-card__email,
+.associate-card__job-title,
+.associate-card__associate-job-title {
+    font-size: 18px;
+    color: #666;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.associate-card__actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    flex: 1;
+    min-width: 200px;
+    padding: 5%;
+}
+
+.associate-card__action {
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--clr-primary-500);
+    border: 2px solid var(--clr-primary-500);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.associate-card__action:hover {
+    background-color: var(--clr-primary-500);
+    color: #fff;
+}
+
+.associate-card__action--manager {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.associate-card__action--manager:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+    .associate-card {
+        width: 80%;
+    }
+
+    .associate-card__avatar img {
+        width: 80px;
+        object-fit: cover;
+    }
+
+    .associate-card__username,
+    .associate-card__email,
+    .associate-card__job-title,
+    .associate-card__associate-job-title {
+        font-size: 16px;
+    }
+
+    .associate-card__action {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    
+}
+
+.associate-card__email {
+    font-style: italic;
+}
+
+.associate-card__job-title {
+    font-weight: bold;
+}
+
+.associate-card__associate-job-title {
+    color: #999;
+}
+
+.associate-card:hover {
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+.associate-card__action:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.associate-card__action {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.associate-card__action:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px  var(--clr-primary-500);
+}
+
+.associate-card__info {
+    padding-right: 20px;
+}
+
+.associate-card__actions {
+    margin-top: auto;
+}
+
+.selected {
+    background-color: var(--clr-primary-500);
+    color: var(--clr-white);
+}

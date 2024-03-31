@@ -19,14 +19,30 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
+import application_app.urls
+import company_profiles_app.urls
+import listing_app.urls
 from WorkPal import settings
+from WorkPal.views import HomeView, custom_page_404_not_found
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='home/index.html'), name='home'),
+    path('', HomeView.as_view(), name='home'),
+
+    # Included namespaces
     path('accounts/', include('accounts_app.urls')),
-    path('company_profiles_app/', include('company_profiles_app.urls')),
+    path('dashboard/', include('dashboard_app.urls')),
+    path('permissions/', include('shared_app.urls')),
+
+    # Included pattern lists of urls
+    path('', include(listing_app.urls.main_urls)),
+    path('applications/', include(application_app.urls.main_urls)),
+    path('companies/', include(company_profiles_app.urls.main_urls)),
 ]
 
+handler404 = 'WorkPal.views.custom_page_404_not_found'
+handler403 = 'WorkPal.views.custom_page_403_forbidden'
+
 if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

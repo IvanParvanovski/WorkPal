@@ -1,0 +1,228 @@
+@media screen and (max-width: 499px) {
+    .company-details__info {
+        min-width: 200px;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .company-details__info {
+        min-width: 400px;
+    }
+}
+
+.job-offer {
+    padding-left: 10%;
+    padding-right: 10%;
+} 
+
+.job-offer__title {
+    font-size: var(--size-heading-2);
+    margin-bottom: 16px;
+}
+
+.content {
+    background-color: #f9f9f9;
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 48px;
+}
+
+.company-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: lightcoral; */
+    padding: 20px;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    gap: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+}
+
+.company-details__info {
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: lightblue; */
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    gap: 16px;
+}
+
+.company-details__logo {
+    width: 100%;
+    height: 200px; 
+    /* background-color: royalblue; */
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+}
+
+.company-details__logo img {
+    max-height: 100%;
+    vertical-align: middle; 
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.company-details__name {
+    width: 100%;
+    text-align: center;
+    /* background-color: lightgreen; */
+    font-size: var(--size-body-xl);
+
+    font-weight: 500; 
+    color: var(--clr-primary-500);
+    text-align: center; 
+    margin-top: 10px; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+}
+
+
+.company-details__contacts {
+    flex: 1;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+}
+
+.company-contacts__heading {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.company-details__address,
+.company-details__secondary-address,
+.company-details__website {
+    margin-bottom: 15px;
+    width: 100%;
+    /* background-color: lightcyan; */
+}
+
+.company-details__label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.company-details__value {
+    margin-left: 10px;
+    color: #333;
+    font-style: italic; 
+    width: 100%;
+    word-wrap: break-word;
+}
+
+/* Hover effect */
+/* .company-details__value:hover {
+    color: #007bff;
+    cursor: pointer; 
+    text-decoration: underline; 
+} */
+
+.general-info {
+    width: 80%;
+    margin: auto auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+}
+
+.general-info__detail {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    border-bottom: 1px solid #C039B4;
+    transition: transform 0.3s ease; 
+}
+
+.general-info__detail:hover {
+    transform: translateY(-3px); 
+    transition: transform 0.3s ease; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    border-bottom-color: transparent;
+    border-radius: 8px;
+}
+
+.general-info__salary-min,
+.general-info__salary-max {
+    display: flex;
+}
+
+.general-info__label {
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #FF856B;
+}
+
+.general-info__value {
+    color: var(--clr-gray-600);
+    font-style: italic;
+    font-weight: 300;
+}
+
+.additional-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    box-sizing: border-box;
+    justify-content:space-evenly;
+}
+
+.additional-info__detail {
+    width: 45%;
+    box-sizing: border-box;
+    padding: 8px;
+    min-height: 150px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--clr-white);
+    border-radius: 8px;
+}
+
+.additional-info__label {
+    background-color: #f8f8f8;
+    width: fit-content;
+    position: relative;
+    top: -16px;
+    left: -16px;
+    padding: 8px;
+    border-radius: 8px;
+    color: var(--clr-primary-500);
+    font-size: var(--size-body-xl);
+    margin-bottom: 8px;
+}
+
+
+
+.apply-button {
+    text-align: center;
+}
+
+.apply-button__link {
+    padding: 16px 32px;
+    background-color: lightcoral;
+    border-radius: 4px;
+    background-color: var(--clr-primary-500);
+    text-decoration: none;
+    color: var(--clr-white);
+    font-size: var(--size-body-medium);
+    transition: transform 0.3 ease;
+}
+
+.apply-button__link:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    background-color: #064fa2;
+    transition: transform 0.3 ease;
+}

@@ -1,0 +1,74 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css'%}">
+    <link rel="stylesheet" href="{% static 'css/listing_app/project_detail.css' %}">
+{% endblock %}
+
+{% block site_main %}
+    <div class="project-details--full">
+        <h2 class="project-details__title">{{ object.id }} | {{ object.listing.title }}</h2>
+        
+        <div class="profile-details">
+            <div class="profile-details__info">
+                <div class="profile-details__img">
+                    <img src="{{ object.profile.image.url }}" alt="No Image">
+                </div>
+                <div class="profile-details__content">
+                    <div class="profile-details__username">{{ object.profile.user.username }}</div>
+                    <div class="profile-details__job-title">{{ object.profile.job_title }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content content--with-description">
+            <div class="project-info">
+                <div class="project-info__detail">
+                    <div class="project-info__label">Location:</div>
+                    <div class="project-info__value">{{ object.listing.location }}</div>
+                </div>
+                <div class="project-info__detail">
+                    <div class="project-info__label">Date Created:</div>
+                    <div class="project-info__value">{{ object.listing.date_created }}</div>
+                </div>
+                <div class="project-info__detail">
+                    <div class="project-info__label">Date Updated:</div>
+                    <div class="project-info__value">{{ object.listing.date_updated }}</div>
+                </div>
+                <div class="project-info__detail">
+                    <div class="project-info__label">Wage:</div>
+                    <div class="project-info__value">{{ object.wage }}</div>
+                </div>
+                <div class="project-info__detail">
+                    <div class="project-info__label">Preferred Payment:</div>
+                    <div class="project-info__value">{{ object.preferred_payment }}</div>
+                </div>
+                <div class="project-info__detail">
+                    <div class="project-info__label">Status:</div>
+                    <div class="project-info__value">{{ object.status }}</div>
+                </div>
+                <div class="project-info__detail">
+                    <div class="project-info__label">Estimated Duration:</div>
+                    <div class="project-info__value">{{ object.estimated_duration }}</div>
+                </div>
+            </div>
+        
+            <div class="description">Description: {{ object.listing.description }}</div>
+        </div>
+
+        {% if object.profile.user.id != user.id %}
+            <div class="apply-button">
+                <a href="{% url 'create_project_application' object.id %}" class="apply-button__link">Apply Now</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block site_script %}
+    <script src="{% static 'js/shared/nav.js' %}"></script>
+{% endblock %}

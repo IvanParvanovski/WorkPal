@@ -1,0 +1,30 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responses/error_404.css' %}">
+{% endblock %}
+
+{% block site_main %}
+    <div class="error-page">
+        <div class="error-page__content">
+            <h1 class="error-page__title">Opps! Page not found</h1>
+            <p class="error-page__message">
+                Something went wrong. It looks like the link is broken or the page is removed.
+            </p>
+
+            <div class="error-page__link">
+                <a href="{% url 'home' %}" class="error-page__link-text">Home <i class="material-symbols-outlined">arrow_forward</i> </a>
+            </div>
+        </div>
+
+        <div class="error-page__image">
+            <img src="https://res.cloudinary.com/dpjfbxicd/image/upload/v1711885385/error-page-404.png" alt="" class="error-page__image-src">
+        </div>
+    </div>
+{% endblock %}

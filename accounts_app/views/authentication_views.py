@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import FormView, TemplateView
@@ -20,10 +21,7 @@ class SignUpView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         form_user = self.form_class_user(request.POST)
-        form_profile = self.form_class_profile(request.POST)
-
-        print(form_user.is_valid())
-        print(form_profile.is_valid())
+        form_profile = self.form_class_profile(request.POST, request.FILES)
 
         if form_user.is_valid() and form_profile.is_valid():
             return self.forms_valid(form_user, form_profile)
@@ -31,12 +29,17 @@ class SignUpView(TemplateView):
             return self.forms_invalid(form_user, form_profile)
 
     def forms_valid(self, form_user, form_profile):
-        user = form_user.save()
-        form_profile.save(user=user)
+        try:
+            user = form_user.save()
+            form_profile.save(user=user)
 
-        login(self.request, user)
+            login(self.request, user)
 
-        return render(self.request, 'home/index.html', {'success_message': 'Registration successful'})
+            return redirect('home')
+        except Exception as e:
+            if str(e) == 'Passwords do not match!':
+                form_user.add_error('password', 'Passwords do not match!')
+            return self.forms_invalid(form_user, form_profile)
 
     def forms_invalid(self, form_user, form_profile):
         return render(self.request, self.template_name, {'form_user': form_user, 'form_profile': form_profile})
@@ -60,6 +63,7 @@ class SignInView(FormView):
             return self.form_invalid(form)
 
 
+@login_required
 def sign_out_view(request):
     logout(request)
     return redirect(reverse('home'))

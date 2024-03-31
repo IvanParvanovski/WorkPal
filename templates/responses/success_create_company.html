@@ -1,0 +1,30 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block site_header %}
+    {% include 'shared/nav_main.html' %}
+{% endblock %}
+
+{% block site_links %}
+    <link rel="stylesheet" href="{% static 'css/responses/success_create_company.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
+{% endblock %}
+
+{% block site_main %}
+
+    <div class="association-message">
+        <div class="association-message__icon">
+            <i class="material-symbols-outlined">done_all</i>
+        </div>
+
+        <h1 class="association-message__title">🎉 The company has been added for review!</h1>
+        <p class="association-message__description">Thank you for submitting your company request. Please note that the company will need to be verified by an administrator before it becomes available for joining.</p>
+
+        <div class="association-message__button">
+            <a href="{% url 'dashboard' %}" class="association-message__link">View Dashboard</a>
+        </div>
+    </div>
+    <div>
+    </div>
+    
+{% endblock %}
