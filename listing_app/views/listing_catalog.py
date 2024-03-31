@@ -7,6 +7,8 @@ from services.generic.listing_app.industry_service import IndustryService
 from services.generic.listing_app.listing_service import ListingService
 
 
+from django.core.paginator import Paginator
+
 class ListingCatalog(TemplateView):
     template_name = 'listing_app/listing_catalog.html'
 
@@ -16,7 +18,13 @@ class ListingCatalog(TemplateView):
         context = super().get_context_data(**kwargs)
         industry_name = kwargs.get('industry')
         industry = IndustryService.get_industry_by_name(industry_name)
-        context['listings'] = ListingService.get_listings_by_industry(industry)
+
+        listings_list = ListingService.get_listings_by_industry(industry)
+        p = Paginator(listings_list, 7)
+        page = self.request.GET.get('page')
+        listings = p.get_page(page)
+
+        context['listings'] = listings
 
         return context
 

@@ -1,0 +1,28 @@
+.pages {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+}
+
+.pages__button {
+    background-color: var(--clr-primary-500);
+    border: none;
+    border-radius: 4px;
+}
+
+.pages__button a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--clr-white);
+    gap: 8px;
+    font-size: var(--size-body-medium);
+    padding: 8px 24px;
+
+}
+
+.pages__button--disabled {
+    background-color: var(--clr-gray-200);
+}
