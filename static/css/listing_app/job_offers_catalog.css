@@ -71,7 +71,7 @@
    
     gap: 32px;
     /* background-color: lightcoral; */
-    margin: auto auto;
+    margin: auto auto 32px;
 }
 
 .job-offer {
@@ -90,6 +90,7 @@
     height: 100px; 
     border-radius: 50%;
     overflow: hidden; 
+    margin-right: 32px;
 }
 
 .job-offer__company-logo img {

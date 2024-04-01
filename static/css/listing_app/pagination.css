@@ -1,10 +1,10 @@
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 399px) {
     .pages {
         gap: 4px;
     }
 }
 
-@media screen and (min-width: 391px) {
+@media screen and (min-width: 400px) {
     .pages {
         gap: 12px;
     }
