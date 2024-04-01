@@ -58,7 +58,7 @@
         font-variation-settings: 'OPSZ' 28;
     }
 
-            
+
     .project__detail.project__details-created,
     .project__detail.project__details-updated {
         flex: 1;
@@ -72,12 +72,12 @@
         padding-left: 10%;
         padding-right: 10%;
     }
-    
+
     .project__user {
         /* display: flex; */
         /* background-color: lightpink; */
         width: 15%;
-        
+
         align-items: center;
         margin-bottom: 5px;
     }
@@ -85,13 +85,13 @@
     .project__item {
         justify-content: space-evenly;
     }
-    
+
     .project__user-image {
         height: 100%;
         width: 100%;
         position: relative;
     }
-    
+
     .project__user-image img {
         width: 120px;
         height: 120px;
@@ -102,15 +102,15 @@
         transform: translateY(-50%);
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.1);
     }
-    
+
     .project__info {
         width: 50%;
     }
-    
+
     .project__details {
         display: flex;
         flex-wrap: wrap;
-    
+
         justify-content: space-around;
         /* background-color: palegreen; */
         /* align-items: center; */
@@ -120,7 +120,7 @@
         /* margin-bottom: auto; */
     }
 
-    
+
     .project__detail {
         width: 100%;
     }
@@ -130,7 +130,7 @@
         font-size: 40px;
         font-variation-settings: 'OPSZ' 40;
     }
-    
+
     .project__controls {
         /* position: relative; */
         display: flex;
@@ -148,7 +148,7 @@
         width: 40%;
         margin-bottom: 24px;
     }
-    
+
     .project__details-link {
         width: 100%;
         text-decoration: none;
@@ -161,33 +161,33 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: box-shadow 0.3s ease; /* Smooth transition */
     }
-    
+
     .project__details-link:hover {
         /* Shadow on hover */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2);
     }
-    
+
     .project__details-link.more {
         color: var(--clr-primary-500);
         background-color: transparent;
         border: 1px solid var(--clr-primary-500);
     }
-    
+
     .project__details-link.apply {
         background-color: var(--clr-primary-500);
         color: var(--clr-white);
     }
 
 
-    
+
     .project__details-location {
         margin-bottom: 4px;
     }
-    
+
     .project__extras-duration {
         margin-bottom: 16px;
     }
-    
+
 }
 
 .project {
@@ -208,9 +208,9 @@
     flex-wrap: wrap;
     /* align-items: center; */
     margin-bottom: 10px;
-    border-radius: 8px; 
+    border-radius: 8px;
     clip-path: polygon(0 0, calc(100% - 48px) 0, 100% 48px, 100% 100%, 0 100%);
-    
+
     /* background: linear-gradient(135deg, #333333, #555555); Gradient background from dark to light */
     background: linear-gradient(135deg, #f5f5f5, #dddddd); /* Gradient background from light to dark */
 
@@ -218,7 +218,7 @@
     border-right: 2px solid #FF856B;
 }
 
-    
+
 .project__user-username {
     position: absolute;
     background-color: var(--clr-white);
@@ -240,7 +240,7 @@
     font-weight: 400;
     font-size: var(--size-body-large);
 }
-    
+
 .project__extras-location {
     width: 100%;
 }
@@ -249,7 +249,7 @@
 .project__extras-payment {
     width: 45%;
 }
-    
+
 /* .project__detail.project__details-created,
 .project__detail.project__details-updated {
     width: 40%;
@@ -268,7 +268,7 @@
     color: var(--clr-primary-500);
 }
 
-    
+
 .project__detail.project__details-created {
     background-color: #C039B4;
     color: var(--clr-white);
@@ -283,7 +283,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.project__extras-location, 
+.project__extras-location,
 .project__extras-duration,
 .project__extras-payment {
     box-sizing: border-box;
@@ -302,7 +302,7 @@
     color: #333333;
 }
 
-    
+
 .project__detail.project__details-created,
 .project__detail.project__details-updated {
     text-align: center;
@@ -311,7 +311,7 @@
     box-sizing: border-box;
 }
 
-    
+
 .project__details-title {
     font-size: var(--size-heading-4);
     width: 100%;
