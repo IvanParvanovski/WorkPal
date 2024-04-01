@@ -1,29 +1,68 @@
-<div class="project__item clickable-div" data-url="{% url 'project_detail' project.id %}">
+{% load custom_filters %}
+<div class="project clickable-div" data-url="{% url 'project_detail' project.id %}">
     <div class="project__user">
         <div class="project__user-image">
-            <img src="{{ project.profile.image.url }}" alt="No Image">
+            <img src="{{ project.profile.image.url }}" alt="No Image" class="project__image">
         </div>
-        <div class="project__user-username">{{ project.profile.user.username }} | {{ project.profile.job_title }}</div>
         <!-- <div class="project__user-job-title"></div> -->
     </div>
-    <div class="project__info">
-        <div class="project__details">
-            <div class="project__detail project__details-title">{{ project.listing.title }}</div>
-            <div class="project__detail project__details-created">Created: {{ project.listing.date_created }}</div>
-            <div class="project__detail project__details-updated">Updated: {{ project.listing.date_updated }}</div>
+    <div class="project__details">
+        <div class="project__info">
+            <div class="project__user-info">
+                {{ project.profile.user.username }}
+                <i class="project__separator material-symbols-outlined">fiber_manual_record</i>                
+                {{ project.profile.job_title }}
+            </div>
+            <div class="project__title">{{ project.listing.title }}</div>
         </div>
-        <div class="project__extras">
-            <div class="project__detail project__extras-location"><span class="project__detail__highlight"><i class="material-symbols-outlined">location_on</i></span> {{ project.listing.location }}</div>
-            <div class="project__detail project__extras-duration"><span class="project__detail__highlight"><i class="material-symbols-outlined">timer</i></span> {{ project.estimated_duration }}</div>
-            <div class="project__detail project__extras-payment"><span class="project__detail__highlight"><i class="material-symbols-outlined">payments</i></span>${{ project.wage }}</div>
+        <div class="project__meta">
+            
+            {% if project.status == 'open' %}
+                <div class="project__status --open">
+                    <span class="project__icon"><i class="material-symbols-outlined"></i></span>
+                    {{ project.status|format_value }}
+                </div>
+                {% elif project.status == 'in_progress' %}
+                <div class="project__status --in-progress">
+                    <span class="project__icon"><i class="material-symbols-outlined"></i></span>
+                    {{ project.status|format_value }}
+                </div>
+                {% elif project.status == 'completed' %}
+                <div class="project__status --completed">
+                    <span class="project__icon"><i class="material-symbols-outlined"></i></span>
+                    {{ project.status|format_value }}
+                </div>
+                {% else %}
+                <div class="project__status">
+                    <span class="project__icon"><i class="material-symbols-outlined"></i></span>
+                    {{ project.status|format_value }}
+                </div>
+            {% endif %}
+                   
+            <span class="project__separator">|</span>
+            <div class="project__wage">
+                <span class="project__icon"><i class="material-symbols-outlined">payments</i></span>
+                ${{ project.wage }}
+            </div>
+            <div class="project__duration">
+                <span class="project__icon"><i class="material-symbols-outlined">timer</i></span>
+                {{ project.estimated_duration }}
+            </div>
+            <div class="project__updated-date">
+                <span class="project__icon"><i class="material-symbols-outlined">calendar_today</i></span>
+                {{ project.listing.date_updated|calculate_days_since_creation:project.listing.date_created }} days ago
+            </div>
+        </div>
+        <div class="project__description">
+            {{ project.listing.description }}
         </div>
     </div>
 
-    <div class="project__controls">
+    <!-- <div class="project__controls">
         <a href="{% url 'project_detail' project.id  %}" class="project__details-link more">MORE</a>
 
         {% if project.profile.user.id != user.id %}
             <a href="{% url 'create_project_application' project.id %}" class="project__details-link apply">APPLY</a>
         {% endif %}
-    </div>
+    </div> -->
 </div>

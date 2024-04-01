@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block site_main %}
-<div class="project">
+<div class="listing-list">
     {% for project in projects %}
         {% include 'listing_app/project_card.html' with project=project %}
     {% endfor %}
@@ -75,4 +75,5 @@
         console.log('hi');
         // window.onload = loadScript;
     </script>
+
 {% endblock %}

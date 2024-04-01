@@ -31,3 +31,10 @@ def format_salary(value):
         return '${:,.0f}K'.format(value / 1000)  # Convert to K
     else:
         return '${:,.1f}M'.format(value / 1000000)
+
+
+@register.filter(name='calculate_days_since_creation')
+def calculate_days_since_creation(date_updated, date_created):
+    difference = date_updated - date_created
+
+    return difference.days
