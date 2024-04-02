@@ -26,20 +26,22 @@
         </div>
     </div>
 
+   
     {% else %}
-        {% for project in user_projects %}
-        <div class="project">
-            {% include 'listing_app/project_card.html' with project=project %}
-
-            <div class="controls">
-                <a class="controls__edit" href="{% url 'edit_project' project.id %}">Edit</a>
-                <form class="controls__delete-form" action="{% url 'delete_project' project.id %}" method="post">
-                    {% csrf_token %}
-                    <button class="controls__delete" type="submit">Delete</button>
-                </form>
-            </div>
+        <div class="listing-list">
+            {% for project in user_projects %}
+                {% include 'listing_app/project_card.html' with project=project %}
+        
+                <div class="controls">
+                    <a class="controls__edit" href="{% url 'edit_project' project.id %}">Edit</a>
+                    <form class="controls__delete-form" action="{% url 'delete_project' project.id %}" method="post">
+                        {% csrf_token %}
+                        <button class="controls__delete" type="submit">Delete</button>
+                    </form>
+                </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        
     {% endif %}
 
 

@@ -15,7 +15,7 @@
 {% block site_main %}
 
     <div class="companies-associates">
-    {% if companies_associates.count != 0 %}
+    {% if not has_associates %}
         <div class="message">
              <h1 class="message__title">Company Affiliation Required for Association!</h1>
 
