@@ -10,6 +10,9 @@
     }
 }
 
+.response-message {
+    height: 50vh;
+}
 
 .association-message {
     top: 40%;

@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block site_main %}
-    {% if companies_job_offers|length == 0 %}
+    {% if not do_job_offers_exist %}
     <div class="no-message-container">
         <div class="message">
             <h1 class="message__title">Add Your First Job Offer</h1>
