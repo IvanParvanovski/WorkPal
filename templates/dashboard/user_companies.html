@@ -15,17 +15,20 @@
 
 {% block site_main %}
     {% if user_companies.count == 0 %}
-         <div class="message">
-             <h1 class="message__title">Your Affiliated Companies</h1>
+    <div class="no-message-container">
+        <div class="message">
+            <h1 class="message__title">Your Affiliated Companies</h1>
 
-            <p class="message__text">
-                When you join a company, all your affiliated companies will be listed here.
-            </p>
-            <div class="message__action">
-                <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
-                <a href="{% url 'create_company' %}" class="message__link action">Add company <i class="material-symbols-outlined">arrow_forward</i></a>
-            </div>
-        </div>
+           <p class="message__text">
+               When you join a company, all your affiliated companies will be listed here.
+           </p>
+           <div class="message__action">
+               <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
+               <a href="{% url 'create_company' %}" class="message__link action">Add company <i class="material-symbols-outlined">arrow_forward</i></a>
+           </div>
+       </div>
+    </div>
+
 
     {% else %}
         <div>

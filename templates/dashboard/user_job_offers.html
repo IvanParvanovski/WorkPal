@@ -16,17 +16,20 @@
 
 {% block site_main %}
     {% if companies_job_offers|length == 0 %}
+    <div class="no-message-container">
         <div class="message">
-             <h1 class="message__title">Add Your First Job Offer</h1>
+            <h1 class="message__title">Add Your First Job Offer</h1>
 
-            <p class="message__text">
-                To view job offers, you must be affiliated with a company that has posted openings. If you are authorised, you can post listings too.
-            </p>
-            <div class="message__action">
-                <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
-                <a href="{% url 'create_job_offer' %}" class="message__link action">Add job offer <i class="material-symbols-outlined">arrow_forward</i></a>
-            </div>
-        </div>
+           <p class="message__text">
+               To view job offers, you must be affiliated with a company that has posted openings. If you are authorised, you can post listings too.
+           </p>
+           <div class="message__action">
+               <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
+               <a href="{% url 'create_job_offer' %}" class="message__link action">Add job offer <i class="material-symbols-outlined">arrow_forward</i></a>
+           </div>
+       </div>
+    </div>
+ 
 
     {% else %}
 

@@ -16,17 +16,20 @@
 
     <div class="companies-associates">
     {% if not has_associates %}
-        <div class="message">
-             <h1 class="message__title">Company Affiliation Required for Association!</h1>
-
-            <p class="message__text">
-                To have associates, you must be affiliated with a company.
-            </p>
-            <div class="message__action">
-                <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
-                <a href="{% url 'create_company' %}" class="message__link action">Add company <i class="material-symbols-outlined">arrow_forward</i></a>
-            </div>
+        <div class="no-message-container">
+            <div class="message">
+                <h1 class="message__title">Company Affiliation Required for Association!</h1>
+   
+               <p class="message__text">
+                   To have associates, you must be affiliated with a company.
+               </p>
+               <div class="message__action">
+                   <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
+                   <a href="{% url 'create_company' %}" class="message__link action">Add company <i class="material-symbols-outlined">arrow_forward</i></a>
+               </div>
+           </div>
         </div>
+      
     {% else %}
         {% for company_associates in companies_associates %}
             {% for associate in company_associates %}

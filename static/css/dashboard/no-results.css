@@ -1,3 +1,7 @@
+.no-message-container {
+    height: 50vh;
+}
+
 .message {
     position: absolute;
     top: 40%;
