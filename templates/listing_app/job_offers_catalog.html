@@ -56,3 +56,36 @@
 </div>
 {% include 'shared/nav-arrow.html' %}
 {% endblock %}
+
+{% block site_scripts %}
+<script>
+    function loadScript() {
+        if (window.innerWidth == 1001) {
+            var existingScript = document.getElementById('dynamicScript');
+            if (existingScript) {
+                window.location.reload();
+            }
+        }
+
+        if (window.matchMedia("(max-width: 1000px)").matches) {
+            var existingScript = document.getElementById('dynamicScript');
+
+            if (existingScript) {
+                return;
+            }
+
+            var script = document.createElement("script");
+            script.setAttribute('id', 'dynamicScript');
+            script.src = '{% static "js/shared/clickable-div.js" %}'
+            document.querySelector('main').appendChild(script);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadScript);
+    window.addEventListener('resize', function() {
+        loadScript();
+    });
+</script>
+
+{% endblock %}
+

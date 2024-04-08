@@ -61,19 +61,14 @@
 
     <script>
         function loadScript() {
-            console.log('in')
-            console.log(window.matchMedia("(max-width: 899px)").matches)
-            if (window.matchMedia("(max-width: 899px)").matches) {
-                var script = document.createElement("script");
-                script.src = '{% static "js/shared/clickable-div.js" %}'
-                console.log(script)
-                document.querySelector('main').appendChild(script);
-            }
+            var script = document.createElement("script");
+            script.src = '{% static "js/shared/clickable-div.js" %}'
+            console.log(script)
+            document.querySelector('main').appendChild(script);
         }
 
         document.addEventListener('DOMContentLoaded', loadScript);
         console.log('hi');
-        // window.onload = loadScript;
     </script>
 
 {% endblock %}

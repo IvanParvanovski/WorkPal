@@ -29,6 +29,7 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    object-fit: cover;
     border: 3px solid #fff; /* Add a border */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
     transition: transform 0.3s ease; /* Add a smooth transition */

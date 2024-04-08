@@ -1,6 +1,6 @@
 {% load custom_filters %}
 
-<div class="job-offer">
+<div class="job-offer clickable-div" data-url="{% url 'job_offer_detail' job_offer.id %}">
     <div class="job-offer__company">
         <div class="job-offer__company-logo">
             <img src="{{ job_offer.company.company_logo.url }}" alt="No logo">
