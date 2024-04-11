@@ -39,6 +39,6 @@ main_urls = [
 ]
 
 permissions_urls = [
-    path('permissions/make_listings_manager/<int:user_to_grant_rights_id>', make_listings_manager, name='make_listings_manager'),
+    path('make_listings_manager/<int:user_to_grant_rights_id>/<int:company_id>', make_listings_manager, name='make_listings_manager'),
 ]
 

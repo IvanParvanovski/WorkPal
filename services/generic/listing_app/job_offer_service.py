@@ -55,6 +55,10 @@ class JobOfferService(JobOfferInterface):
         return [JobOfferService.get_job_offers_by_company_id(c.id) for c in companies]
 
     @staticmethod
+    def get_job_offer_by_listing_id(listing_id: int):
+        return JobOffer.objects.get(listing_id=listing_id)
+
+    @staticmethod
     def delete_job_offer(job_offer: JobOffer):
         return job_offer.delete()
 

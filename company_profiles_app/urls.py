@@ -38,9 +38,9 @@ main_urls = [
 ]
 
 permissions_urls = [
-    path('permissions/make_association_moderator/<int:user_to_grant_rights_id>', make_associate_moderator,
+    path('make_association_moderator/<int:user_to_grant_rights_id>/<int:company_id>', make_associate_moderator,
          name='make_association_moderator'),
-    path('permissions/make_rights_manager/<int:user_to_grant_rights_id>', make_rights_manager,
+    path('make_rights_manager/<int:user_to_grant_rights_id>/<int:company_id>', make_rights_manager,
          name='make_rights_manager'),
 ]
 

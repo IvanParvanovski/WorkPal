@@ -1,6 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load custom_filters %}
 {% load static %}
+{% load permission_filters %}
 
 {% block site_header %}
     {% include 'shared/nav_main.html' %}
@@ -53,15 +54,19 @@
                 </div>
             </div>
 
-            {% if user|has_group:"CompanyManager" %}
-                 <div class="company-card__actions">
-                    <a href="{% url 'edit_company' c.id %}" class="company-card__actions--edit">Edit</a>
-                    <form action="{% url 'delete_company' c.id %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="company-card__actions--delete">Delete</button>
-                    </form>
-                </div>
-            {% endif %}
+             <div class="company-card__actions">
+                 {% with permission_string_delete='company_profiles_app.can_delete_company_'|add:c.name permission_string_change='company_profiles_app.can_change_company_'|add:c.name %}
+                     {% if user|has_permission:permission_string_change %}
+                        <a href="{% url 'edit_company' c.id %}" class="company-card__actions--edit">Edit</a>
+                     {% endif %}
+                     {% if user|has_permission:permission_string_delete %}
+                        <form action="{% url 'delete_company' c.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="company-card__actions--delete">Delete</button>
+                        </form>
+                     {% endif %}
+                 {% endwith %}
+            </div>
         </div>
         {% endfor %}
     </div>

@@ -1,6 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% load custom_filters %}
+{% load permission_filters %}
 
 {% block site_header %}
     {% include 'shared/nav_main.html' %}
@@ -43,33 +44,46 @@
                     <div class="associate-card__job-title">{{ associate.profile.job_title }}</div>
                     <div class="associate-card__associate-job-title">{{ associate.job_title }}</div>
                 </div>
-                {% if user|has_group:"RightsManager"  %}
-                     <div class="associate-card__actions">
-                     {% if associate.profile.user|has_group:"AssociatesModerator" %}
-                        <a class="associate-card__action selected">Make Associate Moderator</a>
-                     {% else %}
-                        <a href="{% url 'make_association_moderator' associate.profile_id %}" class="associate-card__action">Make Associate Moderator</a>
-                     {% endif %}
 
-                     {% if associate.profile.user|has_group:"ApplicationModerator" %}
-                        <a class="associate-card__action selected">Make Application Moderator</a>
-                     {% else %}
-                        <a href="{% url 'make_application_moderator' associate.profile.id %}" class="associate-card__action">Make Application Moderator</a>
-                     {% endif %}
+{#                {% if user|has_group:"RightsManager"  %}#}
 
-                     {% if associate.profile.user|has_group:"RightsManager" %}
-                        <a class="associate-card__action selected">Make Rights Manager</a>
-                     {% else %}
-                        <a href="{% url 'make_rights_manager' associate.profile.id %}" class="associate-card__action">Make Rights Manager</a>
-                     {% endif %}
-
-                     {% if associate.profile.user|has_group:"ListingsManager" %}
-                        <a class="associate-card__action selected">Make Listings Manager</a>
-                     {% else %}
-                        <a href="{% url 'make_listings_manager' associate.profile.id %}" class="associate-card__action">Make Listings Manager</a>
-                     {% endif %}
-                     </div>
-                {% endif %}
+                 <div class="associate-card__actions">
+                     {% with current_company=associate.company.name %}
+                         {% with permission_string='company_profiles_app.can_give_rights_'|add:current_company %}
+                             {% if user|has_permission:permission_string %}
+                                 {% with permission_string_associate='company_profiles_app.can_verify_associate_'|add:current_company %}
+                                     {% if associate.profile.user|has_permission:permission_string_associate %}
+                                        <a class="associate-card__action selected">Make Associate Moderator</a>
+                                     {% else %}
+                                        <a href="{% url 'make_association_moderator' user_to_grant_rights_id=associate.profile_id company_id=associate.company.id %}" class="associate-card__action">Make Associate Moderator</a>
+                                     {% endif %}
+                                 {% endwith %}
+                                 {% with permission_string_adjudicate='application_app.can_adjudicate_application_'|add:current_company %}
+                                     {% if associate.profile.user|has_permission:permission_string_adjudicate %}
+                                         <a class="associate-card__action selected">Make Application Moderator</a>
+                                     {% else %}
+                                         <a href="{% url 'make_application_moderator' user_to_grant_rights_id=associate.profile.id company_id=associate.company.id %}" class="associate-card__action">Make Application Moderator</a>
+                                     {% endif %}
+                                 {% endwith %}
+                                 {% with permission_string_rights='company_profiles_app.can_give_rights_'|add:current_company %}
+                                     {% if associate.profile.user|has_permission:permission_string_rights %}
+                                         <a class="associate-card__action selected">Make Rights Manager</a>
+                                     {% else %}
+                                         <a href="{% url 'make_rights_manager' user_to_grant_rights_id=associate.profile.id company_id=associate.company.id %}" class="associate-card__action">Make Rights Manager</a>
+                                     {% endif %}
+                                 {% endwith %}
+                                 {% with permission_string_can_add_job_offer='listing_app.can_add_job_offer_'|add:current_company permission_string_change_job_offer='listing_app.can_change_job_offer_'|add:current_company permission_string_delete_job_offer='listing_app.can_delete_job_offer_'|add:current_company %}
+                                    {% if associate.profile.user|has_permission:permission_string_can_add_job_offer and associate.profile.user|has_permission:permission_string_change_job_offer and associate.profile.user|has_permission:permission_string_delete_job_offer %}
+                                        <a class="associate-card__action selected">Make Listings Manager</a>
+                                    {% else %}
+                                        <a href="{% url 'make_listings_manager' user_to_grant_rights_id=associate.profile.id company_id=associate.company.id %}" class="associate-card__action">Make Listings Manager</a>
+                                    {% endif %}
+                                 {% endwith %}
+                             {% endif %}
+                         {% endwith %}
+                     {% endwith %}
+                 </div>
+{#                {% endif %}#}
             </div>
             {% endfor %}
         {% endfor %}

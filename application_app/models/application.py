@@ -7,10 +7,10 @@ from listing_app.models.listing import Listing
 
 
 class Application(models.Model):
-    class Meta:
-        permissions = [
-            ('adjudicate_application', 'Can accept or reject application and view its details'),
-        ]
+    # class Meta:
+    #     permissions = [
+    #         ('adjudicate_application', 'Can accept or reject application and view its details'),
+    #     ]
 
     is_approved = models.BooleanField(default=False)
     is_checked = models.BooleanField(default=False)

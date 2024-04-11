@@ -1,5 +1,6 @@
 {% extends 'shared/base.html' %}
 {% load static %}
+{% load permission_filters %}
 
 {% block site_links %}
     <link rel="stylesheet" href="{% static 'css/shared/nav_main.css'%}">
@@ -16,7 +17,7 @@
             <div class="dashboard__section clickable-div" data-url="{% url 'user_projects' %}">
                 <h3 class="dashboard__section-title">Projects</h3>
                 <p class="dashboard__section-description">Effortlessly oversee and organize your projects from one central hub, facilitating seamless monitoring and coordination for enhanced productivity and success.</p>
-                
+
                 <div class="dashboard__links">
                     <a href="{% url 'create_project' %}" class="dashboard__link">
                         <i class="material-symbols-outlined">add</i>
@@ -60,12 +61,7 @@
                         {% for association_requests_for_company in association_requests %}
                             {% for association_request in association_requests_for_company %}
                                 <div class="dashboard__association-request">
-                                    
-                                <!-- Association Request Item -->
-                                    <!-- <div class="dashboard__item-request">
-                                        {{ association_request }}
-                                    </div> -->
-                    
+
                                     <!-- Association Request Info -->
                                     <div class="dashboard__item-info">
                                         <div class="dashboard__item-info-field">
@@ -89,20 +85,23 @@
                                             {{ association_request.job_title }}
                                         </div>
                                     </div>
-                    
-                                    <!-- Association Request Controls -->
-                                    <div class="dashboard__controls">
-                                        {% if perms.company_profiles_app.verify_associate %}
-                                            <form class="dashboard__accept-form" action="{% url 'accept_association_request' association_request.id %}" method="post">
-                                                {% csrf_token %}
-                                                <button class="dashboard__accept-button" type="submit">Accept</button>
-                                            </form>
-                                            <form class="dashboard__reject-form" action="{% url 'reject_association_request' association_request.id %}" method="post">
-                                                {% csrf_token %}
-                                                <button class="dashboard__reject-button" type="submit">Reject</button>
-                                            </form>
-                                        {% endif %}
-                                    </div>
+
+                                    {% with current_company=association_request.company.name %}
+                                         {% with permission_string='company_profiles_app.can_verify_associate_'|add:current_company %}
+                                             <div class="dashboard__controls">
+                                                {% if user|has_permission:permission_string %}
+                                                    <form class="dashboard__accept-form" action="{% url 'accept_association_request' association_request.id %}" method="post">
+                                                        {% csrf_token %}
+                                                        <button class="dashboard__accept-button" type="submit">Accept</button>
+                                                    </form>
+                                                    <form class="dashboard__reject-form" action="{% url 'reject_association_request' association_request.id %}" method="post">
+                                                        {% csrf_token %}
+                                                        <button class="dashboard__reject-button" type="submit">Reject</button>
+                                                    </form>
+                                                {% endif %}
+                                            </div>
+                                         {% endwith %}
+                                    {% endwith %}
                                 </div>
                             {% endfor %}
                         {% endfor %}
@@ -164,50 +163,52 @@
                 <div class="dashboard__applications">
                     {% if any_job_offers_applications %}
                        {% for company_job_offers in companies_applications_for_job_offers %}
-                        <div class="dashboard__job-offer">
-                            {% for application in company_job_offers %}
-                                <div class="dashboard__application">
-                                    <h3 class="dashboard__application__heading">Application {{ application.id }}</h3>
+                           <div class="dashboard__job-offer">
+                                {% for application in company_job_offers %}
+                                    <div class="dashboard__application">
+                                        <h3 class="dashboard__application__heading">Application {{ application.id }}</h3>
 
-                                    <div class="dashboard__application-details">
-                                        <div class="dashboard__username">
-                                            <span class="dashboard__label">Username:</span> {{ application.profile.user.username }}
-                                        </div>
-                                        <div class="dashboard__email">
-                                            <span class="dashboard__label">Email:</span> <a href="mailto:{{ application.profile.user.email }}" class="dashboard__email-link">{{application.profile.user.email}}</a>
-                                        </div>
-                                        <div class="dashboard__job-title">
-                                            <span class="dashboard__label">Job Title:</span> {{ application.profile.job_title }}
-                                        </div>
-                                        <div class="dashboard__application-title">
-                                            <span class="dashboard__label">Application Title:</span> {{ application.listing.title }}
-                                        </div>
-                                        <div class="dashboard__application-location">
-                                            <span class="dashboard__label">Application Location:</span> {{ application.listing.location }}
-                                        </div>
+                                        <div class="dashboard__application-details">
+                                            <div class="dashboard__username">
+                                                <span class="dashboard__label">Username:</span> {{ application.profile.user.username }}
+                                            </div>
+                                            <div class="dashboard__email">
+                                                <span class="dashboard__label">Email:</span> <a href="mailto:{{ application.profile.user.email }}" class="dashboard__email-link">{{application.profile.user.email}}</a>
+                                            </div>
+                                            <div class="dashboard__job-title">
+                                                <span class="dashboard__label">Job Title:</span> {{ application.profile.job_title }}
+                                            </div>
+                                            <div class="dashboard__application-title">
+                                                <span class="dashboard__label">Application Title:</span> {{ application.listing.title }}
+                                            </div>
+                                            <div class="dashboard__application-location">
+                                                <span class="dashboard__label">Application Location:</span> {{ application.listing.location }}
+                                            </div>
 
-                                        <div class="dashboard__controls">
-                                            {% if perms.application_app.adjudicate_application %}
-                                                 <form class="dashboard__accept-form" action="{% url 'accept_job_offer_application' application.id %}" method="post">
-                                                {% csrf_token %}
-                                                <button class="dashboard__accept-button" type="submit">Accept</button>
-                                                </form>
-                                                <form class="dashboard__reject-form" action="{% url 'reject_job_offer_application' application.id %}" method="post">
-                                                    {% csrf_token %}
-                                                    <button class="dashboard__reject-button" type="submit">
-                                                        Reject
-                                                    </button>
-                                                </form>
-                                            {% endif %}
-
-                                            <a class="dashboard__details-link" href="{% url 'job_offer_application_details' application.id %}">Details</a>
+                                            <div class="dashboard__controls">
+                                                {% with current_company=application.listing.job_offer.company.name %}
+                                                    {% with permission_string='application_app.can_adjudicate_application_'|add:current_company %}
+                                                        {% if user|has_permission:permission_string %}
+                                                            <form class="dashboard__accept-form" action="{% url 'accept_job_offer_application' application.id %}" method="post">
+                                                                {% csrf_token %}
+                                                                <button class="dashboard__accept-button" type="submit">Accept</button>
+                                                            </form>
+                                                            <form class="dashboard__reject-form" action="{% url 'reject_job_offer_application' application.id %}" method="post">
+                                                                {% csrf_token %}
+                                                                <button class="dashboard__reject-button" type="submit">
+                                                                    Reject
+                                                                </button>
+                                                            </form>
+                                                            <a class="dashboard__details-link" href="{% url 'job_offer_application_details' application.id %}">Details</a>
+                                                        {% endif %}
+                                                    {% endwith %}
+                                                {% endwith %}
+                                            </div>
                                         </div>
-
                                     </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                       {% endfor %}
                     {% else %}
                         <div class="dashboard__content-request__no-results">No applications have been submitted for any of your job offers.</div>
                     {% endif %}

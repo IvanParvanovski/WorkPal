@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.utils.decorators import method_decorator
@@ -9,6 +10,7 @@ from listing_app.forms.job_offer_form import JobOfferForm
 from listing_app.forms.listing_form import ListingForm
 from services.generic.listing_app.job_offer_service import JobOfferService
 from services.generic.listing_app.listing_service import ListingService
+from shared_app.utils import has_company_permission
 
 
 class CreateJobOfferView(LoginRequiredMixin, View):
@@ -16,13 +18,17 @@ class CreateJobOfferView(LoginRequiredMixin, View):
     form_class_create_job_offer = JobOfferForm
     template_name = 'listing_app/create_job_offer.html'
 
-    @method_decorator(permission_required('listing_app.add_joboffer', raise_exception=True))
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+    # @method_decorator(permission_required('listing_app.add_joboffer', raise_exception=True))
+    # def dispatch(self, *args, **kwargs):
+    #     return super().dispatch(*args, **kwargs)
 
+    # @method_decorator(permission_required('listing_app.add_joboffer', raise_exception=True))
     def get(self, request, *args, **kwargs):
         listing_form = self.form_class_create_listing()
         job_offer_form = self.form_class_create_job_offer(profile=request.user.profile)
+
+        if len(job_offer_form.fields['company'].choices) - 1 == 0:
+            raise PermissionDenied
 
         context = {
             'listing_form': listing_form,
@@ -41,6 +47,11 @@ class CreateJobOfferView(LoginRequiredMixin, View):
         job_offer_form = self.form_class_create_job_offer(profile, combined_data)
 
         if job_offer_form.is_valid() and listing_form.is_valid():
+            print(job_offer_form.cleaned_data['company'])
+
+            if not has_company_permission(request.user, 'listing_app', 'can_add_job_offer',
+                                          job_offer_form.cleaned_data['company'].name):
+                raise PermissionDenied
 
             listing = ListingService.create_listing(title=listing_form.cleaned_data['title'],
                                                     location=listing_form.cleaned_data['location'],

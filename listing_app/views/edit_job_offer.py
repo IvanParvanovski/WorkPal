@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
@@ -9,6 +10,7 @@ from listing_app.forms.job_offer_form import JobOfferForm
 from listing_app.forms.listing_form import ListingForm
 from services.generic.listing_app.job_offer_service import JobOfferService
 from services.generic.listing_app.listing_service import ListingService
+from shared_app.utils import has_company_permission
 
 
 class EditJobOfferView(LoginRequiredMixin, View):
@@ -16,16 +18,24 @@ class EditJobOfferView(LoginRequiredMixin, View):
     form_class_job_offer = JobOfferForm
     template_name = 'listing_app/edit_job_offer.html'
 
-    @method_decorator(permission_required('listing_app.change_joboffer'))
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+    # @method_decorator(permission_required('listing_app.change_joboffer'))
+    # def dispatch(self, *args, **kwargs):
+    #     return super().dispatch(*args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         job_offer_id = kwargs.get('job_offer_id')
         job_offer = JobOfferService.get_job_offer_by_id(_id=job_offer_id)
+
+        if not has_company_permission(request.user,
+                                      'listing_app',
+                                      'can_change_job_offer',
+                                      job_offer.company.name):
+
+            raise PermissionDenied
+
         listing = job_offer.listing
         selected_options = ListingService.get_all_listing_industries(listing)
-        print(selected_options)
+
         context = {
             'listing_form': self.form_class_listing(instance=listing, initial={'industries': selected_options}),
             'job_offer_form': self.form_class_job_offer(instance=job_offer, profile=request.user.profile),
@@ -44,6 +54,14 @@ class EditJobOfferView(LoginRequiredMixin, View):
         if job_offer_form.is_valid() and listing_form.is_valid():
             job_offer_id = kwargs.get('job_offer_id')
             job_offer = JobOfferService.get_job_offer_by_id(_id=job_offer_id)
+
+            if not has_company_permission(request.user,
+                                          'listing_app',
+                                          'can_change_job_offer',
+                                          job_offer.company.name):
+
+                raise PermissionDenied
+
             listing = job_offer.listing
 
             listing = ListingService.edit_listing_by_id(_id=listing.id,

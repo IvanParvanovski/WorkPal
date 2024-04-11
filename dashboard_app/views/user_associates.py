@@ -14,7 +14,6 @@ class UserAssociatesView(LoginRequiredMixin, TemplateView):
 
         context['companies_associates'] = EmploymentService.get_associates_for_companies(companies)
         context['has_associates'] = self.has_associates(context['companies_associates'])
-        print(context['has_associates'])
         return context
 
     def has_associates(self, companies_associates):

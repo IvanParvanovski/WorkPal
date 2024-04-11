@@ -1,6 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% load custom_filters %}
+{% load permission_filters %}
 
 {% block site_header %}
     {% include 'shared/nav_main.html' %}
@@ -37,18 +38,19 @@
         <div class="listing-list">
             {% for job_offer in company_job_offers %}
                 {% include 'listing_app/job_offer_card.html' with job_offer=job_offer %}
-
-                {% if user|has_group:"ListingsManager" %}
-                     <div class="controls">
-                        <a class="controls__edit" href="{% url 'edit_job_offer' job_offer.id %}">Edit</a>
-
+                <div class="controls">
+                    {% with permission_string_delete='listing_app.can_delete_job_offer_'|add:job_offer.company.name permission_string_change='listing_app.can_change_job_offer_'|add:job_offer.company.name  %}
+                        {% if user|has_permission:permission_string_change %}
+                            <a class="controls__edit" href="{% url 'edit_job_offer' job_offer.id %}">Edit</a>
+                        {% endif %}
+                        {% if user|has_permission:permission_string_delete %}
                         <form class="controls__delete-form" action="{% url 'delete_job_offer' job_offer.id %}" method="post">
                             {% csrf_token %}
                             <button class="controls__delete" type="submit">Delete</button>
                         </form>
-                    </div>
-                {% endif %}
-
+                        {% endif %}
+                    {% endwith %}
+                </div>
         {% endfor %}
         </div>
     {% endfor %}

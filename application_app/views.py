@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
@@ -18,6 +19,7 @@ from services.generic.application_app.project_application_details_service import
 from services.generic.listing_app.job_offer_service import JobOfferService
 from services.generic.listing_app.listing_service import ListingService
 from services.generic.listing_app.project_service import ProjectService
+from shared_app.utils import has_company_permission
 
 
 # Can be done as a FormView
@@ -33,8 +35,6 @@ class JobOfferApplicationCreateView(LoginRequiredMixin, View):
         return render(request, self.template_name, context=context)
 
     def post(self, request, *args, **kwargs):
-        print(request.FILES)
-        print(request.POST)
         job_offer_application_form = self.form_class_job_offer_application_details(request.POST, request.FILES)
 
         if job_offer_application_form.is_valid():
@@ -141,8 +141,19 @@ class AcceptProjectApplication(AcceptApplicationAbstract):
 
 
 class AcceptJobOfferApplication(AcceptApplicationAbstract):
-    @method_decorator(permission_required('application_app.adjudicate_application', raise_exception=True))
+    # @method_decorator(permission_required('application_app.adjudicate_application', raise_exception=True))
     def post(self, request, *args, **kwargs):
+        application_id = kwargs.get('application_id')
+        application = ApplicationService.get_application_by_id(application_id)
+
+        listing_id = application.listing.id
+
+        job_offer = JobOfferService.get_job_offer_by_listing_id(listing_id)
+
+        if not has_company_permission(request.user, 'application_app', 'can_adjudicate_application',
+                                      job_offer.company.name):
+            raise PermissionDenied
+
         return super().post(self, request, *args, **kwargs)
 
 
@@ -155,8 +166,19 @@ class RejectApplicationAbstract(LoginRequiredMixin, View):
 
 
 class RejectJobOfferApplication(RejectApplicationAbstract):
-    @method_decorator(permission_required('application_app.adjudicate_application', raise_exception=True))
+    # @method_decorator(permission_required('application_app.adjudicate_application', raise_exception=True))
     def post(self, request, *args, **kwargs):
+        application_id = kwargs.get('application_id')
+        application = ApplicationService.get_application_by_id(application_id)
+
+        listing_id = application.listing.id
+
+        job_offer = JobOfferService.get_job_offer_by_listing_id(listing_id)
+
+        if not has_company_permission(request.user, 'application_app', 'can_adjudicate_application',
+                                      job_offer.company.name):
+            raise PermissionDenied
+
         return super().post(self, request, *args, **kwargs)
 
 
