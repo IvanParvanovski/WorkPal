@@ -69,3 +69,8 @@
 
     {% include 'shared/nav-arrow.html' %}
 {% endblock %}
+
+{% block site_scripts %}
+    <script src="{% static 'js/shared/job-offer-clickable-div.js' %}"></script>
+    <script src="{% static 'js/shared/project-clickable-div.js' %}"></script>
+{% endblock %}

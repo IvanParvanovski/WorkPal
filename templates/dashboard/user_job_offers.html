@@ -59,13 +59,6 @@
     {% include 'shared/nav-arrow.html' %}
 {% endblock %}
 
-
-    <h2>Your Job Offers</h2>
-
-    <div>
-        JOB OFFERS
-        
-    </div>
-
-</body>
-</html>
+{% block site_scripts %}
+    <script src="{% static 'js/shared/job-offer-clickable-div.js' %}"></script>
+{% endblock %}

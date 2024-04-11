@@ -58,17 +58,5 @@
 {% endblock %}
 
 {% block site_scripts %}
-
-    <script>
-        function loadScript() {
-            var script = document.createElement("script");
-            script.src = '{% static "js/shared/clickable-div.js" %}'
-            console.log(script)
-            document.querySelector('main').appendChild(script);
-        }
-
-        document.addEventListener('DOMContentLoaded', loadScript);
-        console.log('hi');
-    </script>
-
+    <script src="{% static 'js/shared/project-clickable-div.js' %}"></script>
 {% endblock %}
