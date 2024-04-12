@@ -120,3 +120,11 @@
     border-left: 2px solid red;
     margin-bottom: 8px;
 }
+
+.container__form input {
+    font-size: var(--size-body-large);
+}
+
+main {
+    margin-bottom: 0;
+}

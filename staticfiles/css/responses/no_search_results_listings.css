@@ -1,11 +1,11 @@
 @media screen and (max-width: 499px) {
-    .association-message {
+    .no-results-message {
         width: 80%;
     }
 }
 
 @media screen and (min-width: 500px) {
-    .association-message {
+    .no-results-message {
         width: 50%;
     }
 }
@@ -14,7 +14,7 @@
     height: 50vh;
 }
 
-.association-message {
+.no-results-message {
     top: 40%;
     left: 50%;
     position: absolute;
@@ -23,13 +23,13 @@
 
 }
 
-.association-message__icon {
+.no-results-message__icon {
     text-align: center;
 
     margin-bottom: 32px;
 }
 
-.association-message__icon i {
+.no-results-message__icon i {
     background-color: var(--clr-primary-50);
     padding: 32px;
     color: var(--clr-primary-500);
@@ -42,25 +42,25 @@
     border-radius: 50%;
 }
 
-.association-message__title {
+.no-results-message__title {
     font-weight: bold;
     font-size: var(--size-heading-4);
     text-align: center;
     margin-bottom: 32px;
 }
 
-.association-message__description {
+.no-results-message__description {
     color: var(--clr-gray-500);
     text-align: center;
     margin: auto auto 48px;
     width: 80%;
 }
 
-.association-message__button {
+.no-results-message__button {
     text-align: center;
 }
 
-.association-message__link {
+.no-results-message__link {
     background-color: var(--clr-primary-50);
     padding: 16px 24px;
     text-decoration: none;
