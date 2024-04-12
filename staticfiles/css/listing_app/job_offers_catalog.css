@@ -1,499 +1,234 @@
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 349px) {
     .job-offer {
         flex-wrap: wrap;
-    }
-    .job-offer__content {
-        width: 100%;
-        margin: auto auto;
-        padding: 16px;
-    }
-
-    .job-offer__company {
-        width: 100%;
-        /* background-color: cadetblue; */
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 100px;
-    }
-
-    .job-offer__details-location {
-        display: none;
-    }
-
-    .job-offer__details-dates {
-        display: none;
-    }
-
-    .job-offer__controls {
-        display: none;
-    }
-
-    .job-offer__details-title {
-        font-size: var(--size-body-large);
-        white-space: nowrap; /* Prevent text from wrapping */
-        overflow: hidden; /* Hide overflowing text */
-        text-overflow: ellipsis; /* Display ellipsis for overflow */
-        max-height: 60px; /* Set maximum height */
-        margin-bottom: 8px;
-        padding: 8px;
-    }
-
-    .job-offer__salary-range i,
-    .job-offer__work-commitment i,
-    .job-offer__work-environment i,
-    .job-offer__remote-option i {
-        font-size: 24px;
-
-        font-variation-settings: 'OPSZ' 24;
-    }
-}
-
-@media screen and (min-width: 301px) and (max-width: 599px) {
-    .job-offer {
-        padding: 16px;
-    }
-
-    .job-offer__details-dates {
-        display: none;
-    }
-
-    .job-offer__details-location {
-        display: none;
-    }
-
-    .job-offer__controls {
-        display: none;
-    }
-
-    .job-offer__company {
-        /* background-color: #4B0082; */
-        width: 60%;
-        height: 100%;
-    }
-
-    .job-offer__content {
-        width: 50%;
-    }
-
-    .job-offer__extra-info {
-        width: 80%;
-        /* text-align: center;
-        justify-content: center; */
-        /* background-color: #4B0082; */
-
-    }
-
-    /* .job-offer__details-location {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-weight: 200;
-        margin-bottom: 4px;
-    } */
-
-    .job-offer__salary-range,
-    .job-offer__work-commitment,
-    .job-offer__work-environment,
-    .job-offer__remote-option {
-        justify-content: flex-start;
-        margin-bottom: 4px;
-    }
-
-    .job-offer__details-title,
-    .job-offer__details-location {
-        font-size: var(--size-body-large);
-        margin-bottom: 8px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-height: 30px; /* Adjust as needed */
-        padding: 8px;
-        flex-grow: 1; /* Allow flex item to grow if necessary */
-    }
-
-    .job-offer__salary-range i,
-    .job-offer__work-commitment i,
-    .job-offer__work-environment i,
-    .job-offer__remote-option i {
-        font-size: 24px;
-        font-variation-settings:
-        'FILL' 0,
-        'wght' 0,
-        'GRAD' 40,
-        'OPSZ' 24;
-    }
-}
-
-@media screen and (min-width: 600px) and (max-width: 899px) {
-    .job-offer {
-        padding: 16px;
-    }
-
-    .job-offer__controls {
-        display: none;
-    }
-
-    .job-offer__company {
-        width: 40%;
-        height: 100%;
-    }
-
-    .job-offer__content {
-        width: 40%;
-    }
-
-    .job-offer__details-dates {
-        display: flex;
+        justify-content: center;
         gap: 16px;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 8px;
+
     }
 
+    .job-offer__extra-info .separator {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 499px) {
     .job-offer__salary-range,
-    .job-offer__work-commitment,
-    .job-offer__work-environment,
-    .job-offer__remote-option {
-        /* min-width: 180px; */
-        justify-content: center;
-        gap: 8px;
+    .job-offer__remote-option,
+    .job-offer__details-location,
+    .separator {
+        display: none;
     }
+}
 
-    .job-offer__extra-info {
-        width: 90%;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
-        /* background-color: cadetblue; */
-    }
-
-    .job-offer__details-title {
-        font-size: var(--size-body-large);
-        margin-bottom: 8px;
-    }
-
-    .job-offer__extra-info {
-        /* background-color: lightslategray; */
-        display: flex;
-        justify-content: space-evenly;
-    }
-
-    .job-offer__details {
-        width: 100%;
-    }
-    
-    .job-offer__content {
-        width: 80%;
-        height: 100%;
-    }
-
-    .job-offer__details-location {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-weight: 200;
-        margin-bottom: 4px;
-    }
-    
-    .job-offer__details-location i {
-        color: var(--clr-primary-500);
-    }
-
-    .job-offer__details-title,
+@media screen and (min-width: 500px) { 
+    .job-offer__remote-option,
+    .job-offer__salary-range,
     .job-offer__details-location  {
-        overflow: hidden;
-        text-overflow: ellipsis; 
-        max-height: 20px; 
-        padding: 8px;
-
-    }
-
-    .job-offer__salary-range i,
-    .job-offer__work-commitment i,
-    .job-offer__work-environment i,
-    .job-offer__remote-option i {
-        font-size: 32px;
-
-        font-variation-settings: 'OPSZ' 32;
+        display: flex;
     }
 }
 
-@media screen and (min-width: 900px) {
-    .job-offer {
-        padding: 8px 16px;
+@media screen and (max-width: 799px) {
+    .listing-list {
+        width: 90%;
     }
+}
 
+@media screen and (min-width: 800px) {
+    .listing-list {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 999px) {
     .job-offer__controls {
-        width: 20%;
-        height: 40%;
-        display: flex;
-        flex-wrap: wrap;
-        /* background-color: bisque; */
-        box-sizing: border-box;
-        gap: 8px;
-        margin-bottom: 24px;
+        display: none;
     }
 
-    .job-offer__company {
-        width: 20%;
-        height: 100%;
-
-    }
-
-    .job-offer__details-dates {
-        position: absolute;
-        top: 8px;
-        right: 0;
-        display: flex;
-        gap: 16px;
-    }
-
-    .job-offer__extra-info {
-        width: 70%;
-    }
-
-    /* Added styles */
-
-    .job-offer__details-title {
-        font-size: var(--size-heading-4);
-        margin-bottom: 16px;
-        width: 45%;
-    }
-
-    .job-offer__extra-info {
-        width: 70%;
-    }
-
-    .job-offer__salary-range,
-    .job-offer__work-commitment,
-    .job-offer__work-environment,
-    .job-offer__remote-option {
-        min-width: 160px;
-        padding: 2px;
-        /* background-color: lightskyblue; */
-        justify-content: center;
-    }
-
-    .job-offer__details-link.more {
-        color: var(--clr-primary-500);
-        background-color: transparent;
-        border: 1px solid var(--clr-primary-500);
-    }
-    
-    .job-offer__details-link.apply {
-        background-color: var(--clr-primary-500);
-        color: var(--clr-white);
-    }
-
-    .job-offer__details-link {
-        width: 100%;
-        text-decoration: none;
-        padding: 16px 8px;
-        text-align: center;
-        box-sizing: border-box;
-        border-radius: 4px;
-        letter-spacing: 2px;
-        /* Initial shadow */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: box-shadow 0.3s ease; /* Smooth transition */
-    }
-    
-    .job-offer__details-link:hover {
-        /* Shadow on hover */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .job-offer__extra-info {
-        /* background-color: lightslategray; */
-        display: flex;
-        justify-content: space-evenly;
-    }
-
-    .job-offer__details {
-        width: 100%;
-    }
-    
     .job-offer__content {
-        width: 80%;
-        height: 100%;
+        grid-template-columns: 1fr; 
+        grid-template-areas: 
+            "details"
+            "extra-info"; 
     }
-
-    .job-offer__details-location {
+}
+@media screen and (min-width: 1000px) {
+    .job-offer__controls {
         display: flex;
-        align-items: center;
-        gap: 8px;
-        font-weight: 200;
-        margin-bottom: 4px;
-    }
-    
-    .job-offer__details-title,
-    .job-offer__details-location {
-        font-size: var(--size-body-large);
-        white-space: nowrap; /* Prevent text from wrapping */
-        overflow: hidden; /* Hide overflowing text */
-        text-overflow: ellipsis; /* Display ellipsis for overflow */
-        max-height: 60px; /* Set maximum height */
-        margin-bottom: 8px;
-        padding: 8px;
     }
 
-    .job-offer__salary-range i,
-    .job-offer__work-commitment i,
-    .job-offer__work-environment i,
-    .job-offer__remote-option i,
-    .job-offer__details-location i {
-        font-size: 42px;
-
-        font-variation-settings: 'OPSZ' 42;
+    .job-offer__content {
+        grid-template-columns: 4fr 1fr; 
+        grid-template-areas: 
+            "details controls"
+            "extra-info controls";
     }
 }
 
 .listing-list {
-    width: 100%;
-    box-sizing: border-box;
-    padding-left: 10%;
-    padding-right: 10%;
-
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    margin-bottom: 24px;
+   
+    gap: 32px;
+    /* background-color: lightcoral; */
+    margin: auto auto 32px;
 }
 
 .job-offer {
-    height: 250px;
-    background: linear-gradient(135deg, #f5f5f5, #dddddd); /* Gradient background from light to dark */
-    border-left: 2px solid #C039B4;
-    border-right: 2px solid #FF856B;
-    border-radius: 8px;
-
-    width: 100%;
     display: flex;
-    align-items: center; /* Align items vertically in the center */
-    box-sizing: border-box;
+    padding: 24px;
+    border: 1px solid var(--clr-gray-500);
+    border-radius: 4px;
 }
 
-.job-offer__company {
-    box-sizing: border-box;
-    padding: 8px;
-    /* background-color: lightcoral; */
-    border-radius: 8px;
-    margin-right: 16px;
+.job-offer:hover {
+    box-shadow: 0 8px 20px rgba(10, 101, 204, 0.1); 
 }
 
 .job-offer__company-logo {
-    box-sizing: border-box;
-    padding: 4px;
-    width: 100%;
-    height: 100%;
-    background-color: var(--clr-white);
-    display: flex; 
+    display: flex;
     justify-content: center; 
-    border-radius: 8px;
     align-items: center; 
+    position: relative;
+    width: 100px; 
+    height: 100px; 
+    border-radius: 50%;
+    overflow: hidden; 
+    margin-right: 32px;
 }
 
 .job-offer__company-logo img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    border-radius: 4px;
+    object-fit: cover;
+    object-position: center; 
 }
 
+/* Job offer Content */
 .job-offer__content {
-    /* width: 80%; */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    /* height: 100%; */
+    width: 100%;
+    display: grid;
     box-sizing: border-box;
+    
+    grid-gap: 16px; /* Gap between grid items */
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 .job-offer__details {
-    width: 100%;
-    /* background-color: lightgreen; */
-    position: relative;
+    grid-area: details;
+}
+.job-offer__extra-info {
+    grid-area: extra-info;    
 }
 
+.job-offer__controls {
+   grid-area: controls;
+}
 
-.job-offer__salary-range {
+/* Job offer details  */
+.job-offer__details {
     display: flex;
-    gap: 8px;
-
-}
-
-.job-offer__controls .job-offer__details-link {
     width: 100%;
-}
-
-.job-offer__salary-range,
-.job-offer__work-commitment,
-.job-offer__work-environment,
-.job-offer__remote-option {
-    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    /* min-width: 180px; */
-    flex: 1;
     gap: 8px;
-    font-weight: 200;
 }
 
-.job-offer__salary-range i,
-.job-offer__work-commitment i,
-.job-offer__work-environment i,
-.job-offer__remote-option i,
-.job-offer__details-location i {
+.job-offer__details-title {
+    width: 100%;
+
+    font-weight: 500;
+    font-size: var(--size-body-large);
+}
+
+.job-offer__details-company-name,
+.job-offer__details-location {
+    color: var(--clr-gray-500);
+}
+
+.job-offer__details .separator {
     font-variation-settings:
-    'FILL' 1,
-    'wght' 10,
-    'GRAD' 40;
+        'FILL' 1,
+        'wght' 100,
+        'GRAD' 0,
+        'opsz' 24;
+    font-size: 16px;
+    color: var(--clr-gray-600);
 }
 
-.job-offer__salary-range i {
-    color: limegreen;
+.job-offer__details-location {
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 }
 
-.job-offer__work-commitment i {
-    color: #5100ff;
-}
-
-.job-offer__work-environment i {
-    color: #4B0082;
-}
-
-.job-offer__remote-option i {
-    color: coral;
-}
+/* Job offer extra info */
 
 .job-offer__extra-info {
+    /* visibility: hidden; */
+    display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    /* justify-content: space-evenly; */
+    width: 100%;
+    gap: 16px;
+    align-items: center;
+}
+
+/* Job offer controls */
+
+.job-offer__controls {
+    height: 100%;
+    flex-wrap: wrap;
     gap: 8px;
-}
-
-.job-offer__details-dates .job-offer__details-date-created {
-    background-color: #C039B4;
-    color: var(--clr-white);
-    font-weight: 200;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.job-offer__details-dates .job-offer__details-date-updated {
-    background-color: #FF856B;
-    color: var(--clr-white);
-    font-weight: 200;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.job-offer__details-dates .job-offer__details-date-created,
-.job-offer__details-dates .job-offer__details-date-updated {
-    text-align: center;
-    border-radius: 4px;
-    padding: 8px 4px;
     box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
 }
 
-.job-offer__details-location i {
+.job-offer__details-link {
+    width: 100%;
+    background-color: royalblue;
+    text-align: center;
+    padding: 16px;
+    text-transform: capitalize;
+    text-decoration: none;
+    border-radius: 4px;
+    color: var(--clr-white);
+} 
+
+.job-offer__details-link.more {
+    background-color: var(--clr-primary-50);
     color: var(--clr-primary-500);
+}
+
+/* General styling */
+
+.job-offer__work-commitment,
+.job-offer__salary-range,
+.job-offer__work-environment,
+.job-offer__remote-option {
+    padding: 8px 12px;
+    font-size: var(--size-body-medium);
+    border-radius: 12px;
+}
+
+.job-offer__work-commitment {
+    color:  #00C69E;
+    background-color: #C8FCEA;
+}
+
+.job-offer__salary-range {
+    border: 1px solid #5313E2;
+    color: #5313E2;
+}
+
+.job-offer__work-environment {
+    border: 1px solid #FF0072;
+    color: #FF0072;
+}
+
+.job-offer__remote-option {
+    border: 1px solid #FF7447;
+    color: #FF7447;
 }

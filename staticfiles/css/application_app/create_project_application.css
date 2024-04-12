@@ -82,3 +82,12 @@
 .project-application__submit-btn:hover {
     background-color: #0056b3;
 }
+
+.errorlist {
+    padding-left: 8px;
+    margin-left: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-left: 2px solid red;
+    margin-bottom: 8px;
+}

@@ -3,7 +3,6 @@ from django.db import models
 from django.db.models import CASCADE
 from django.utils.translation import gettext_lazy as _
 
-from accounts_app.models.profile import Profile
 from company_profiles_app.models import Company
 from listing_app.models.listing import Listing
 from shared_app.models import UserSuggestion

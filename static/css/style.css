@@ -16,6 +16,7 @@ body {
 
 main {
     margin-bottom: 64px;
+    min-height: 50vh;
 }
 
 body i {

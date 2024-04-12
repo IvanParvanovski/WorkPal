@@ -1,6 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% load custom_filters %}
+{% load permission_filters %}
 
 {% block site_header %}
     {% include 'shared/nav_main.html' %}
@@ -15,18 +16,21 @@
 {% endblock %}
 
 {% block site_main %}
-    {% if companies_job_offers|length == 0 %}
+    {% if not do_job_offers_exist %}
+    <div class="no-message-container">
         <div class="message">
-             <h1 class="message__title">Add Your First Job Offer</h1>
+            <h1 class="message__title">Add Your First Job Offer</h1>
 
-            <p class="message__text">
-                To view job offers, you must be affiliated with a company that has posted openings. If you are authorised, you can post listings too.
-            </p>
-            <div class="message__action">
-                <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
-                <a href="{% url 'create_job_offer' %}" class="message__link action">Add job offer <i class="material-symbols-outlined">arrow_forward</i></a>
-            </div>
-        </div>
+           <p class="message__text">
+               To view job offers, you must be affiliated with a company that has posted openings. If you are authorised, you can post listings too.
+           </p>
+           <div class="message__action">
+               <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
+               <a href="{% url 'create_job_offer' %}" class="message__link action">Add job offer <i class="material-symbols-outlined">arrow_forward</i></a>
+           </div>
+       </div>
+    </div>
+ 
 
     {% else %}
 
@@ -34,18 +38,19 @@
         <div class="listing-list">
             {% for job_offer in company_job_offers %}
                 {% include 'listing_app/job_offer_card.html' with job_offer=job_offer %}
-
-                {% if user|has_group:"ListingsManager" %}
-                     <div class="controls">
-                        <a class="controls__edit" href="{% url 'edit_job_offer' job_offer.id %}">Edit</a>
-
+                <div class="controls">
+                    {% with permission_string_delete='listing_app.can_delete_job_offer_'|add:job_offer.company.name permission_string_change='listing_app.can_change_job_offer_'|add:job_offer.company.name  %}
+                        {% if user|has_permission:permission_string_change %}
+                            <a class="controls__edit" href="{% url 'edit_job_offer' job_offer.id %}">Edit</a>
+                        {% endif %}
+                        {% if user|has_permission:permission_string_delete %}
                         <form class="controls__delete-form" action="{% url 'delete_job_offer' job_offer.id %}" method="post">
                             {% csrf_token %}
                             <button class="controls__delete" type="submit">Delete</button>
                         </form>
-                    </div>
-                {% endif %}
-
+                        {% endif %}
+                    {% endwith %}
+                </div>
         {% endfor %}
         </div>
     {% endfor %}
@@ -54,13 +59,6 @@
     {% include 'shared/nav-arrow.html' %}
 {% endblock %}
 
-
-    <h2>Your Job Offers</h2>
-
-    <div>
-        JOB OFFERS
-        
-    </div>
-
-</body>
-</html>
+{% block site_scripts %}
+    <script src="{% static 'js/shared/job-offer-clickable-div.js' %}"></script>
+{% endblock %}

@@ -30,7 +30,8 @@ main_urls = [
 
 permissions_urls = [
     # Permissions of the app
-    path('make_application_moderator/<int:user_to_grant_rights_id>', make_application_moderator, name='make_application_moderator'),
+    path('make_application_moderator/<int:user_to_grant_rights_id>/<int:company_id>', make_application_moderator,
+         name='make_application_moderator'),
 ]
 
 

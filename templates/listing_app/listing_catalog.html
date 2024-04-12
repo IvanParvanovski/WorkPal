@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{% static 'css/listing_app/job_offers_catalog.css' %}">
     <link rel="stylesheet" href="{% static 'css/listing_app/projects_catalog.css' %}">
     <link rel="stylesheet" href="{% static 'css/listing_app/pagination.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responses/no_search_results_listings.css'%}">
 {% endblock %}
 
 {% block site_header %}
@@ -59,13 +60,14 @@
                 </div>
             </div>
         {% else %}
-            <div>
-                No results
-            </div>
+            {% include 'responses/no_search_results_listings.html' %}
         {% endif %}
-
-
     </div>
 
     {% include 'shared/nav-arrow.html' %}
+{% endblock %}
+
+{% block site_scripts %}
+    <script src="{% static 'js/shared/job-offer-clickable-div.js' %}"></script>
+    <script src="{% static 'js/shared/project-clickable-div.js' %}"></script>
 {% endblock %}

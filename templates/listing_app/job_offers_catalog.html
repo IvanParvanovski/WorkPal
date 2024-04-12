@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{% static 'css/shared/nav_main.css' %}">
     <link rel="stylesheet" href="{% static 'css/listing_app/job_offers_catalog.css' %}">
     <link rel="stylesheet" href="{% static 'css/listing_app/pagination.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responses/no_search_results_listings.css'%}">
 {% endblock %}
 
 {% block site_header %}
@@ -13,46 +14,53 @@
 
 {% block site_main %}
 <div class="listing-list">
-    {% for job_offer in job_offers %}
-        {% include 'listing_app/job_offer_card.html' with job_offer=job_offer %}
-    {% endfor %}
-
-    <div class="pages">
-        <div class="pages__previous">
-            {% if job_offers.has_previous %}
-                <button class="pages__button">
-                    <a href="?page={{ job_offers.previous_page_number }}">
-                        <i class="material-symbols-outlined pages__icon">arrow_back</i>Previous
-                    </a>
-                </button>
-            {% else %}
-                <button class="pages__button pages__button--disabled" disabled>
-                    <a>
-                        <i class="material-symbols-outlined pages__icon">arrow_back</i>Previous
-                    </a>
-                </button>
-            {% endif %}
+    {% if job_offers|length != 0 %}
+        {% for job_offer in job_offers %}
+            {% include 'listing_app/job_offer_card.html' with job_offer=job_offer %}
+        {% endfor %}
+        <div class="pages">
+            <div class="pages__previous">
+                {% if job_offers.has_previous %}
+                    <button class="pages__button">
+                        <a href="?page={{ job_offers.previous_page_number }}">
+                            <i class="material-symbols-outlined pages__icon">arrow_back</i>Previous
+                        </a>
+                    </button>
+                {% else %}
+                    <button class="pages__button pages__button--disabled" disabled>
+                        <a>
+                            <i class="material-symbols-outlined pages__icon">arrow_back</i>Previous
+                        </a>
+                    </button>
+                {% endif %}
+            </div>
+            <div class="pages__current">
+                {{ job_offers.number }}/{{ job_offers.paginator.num_pages }}
+            </div>
+            <div class="pages__next">
+                {% if job_offers.has_next %}
+                    <button class="pages__button">
+                        <a href="?page={{ job_offers.next_page_number }}">Next
+                            <i class="material-symbols-outlined pages__icon">arrow_forward</i>
+                        </a>
+                    </button>
+                {% else %}
+                    <button class="pages__button pages__button--disabled" disabled>
+                        <a>Next
+                            <i class="material-symbols-outlined pages__icon">arrow_forward</i>
+                        </a>
+                    </button>
+                {% endif %}
+            </div>
         </div>
-        <div class="pages__current">
-            {{ job_offers.number }}/{{ job_offers.paginator.num_pages }}
-        </div>
-        <div class="pages__next">
-            {% if job_offers.has_next %}
-                <button class="pages__button">
-                    <a href="?page={{ job_offers.next_page_number }}">Next
-                        <i class="material-symbols-outlined pages__icon">arrow_forward</i>
-                    </a>
-                </button>
-            {% else %}
-                <button class="pages__button pages__button--disabled" disabled>
-                    <a>Next
-                        <i class="material-symbols-outlined pages__icon">arrow_forward</i>
-                    </a>
-                </button>
-            {% endif %}
-        </div>
-    </div>
-
+    {% else %}
+        {% include 'responses/no_search_results_listings.html' %}
+    {% endif %}
 </div>
 {% include 'shared/nav-arrow.html' %}
 {% endblock %}
+
+{% block site_scripts %}
+    <script src="{% static 'js/shared/job-offer-clickable-div.js' %}"></script>
+{% endblock %}
+

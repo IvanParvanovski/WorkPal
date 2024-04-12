@@ -81,6 +81,10 @@
     border-radius: 4px;
 }
 
+.job-offer:hover {
+    box-shadow: 0 8px 20px rgba(10, 101, 204, 0.1); 
+}
+
 .job-offer__company-logo {
     display: flex;
     justify-content: center; 

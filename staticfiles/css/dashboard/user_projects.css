@@ -1,7 +1,7 @@
 .controls {
     display: flex;
     gap: 16px;
-    margin-bottom: 24px;
+    margin: auto auto 24px;
 }
 
 .controls__edit,

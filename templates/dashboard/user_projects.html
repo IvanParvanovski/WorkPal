@@ -14,15 +14,17 @@
 
 {% block site_main %}
     {% if user_projects.count == 0 %}
-      <div class="message">
-         <h1 class="message__title">Add Your First Project</h1>
+    <div class="no-message-container">
+        <div class="message">
+            <h1 class="message__title">Add Your First Project</h1>
 
-        <p class="message__text">
-            You currently have no projects. You can add one from the dashboard.
-        </p>
-        <div class="message__action">
-            <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
-            <a href="{% url 'create_project' %}" class="message__link action">Add project <i class="material-symbols-outlined">arrow_forward</i></a>
+            <p class="message__text">
+                You currently have no projects. You can add one from the dashboard.
+            </p>
+            <div class="message__action">
+                <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
+                <a href="{% url 'create_project' %}" class="message__link action">Add project <i class="material-symbols-outlined">arrow_forward</i></a>
+            </div>
         </div>
     </div>
 
@@ -49,5 +51,5 @@
 {% endblock %}
 
 {% block site_scripts %}
-    <script src="{% static 'js/shared/nav-arrow.js' %}"></script>
+    <script src="{% static 'js/shared/project-clickable-div.js' %}"></script>
 {% endblock %}

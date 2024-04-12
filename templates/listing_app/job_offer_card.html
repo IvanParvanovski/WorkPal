@@ -1,6 +1,6 @@
 {% load custom_filters %}
 
-<div class="job-offer">
+<div class="job-offer clickable-div" data-url="{% url 'job_offer_detail' job_offer.id %}">
     <div class="job-offer__company">
         <div class="job-offer__company-logo">
             <img src="{{ job_offer.company.company_logo.url }}" alt="No logo">
@@ -20,23 +20,14 @@
             <div class="job-offer__details-location">
                 {{ job_offer.listing.location }}
             </div>
-            <!-- <div class="job-offer__details-dates">
-                <div class="job-offer__details-date-created">
-                    C: {{ job_offer.listing.date_created }}
-                </div>
-                <div class="job-offer__details-date-updated">
-                    U: {{ job_offer.listing.date_updated }}
-                </div>
-            </div> -->
+
         </div>
         <div class="job-offer__extra-info">
             <div class="job-offer__work-commitment" >
-                <!-- <i class="material-symbols-outlined ">schedule</i> -->
                 {{ job_offer.work_commitment|format_value }}
             </div>
             <span class="separator">|</span>
             <div class="job-offer__salary-range">
-                <!-- <i class="material-symbols-outlined">payments</i> -->
                 <div class="job-offer__salary-min">
                     {{ job_offer.salary_range_min|format_salary }}
                 </div> -
@@ -46,11 +37,9 @@
             </div>
             
             <div class="job-offer__work-environment">
-                <!-- <i class="material-symbols-outlined">apartment</i> -->
                 {{ job_offer.work_environment|format_value }}
             </div>
             <div class="job-offer__remote-option">
-                <!-- <i class="material-symbols-outlined">laptop</i> -->
                 {% if job_offer.remote_option %}
                     <div class="job-offer__remote">Remote</div>
                 {% else %}

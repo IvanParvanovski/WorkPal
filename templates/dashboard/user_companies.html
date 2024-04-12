@@ -1,6 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load custom_filters %}
 {% load static %}
+{% load permission_filters %}
 
 {% block site_header %}
     {% include 'shared/nav_main.html' %}
@@ -15,17 +16,20 @@
 
 {% block site_main %}
     {% if user_companies.count == 0 %}
-         <div class="message">
-             <h1 class="message__title">Your Affiliated Companies</h1>
+    <div class="no-message-container">
+        <div class="message">
+            <h1 class="message__title">Your Affiliated Companies</h1>
 
-            <p class="message__text">
-                When you join a company, all your affiliated companies will be listed here.
-            </p>
-            <div class="message__action">
-                <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
-                <a href="{% url 'create_company' %}" class="message__link action">Add company <i class="material-symbols-outlined">arrow_forward</i></a>
-            </div>
-        </div>
+           <p class="message__text">
+               When you join a company, all your affiliated companies will be listed here.
+           </p>
+           <div class="message__action">
+               <a href="{% url 'dashboard' %}" class="message__link dashboard">View Dashboard</a>
+               <a href="{% url 'create_company' %}" class="message__link action">Add company <i class="material-symbols-outlined">arrow_forward</i></a>
+           </div>
+       </div>
+    </div>
+
 
     {% else %}
         <div>
@@ -50,15 +54,19 @@
                 </div>
             </div>
 
-            {% if user|has_group:"CompanyManager" %}
-                 <div class="company-card__actions">
-                    <a href="{% url 'edit_company' c.id %}" class="company-card__actions--edit">Edit</a>
-                    <form action="{% url 'delete_company' c.id %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="company-card__actions--delete">Delete</button>
-                    </form>
-                </div>
-            {% endif %}
+             <div class="company-card__actions">
+                 {% with permission_string_delete='company_profiles_app.can_delete_company_'|add:c.name permission_string_change='company_profiles_app.can_change_company_'|add:c.name %}
+                     {% if user|has_permission:permission_string_change %}
+                        <a href="{% url 'edit_company' c.id %}" class="company-card__actions--edit">Edit</a>
+                     {% endif %}
+                     {% if user|has_permission:permission_string_delete %}
+                        <form action="{% url 'delete_company' c.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="company-card__actions--delete">Delete</button>
+                        </form>
+                     {% endif %}
+                 {% endwith %}
+            </div>
         </div>
         {% endfor %}
     </div>

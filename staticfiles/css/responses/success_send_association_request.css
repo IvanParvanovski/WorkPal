@@ -1,5 +1,20 @@
+@media screen and (max-width: 499px) {
+    .association-message {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .association-message {
+        width: 50%;
+    }
+}
+
+.response-message {
+    height: 50vh;
+}
+
 .association-message {
-    width: 50%;
     top: 40%;
     left: 50%;
     position: absolute;

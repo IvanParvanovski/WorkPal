@@ -5,7 +5,6 @@ from django.views import View
 
 from listing_app.forms.listing_form import ListingForm
 from listing_app.forms.project_form import ProjectForm
-from services.generic.listing_app.industry_service import IndustryService
 from services.generic.listing_app.listing_service import ListingService
 from services.generic.listing_app.project_service import ProjectService
 

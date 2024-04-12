@@ -38,7 +38,8 @@ def render_dashboard(request):
         'applications_for_projects': applications_for_projects,
         'any_project_applications': any(inner_list for inner_list in applications_for_projects),
 
-        'companies_applications_for_job_offers': applications_for_job_offers,
+        'user_companies': [c for c in user_companies],
+        'companies_applications_for_job_offers': [applications for applications in applications_for_job_offers if len(applications) != 0],
         'any_job_offers_applications': any(inner_list for inner_list in applications_for_job_offers)
     }
 

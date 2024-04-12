@@ -36,11 +36,11 @@
 }
 
 .associate-card__avatar img {
-    width: 100px;
+    width: 120px;
     height: auto;
     border-radius: 50%;
     margin-bottom: 8px;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .associate-card__username,

@@ -12,11 +12,11 @@ from shared_app.models import UserSuggestion
 
 
 class Employment(models.Model):
-    class Meta:
-        permissions = [
-            ('verify_associate', 'Can verify if a person is associated with the given company'),
-            ('give_rights', 'Can delegate permissions to other associates to manage company resources and data.'),
-        ]
+    # class Meta:
+    #     permissions = [
+    #         ('verify_associate', 'Can verify if a person is associated with the given company'),
+    #         ('give_rights', 'Can delegate permissions to other associates to manage company resources and data.'),
+    #     ]
 
     class CompanyRoles(models.TextChoices):
         OWNER = 'owner', _('Owner')

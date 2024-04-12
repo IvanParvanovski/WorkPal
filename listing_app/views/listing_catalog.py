@@ -9,6 +9,7 @@ from services.generic.listing_app.listing_service import ListingService
 
 from django.core.paginator import Paginator
 
+
 class ListingCatalog(TemplateView):
     template_name = 'listing_app/listing_catalog.html'
 
