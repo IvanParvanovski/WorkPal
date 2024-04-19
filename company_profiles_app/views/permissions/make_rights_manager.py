@@ -21,7 +21,7 @@ def make_rights_manager(request, *args, **kwargs):
         raise PermissionDenied
 
     user_to_grant_rights = ProfileService.get_profile_by_id(profile_id).user
-    instance_name = company.name.lower()
+    instance_name = company.name.lower().replace(" ", "_")
 
     permission_rights = Permission.objects.get(codename=f'can_give_rights_{instance_name}')
 

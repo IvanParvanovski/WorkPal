@@ -20,7 +20,7 @@ def make_application_moderator(request, *args, **kwargs):
         raise PermissionDenied
 
     user_to_grant_rights = ProfileService.get_profile_by_id(profile_id).user
-    instance_name = company.name.lower()
+    instance_name = company.name.lower().replace(" ", "_")
 
     permission_adjudicate_application = Permission.objects.get(codename=f'can_adjudicate_application_{instance_name}')
 

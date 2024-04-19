@@ -6,5 +6,3 @@ from company_profiles_app.models.company_identifiers import CompanyIdentifiers
 
 admin.site.register(CompanyIdentifiers)
 admin.site.register(Company)
-
-# Register your models here.

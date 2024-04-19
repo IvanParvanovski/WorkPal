@@ -5,7 +5,8 @@ register = template.Library()
 
 @register.filter(name='has_permission')
 def has_permission(user, permission):
-    return user.has_perm(permission)
+    permission_codename_lower = permission.lower().replace(" ", "_")
+    return user.has_perm(permission_codename_lower)
 
 
 @register.filter
