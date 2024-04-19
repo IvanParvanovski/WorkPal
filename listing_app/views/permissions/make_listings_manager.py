@@ -21,8 +21,7 @@ def make_listings_manager(request, *args, **kwargs):
         raise PermissionDenied
 
     user_to_grant_rights = ProfileService.get_profile_by_id(profile_id).user
-    instance_name = company.name.lower()
-    print(instance_name)
+    instance_name = company.name.lower().replace(" ", "_")
 
     permission_add_job_offer = Permission.objects.get(codename=f'can_add_job_offer_{instance_name}')
     permission_change_job_offer = Permission.objects.get(codename=f'can_change_job_offer_{instance_name}')

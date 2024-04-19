@@ -44,10 +44,8 @@
                     <div class="associate-card__job-title">{{ associate.profile.job_title }}</div>
                     <div class="associate-card__associate-job-title">{{ associate.job_title }}</div>
                 </div>
-
-{#                {% if user|has_group:"RightsManager"  %}#}
-
-                 <div class="associate-card__actions">
+            
+                <div class="associate-card__actions">
                      {% with current_company=associate.company.name %}
                          {% with permission_string='company_profiles_app.can_give_rights_'|add:current_company %}
                              {% if user|has_permission:permission_string %}
@@ -83,7 +81,6 @@
                          {% endwith %}
                      {% endwith %}
                  </div>
-{#                {% endif %}#}
             </div>
             {% endfor %}
         {% endfor %}

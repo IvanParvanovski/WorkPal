@@ -8,7 +8,6 @@ from services.generic.company_profiles_app.company_service import CompanyService
 from shared_app.utils import has_company_permission
 
 
-# @permission_required('company_profiles_app.give_rights', raise_exception=True)
 def make_associate_moderator(request, *args, **kwargs):
     profile_id = kwargs.get('user_to_grant_rights_id')
     company_id = kwargs.get('company_id')
@@ -21,9 +20,11 @@ def make_associate_moderator(request, *args, **kwargs):
         raise PermissionDenied
 
     user_to_grant_rights = ProfileService.get_profile_by_id(profile_id).user
-    instance_name = company.name.lower()
+    instance_name = company.name.lower().replace(" ", "_")
 
+    print(f'can_verify_associate_{instance_name}')
     permission_verify_associate = Permission.objects.get(codename=f'can_verify_associate_{instance_name}')
+
 
     user_to_grant_rights.user_permissions.add(permission_verify_associate)
 

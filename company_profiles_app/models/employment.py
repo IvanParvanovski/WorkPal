@@ -38,6 +38,6 @@ class Employment(models.Model):
         return self.__repr__()
 
     def __repr__(self):
-        return f'Employment(job_t={self.job_title}, pi={self.profile_id}, ci={self.company_id}, is_a={self.is_associate})'
+        return f'Employment({self.job_title}, {self.profile.user.username}, {self.company.name})'
 
 
