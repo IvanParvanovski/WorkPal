@@ -22,7 +22,6 @@ def make_associate_moderator(request, *args, **kwargs):
     user_to_grant_rights = ProfileService.get_profile_by_id(profile_id).user
     instance_name = company.name.lower().replace(" ", "_")
 
-    print(f'can_verify_associate_{instance_name}')
     permission_verify_associate = Permission.objects.get(codename=f'can_verify_associate_{instance_name}')
 
 

@@ -47,3 +47,4 @@ class ListingIdentifiersService(ListingIdentifiersInterface):
             identifier.save()
 
         return identifier
+

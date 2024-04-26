@@ -46,9 +46,11 @@ class CustomUserService(CustomUserInterface):
         
         user = CustomUserService.get_user_by_id(_id=_id)
 
+        user.first_name = first_name
+        user.last_name = last_name
         user.username = username
         user.email = email
-        user.password = password
+        user.set_password(password)
 
         if commit:
             user.save()

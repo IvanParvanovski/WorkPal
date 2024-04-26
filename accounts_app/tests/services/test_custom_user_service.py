@@ -1,6 +1,11 @@
+import unittest
+
+from django.db.transaction import TransactionManagementError
 from django.test import TestCase
 
 from django.core.exceptions import ObjectDoesNotExist
+from django.db import IntegrityError, transaction
+from psycopg.errors import UniqueViolation
 
 from accounts_app.models import CustomUser
 from services.generic.accounts_app.custom_user_service import CustomUserService
@@ -72,8 +77,7 @@ class TestCustomUserService(TestCase):
                                                     last_name=last_name,
                                                     username=username,
                                                     email=email,
-                                                    password=password,
-                                                    )
+                                                    password=password)
 
         created_user = CustomUser.objects.filter(email=email).first()
 
@@ -97,35 +101,40 @@ class TestCustomUserService(TestCase):
 
         self.assertIsNone(created_user)
 
-    # def test_create_custom_user_should_raise_exception_when_the_email_is_already_used(self):
-    #     # First User
-    #     first_user_first_name = 'joey'
-    #     first_user_last_name = 'dias'
-    #     first_user_username = 'joey dias'
-    #     first_user_email = 'test_user_2@gmail.com'
-    #     first_user_password = 'dias123'
-    #
-    #     first_user = CustomUserService.create_custom_user(first_name=first_user_first_name,
-    #                                                       last_name=first_user_last_name,
-    #                                                       username=first_user_username,
-    #                                                       email=first_user_email,
-    #                                                       password=first_user_password)
-    #
-    #     # Second user
-    #     second_user_first_name = 'jane'
-    #     second_user_last_name = 'doe'
-    #     second_user_username = 'jane doe'
-    #     second_user_email = 'test_user_2@gmail.com'
-    #     second_user_password = 'doe123'
-    #
-    #     with self.assertRaises(IntegrityError) as context:
-    #         second_user = CustomUserService.create_custom_user(first_name=second_user_first_name,
-    #                                                            last_name=second_user_last_name,
-    #                                                            username=second_user_username,
-    #                                                            email=second_user_email,
-    #                                                            password=second_user_password)
-    #
-    #     self.assertIn('Key (email)=(test_user_2@gmail.com) already exists', str(context.exception))
+    def test_create_custom_user_should_raise_exception_when_the_email_is_already_used(self):
+        # First User
+        first_user_first_name = 'joey'
+        first_user_last_name = 'dias'
+        first_user_username = 'joeydias'
+        first_user_email = 'test_user_1@gmail.com'
+        first_user_password = 'dias123'
+
+        # Creating the first user
+        first_user = CustomUserService.create_custom_user(first_name=first_user_first_name,
+                                                          last_name=first_user_last_name,
+                                                          username=first_user_username,
+                                                          email=first_user_email,
+                                                          password=first_user_password)
+
+        # Second user with the same email as the first user
+        second_user_first_name = 'jane'
+        second_user_last_name = 'doe'
+        second_user_username = 'janedoe'
+        second_user_email = 'test_user_1@gmail.com'
+        second_user_password = 'doe123'
+
+        # Using assertRaises to check if an IntegrityError is raised when trying to create the second user
+        with transaction.atomic():
+            # Use assertRaises to check if an IntegrityError is raised when trying to create the second user
+            with self.assertRaises(IntegrityError) as context:
+                CustomUserService.create_custom_user(first_name=second_user_first_name,
+                                                     last_name=second_user_last_name,
+                                                     username=second_user_username,
+                                                     email=second_user_email,
+                                                     password=second_user_password)
+
+        # Verifying that the exception message contains the expected error message
+        self.assertIn('duplicate key value violates unique constraint', str(context.exception))
 
     def test_get_user_by_id_should_return_user_when_id_is_passed(self):
         user = CustomUserService.get_user_by_id(_id=self.existing_user.id)
@@ -158,7 +167,53 @@ class TestCustomUserService(TestCase):
 
         self.assertIn('CustomUser object can\'t be deleted because its id attribute is set to None', str(context.exception))
 
-    # def test_delete_user_by_id_should_delete_user_when_valid_id_is_provided(self):
+    def test_delete_user_by_id_should_delete_user_when_valid_id_is_provided(self):
+        random_user = {
+            'first_name': 'random',
+            'last_name': 'random',
+            'username': 'random random',
+            'email': 'random_random@gmail.com',
+            'password': 'random123'
+        }
+
+        current_user = CustomUserService.create_custom_user(**random_user)
+
+        CustomUserService.delete_user_by_id(_id=current_user.id)
+
+    def test_delete_user_by_id_should_raise_exception_when_id_is_invalid(self):
+        with self.assertRaises(ObjectDoesNotExist) as context:
+            CustomUserService.delete_user_by_id(_id=-100)
+
+        self.assertIn('CustomUser matching query does not exist', str(context.exception))
+
+    def test_update_user_by_id_should_update_user_when_commit_is_not_given(self):
+        random_user = {
+            'first_name': 'random',
+            'last_name': 'random',
+            'username': 'random random',
+            'email': 'test_user_random_1@gmail.com',
+            'password': 'random123'
+        }
+
+        random_user_new_credentials = {
+            'first_name': 'random new',
+            'last_name': 'random new',
+            'username': 'random random new',
+            'email': 'test_user_random_2@gmail.com',
+            'password': 'random_new123'
+        }
+
+        current_user = CustomUserService.create_custom_user(**random_user)
+
+        CustomUserService.edit_user_by_id(current_user.id, **random_user_new_credentials)
+
+        changed_user = CustomUserService.get_user_by_id(current_user.id)
+
+        self.assertEqual(random_user_new_credentials['first_name'], changed_user.first_name)
+        self.assertEqual(random_user_new_credentials['last_name'], changed_user.last_name)
+        self.assertEqual(random_user_new_credentials['username'], changed_user.username)
+        self.assertEqual(random_user_new_credentials['email'], changed_user.email)
+        self.assertTrue(changed_user.check_password(random_user_new_credentials['password']))
 
 
 if __name__ == '__main__':

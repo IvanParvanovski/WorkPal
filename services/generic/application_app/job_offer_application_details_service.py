@@ -5,7 +5,7 @@ from services.interfaces.application_app.job_offer_application_details_interface
 class JobOfferApplicationDetailsService(JobOfferApplicationDetailsInterface):
     @staticmethod
     def create_job_offer_details(cv, motivation_letter: str, commit=True) -> JobOfferApplicationDetails:
-        job_offer_details = JobOfferApplicationDetails.objects.create(cv=cv, motivation_letter=motivation_letter)
+        job_offer_details = JobOfferApplicationDetails(cv=cv, motivation_letter=motivation_letter)
 
         if commit:
             job_offer_details.save()

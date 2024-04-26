@@ -38,8 +38,6 @@ class EditProjectView(LoginRequiredMixin, View):
 
             current_industries = ListingService.get_all_listing_industries(listing)
             newly_selected_industries = listing_form.cleaned_data['industries']
-            print(current_industries)
-            print(newly_selected_industries)
 
             # Add new industries
             for industry in newly_selected_industries:

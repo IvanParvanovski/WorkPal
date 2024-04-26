@@ -32,10 +32,8 @@ class ListingCatalog(TemplateView):
 
 def search_listings(request, *args, **kwargs):
     query = request.GET.get('q')
-    print(query)
 
     results = ListingService.search_listings_by_query(query)
-    print(results)
 
     context = {
         'listings': results,

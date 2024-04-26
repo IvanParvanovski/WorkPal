@@ -19,7 +19,7 @@ class JobOfferService(JobOfferInterface):
                          remote_option: bool,
                          commit=True) -> JobOffer:
 
-        job_offer = JobOffer.objects.create(
+        job_offer = JobOffer(
             company=company,
             listing=listing,
             benefits=benefits,
@@ -83,6 +83,7 @@ class JobOfferService(JobOfferInterface):
 
         job_offer = JobOfferService.get_job_offer_by_id(_id=_id)
 
+        job_offer.company = company
         job_offer.benefits = benefits
         job_offer.salary_range_min = salary_range_min
         job_offer.salary_range_max = salary_range_max

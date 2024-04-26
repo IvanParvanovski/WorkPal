@@ -59,10 +59,10 @@ def track_changes(sender, instance, **kwargs):
     temp_instance = instance._previous_state['name']
 
 
-@receiver(post_save, sender=Company)
-def get_instance_after(sender, instance, **kwargs):
-    print('After')
-    print(instance)
+# @receiver(post_save, sender=Company)
+# def get_instance_after(sender, instance, **kwargs):
+#     print('After')
+#     print(instance)
 
 
 def instance_created(sender, instance, created, **kwargs):

@@ -14,12 +14,12 @@ class ProjectService(ProjectInterface):
                        estimated_duration: str,
                        commit=True) -> Project:
 
-        project = Project.objects.create(profile=profile,
-                                         listing=listing,
-                                         wage=wage,
-                                         preferred_payment=preferred_payment,
-                                         status=status,
-                                         estimated_duration=estimated_duration)
+        project = Project(profile=profile,
+                          listing=listing,
+                          wage=wage,
+                          preferred_payment=preferred_payment,
+                          status=status,
+                          estimated_duration=estimated_duration)
 
         if commit:
             project.save()

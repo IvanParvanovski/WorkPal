@@ -17,7 +17,6 @@ class UserAssociatesView(LoginRequiredMixin, TemplateView):
         return context
 
     def has_associates(self, companies_associates):
-        print(companies_associates)
         if len(companies_associates) == 0:
             return False
 

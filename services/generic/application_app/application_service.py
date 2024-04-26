@@ -16,7 +16,7 @@ class ApplicationService(ApplicationInterface):
                            object_id: int,
                            commit=True) -> Application:
 
-        application = Application.objects.create(
+        application = Application(
             is_approved=False,
             profile=profile,
             listing=listing,
