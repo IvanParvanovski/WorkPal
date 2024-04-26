@@ -8,7 +8,7 @@ class CompanyIdentifiersService(CompanyIdentifiersInterface):
     def create_company_identifier(_type: str, value, company: Company, commit=True) \
             -> CompanyIdentifiers:
 
-        identifier = CompanyIdentifiers.objects.create(
+        identifier = CompanyIdentifiers(
             type=_type,
             value=value,
             company=company

@@ -12,7 +12,7 @@ class UserSuggestionService(UserSuggestionInterface):
                                object_id: int,
                                commit=True) -> UserSuggestion:
 
-        user_suggestion = UserSuggestion.objects.create(
+        user_suggestion = UserSuggestion(
             field_name=field_name,
             suggestion=suggestion,
             content_type=content_type,
@@ -26,7 +26,7 @@ class UserSuggestionService(UserSuggestionInterface):
 
     @staticmethod
     def get_user_suggestion_by_id(_id: int):
-        return UserSuggestion.objects.get(_id=_id)
+        return UserSuggestion.objects.get(id=_id)
 
     @staticmethod
     def delete_suggestion(user_suggestion: UserSuggestion):

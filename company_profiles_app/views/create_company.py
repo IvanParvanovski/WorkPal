@@ -33,8 +33,6 @@ class CreateCompanyView(LoginRequiredMixin, View):
             if not company_form.cleaned_data['company_logo']:
                 company_form.cleaned_data['company_logo'] = 'https://res.cloudinary.com/dpjfbxicd/image/upload/v1711847315/default_company_img_hwuiww.jpg'
 
-            print(company_form.cleaned_data['company_logo'])
-
             company = CompanyService.create_company(address=company_form.cleaned_data['address'],
                                                     secondary_address=company_form.cleaned_data['secondary_address'],
                                                     company_logo=company_form.cleaned_data['company_logo'],
@@ -54,7 +52,6 @@ class CreateCompanyView(LoginRequiredMixin, View):
             print(company_form.errors)
             print(company_identifiers_form.errors)
 
-        print(company_form)
         context = {
             'company_form': company_form,
             'company_identifiers': company_identifiers_form,

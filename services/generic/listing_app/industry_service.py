@@ -7,7 +7,7 @@ from services.interfaces.listing_app.industry_interface import IndustryInterface
 class IndustryService(IndustryInterface):
     @staticmethod
     def create_industry(name, commit=True):
-        industry = Industry.objects.create(name=name)
+        industry = Industry(name=name)
 
         if commit:
             industry.save()

@@ -47,8 +47,6 @@ class CreateJobOfferView(LoginRequiredMixin, View):
         job_offer_form = self.form_class_create_job_offer(profile, combined_data)
 
         if job_offer_form.is_valid() and listing_form.is_valid():
-            print(job_offer_form.cleaned_data['company'])
-
             if not has_company_permission(request.user, 'listing_app', 'can_add_job_offer',
                                           job_offer_form.cleaned_data['company'].name):
                 raise PermissionDenied

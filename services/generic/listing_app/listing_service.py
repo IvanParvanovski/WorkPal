@@ -14,7 +14,7 @@ class ListingService(ListingInterface):
                        description: str,
                        commit=True) -> Listing:
 
-        listing = Listing.objects.create(
+        listing = Listing(
             title=title,
             location=location,
             description=description,

@@ -5,7 +5,7 @@ from services.interfaces.application_app.project_application_details_interface i
 class ProjectApplicationDetailsService(ProjectApplicationDetailsInterface):
     @staticmethod
     def create_project_details(motivation_letter: str, commit=True) -> ProjectApplicationDetails:
-        project_details = ProjectApplicationDetails.objects.create(motivation_letter=motivation_letter)
+        project_details = ProjectApplicationDetails(motivation_letter=motivation_letter)
 
         if commit:
             project_details.save()
@@ -31,7 +31,7 @@ class ProjectApplicationDetailsService(ProjectApplicationDetailsInterface):
 
     @staticmethod
     def edit_project_details_by_id(_id: int,
-                                   motivation_letter: int,
+                                   motivation_letter: str,
                                    commit=True) -> ProjectApplicationDetails:
         project_details = ProjectApplicationDetailsService.get_project_details_by_id(_id=_id)
         project_details.motivation_letter = motivation_letter

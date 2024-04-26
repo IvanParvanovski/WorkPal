@@ -11,7 +11,7 @@ class ProfileService(ProfileInterface):
                        image_path: str,
                        commit=True):
 
-        profile = Profile.objects.create(
+        profile = Profile(
             user=user,
             job_title=job_title,
             description=description,
