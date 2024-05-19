@@ -15,7 +15,6 @@
 
 {% block site_main %}
 
-    <div class="companies-associates">
     {% if not has_associates %}
         <div class="no-message-container">
             <div class="message">
@@ -32,6 +31,7 @@
         </div>
       
     {% else %}
+        <div class="companies-associates">
         {% for company_associates in companies_associates %}
             {% for associate in company_associates %}
             <div class="associate-card">
