@@ -47,11 +47,22 @@ function updateWindowWidth() {
     windowWidth = document.documentElement.clientWidth;
 
     if (windowWidth < 690) {
-        menuClosedIcon.style.visibility = 'visible';
+        let iconsVisibility = (menuClosedIcon.style.visibility == '' && menuOpenedIcon.style.visibility == '') ||
+                              (menuClosedIcon.style.visibility == 'hidden' && menuOpenedIcon.style.visibility == 'hidden')
+        
+        if (iconsVisibility) {
+            menuClosedIcon.style.visibility = 'visible';
+            navLinks.style.display = 'none';
+            navUserLinks.style.display = 'none';
+        }
 
-        navLinks.style.display = 'none';
-        navUserLinks.style.display = 'none';
     } else {
+        if (menuOpenedIcon.style.visibility == 'visible') {
+            navLinks.style.display = 'none';
+            navUserLinks.style.display = 'none';
+            navigation.style.height = '';
+        }
+
         navLinks.style.display = 'inline';
         navUserLinks.style.display = 'flex';
 
