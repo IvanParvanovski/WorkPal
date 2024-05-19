@@ -34,6 +34,7 @@ function enableScroll() {
     // Restore the previous scroll position
     window.scrollTo(scrollX, scrollY);
 }
+console.log('hi')
 
 const menuClosedIcon = document.getElementById("menu-closed-icon");
 const menuOpenedIcon = document.getElementById("menu-opened-icon");
